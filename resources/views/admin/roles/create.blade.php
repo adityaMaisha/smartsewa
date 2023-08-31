@@ -89,16 +89,16 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h6 class="card-title">Create New Designation / Role</h6>
+                                <h6 class="card-title">Create New Department</h6>
                                 <form class="forms-sample" action="{{ route('new.roles') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Role Name : <b class="text-danger">*</b></label>
+                                            <label class="form-label">Department Name : <b class="text-danger">*</b></label>
                                             <input type="text" class="form-control" name="role_name" required
-                                                placeholder="Enter Role Name" value="{{ old('role_name') }}" readonly onfocus="this.removeAttribute('readonly');">
+                                                placeholder="Enter Department Name" value="{{ old('role_name') }}" readonly onfocus="this.removeAttribute('readonly');">
                                                 @error('role_name')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
@@ -108,8 +108,8 @@
                                         <div class="mb-3">
                                             <label class="form-label">Status : <b class="text-danger">*</b></label>
                                             <select class="form-control select2"  name="status" required>
-                                                <option value="active">Active Role</option>
-                                                <option value="inactive">Inactive Role</option>
+                                                <option value="active">Active Department</option>
+                                                <option value="inactive">Inactive Department</option>
                                             </select>
                                             @error('status')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -121,7 +121,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-3">
-                                            <label class="form-label">Designation / Role Description</label>
+                                            <label class="form-label">Department Description</label>
                                             <textarea class="form-control" name="designation_description" rows="4" cols="50" style="height: auto"></textarea>
                                                 @error('role_name')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -131,7 +131,7 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary me-2 w-50">Create Designation / Role</button>
+                                    <button type="submit" class="btn btn-primary me-2 w-50">Create New Department</button>
                                 </div>
                                 </form>
 

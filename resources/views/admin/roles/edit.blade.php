@@ -90,17 +90,15 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h6 class="card-title">Edit Designation / Role</h6>
-                                <form class="forms-sample" action="{{ route('edit.roles', $roleid) }}" method="POST"
-                                    enctype="multipart/form-data">
+                                <form class="forms-sample" action="{{ route('edit.roles', $roleid) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Role Name : <b class="text-danger">*</b></label>
+                                                <label class="form-label">Department Name : <b class="text-danger">*</b></label>
                                                 <input type="text" class="form-control" name="role_name" required
-                                                    placeholder="Enter Role Name"
+                                                    placeholder="Enter Department Name"
                                                     value="{{ old('role_name', $getInfo->title) }}" readonly
                                                     onfocus="this.removeAttribute('readonly');">
                                                 @error('role_name')
@@ -108,15 +106,13 @@
                                                 @enderror
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Status : <b class="text-danger">*</b></label>
-                                                <select class="form-control select2" name="status" data-width="100%"
-                                                    required tabindex="-1" aria-hidden="true">
-                                                    <option {{ $getInfo->status == 'active' ? 'selected' : '' }}
-                                                        value="active">Active Role</option>
-                                                    <option {{ $getInfo->status == 'inactive' ? 'selected' : '' }}
-                                                        value="inactive">Inactive Role</option>
+                                                <select class="form-control select2" name="status" data-width="100%" required tabindex="-1" aria-hidden="true">
+                                                    <option {{ $getInfo->status == 'active' ? 'selected' : '' }} value="active">Active Department</option>
+                                                    <option {{ $getInfo->status == 'inactive' ? 'selected' : '' }} value="inactive">Inactive Department</option>
                                                 </select>
                                                 @error('status')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -128,7 +124,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mb-3">
-                                                <label class="form-label">Designation / Role Description</label>
+                                                <label class="form-label">Department Description</label>
                                                 <textarea class="form-control" name="designation_description" rows="4" cols="50" style="height: auto">{{ $getInfo->designation_description }}</textarea>
                                                 @error('designation_description')
                                                     <div class="text-danger">{{ $message }}</div>
