@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 :root {
-    --primary-bg-color: #6259ca;
+    --primary-bg-color: #093a81;
     --primary-bg-hover: #403fad;
     --primary-transparentcolor: rgba(98, 89, 202, 0.16);
     --primary-bg-border: #6259ca;
@@ -34582,7 +34582,7 @@ textarea.parsley-success:focus {
 }
 
 .main-content-title {
-    color: #170c6b;
+    color: #093a81;
     font-weight: 500;
     font-size: 32px;
     text-indent: -1px;
@@ -76171,4 +76171,15 @@ div.dt-button-info h2 {
 .navbar-toggler {
     transition: none !important;
 }
-/*# sourceMappingURL=style.css.map */
+.mb-4.hny_tt {
+    background-color: #093a81;
+    padding: 10px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.mb-4.hny_tt h6 {
+    color: white;
+}
+.dropify-wrapper .dropify-message span.file-icon:before {
+    content: none !important;
+}

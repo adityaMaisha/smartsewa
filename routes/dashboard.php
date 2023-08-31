@@ -11,6 +11,10 @@ Route::middleware(['loginAuth'])->group(function () {
     /* =====[ Dashboard ]===== */
     Route::get('dashboard-page', [EmployeeController::class, 'dashboardPage'])->name('dashboard.home');
 
+    /* =====[ Employee Management ]===== */
+    Route::match(['get', 'post'], 'employee-new', [EmployeeController::class, 'employeeNew'])->name('new.employee');
+
+
     /* =====[ Department and Privileges ]===== */
     Route::get('department-list', [RolesPrivilegesController::class, 'rolesList'])->name('list.roles');
     Route::match(['get', 'post'], 'department-new', [RolesPrivilegesController::class, 'rolesNew'])->name('new.roles');
