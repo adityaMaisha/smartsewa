@@ -39,4 +39,6 @@ class EmployeeController extends Controller
     {
         return view('admin.dashboard.dashboard_home');
     }
+
+
 }

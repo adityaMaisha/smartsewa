@@ -27,7 +27,7 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
-        "files" : ["app/helpers/helper.php"]
+        "files" : ["app/helpers/helper.php", "app/helpers/mongoQueryHelper.php"]
     },
     "autoload-dev": {
         "psr-4": {
