@@ -5,23 +5,15 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
     <title>Admin</title>
-
-    <!-- FAVICON -->
-    <link rel="icon" href="{{ asset('dashboard/img/brand/favicon.ico') }}" />
-    <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{ asset('dashboard/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
-
-    <!-- ICONS CSS -->
-    {{-- <link href="{{ asset('dashboard/plugins/web-fonts/icons.css') }}" rel="stylesheet" />
-        <link href="{{ asset('dashboard/plugins/web-fonts/plugin.css') }}" rel="stylesheet" /> --}}
-
-    <!-- STYLE CSS -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="{{ asset('dashboard/css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('dashboard/css/plugins.css') }}" rel="stylesheet" />
-
-    <!-- SWITCHER CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
+    <!-- Helper Style -->
+    <link href="{{ asset('helper_script/snackbar/snackbar.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('helper_script/simple-lightbox/simple-lightbox.min.css') }}" rel="stylesheet" />
 
     @yield('style')
 </head>
@@ -189,10 +181,8 @@
                                     <i class="angle fa fa-chevron-circle-right"></i>
                                 </a>
                                 <ul class="nav-sub">
-                                    <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="{{ route('new.employee') }}">Employees</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="javascript:;">Customers</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('list.employee') }}">List Employees</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('list.customers') }}">Customers</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -205,8 +195,13 @@
                                 </a>
                                 <ul class="nav-sub">
                                     <li class="side-menu-label1"><a href="javascript:void(0)">E-Commerce</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="javascript:void(0)">Products</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.path.lab') }}">Path Lab</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.radiology.diagnostics') }}">Radiology Diagnostics</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.hospitals.others') }}">Hospitals & Others</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.doctors.other') }}">Doctors & Other</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.healthcare.professionals') }}">Healthcare Professionals</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.htm.consumables.suplliers') }}">HTM Consumables Suplliers</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="#">Products</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
                                             href="javascript:void(0)">Medicine</a></li>
                                 </ul>
@@ -300,9 +295,14 @@
 
     <!-- BACK TO TOP -->
     <a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
+    {{-- <script src="{{ asset('dashboard/plugins/jquery/jquery.min.js') }}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <!-- JQUERY JS -->
-    <script src="{{ asset('dashboard/plugins/jquery/jquery.min.js') }}"></script>
+
+    <!-- Helper Script -->
+    <script src="{{ asset('helper_script/snackbar/snackbar.min.js') }}"></script>
+    <script src="{{ asset('helper_script/simple-lightbox/simple-lightbox.min.js') }}"></script>
+
 
     <!-- BOOTSTRAP JS -->
     <script src="{{ asset('dashboard/plugins/bootstrap/js/popper.min.js') }}"></script>
@@ -356,7 +356,7 @@
     <script src="{{ asset('dashboard/plugins/datatable/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('dashboard/plugins/datatable/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('dashboard/js/table-data.js') }}"></script>
-    <script src="{{ asset('dashboard/js/select2.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard/js/select2.js') }}"></script> --}}
 
 
     <!-- INTERNAL JQUERY-UI JS -->
@@ -392,6 +392,81 @@
     <!-- INTERNAL FORM-WIZAR JS -->
     <script src="{{ asset('dashboard/js/form-wizard.js') }}"></script>
 
+
+
+
+    <script>
+        function htmlError(){
+            try {
+                const $errorSpan = $("span[class*='ERROR__']:not(:empty):first");
+                if ($errorSpan.length) $('html, body').animate({ scrollTop: $errorSpan.offset().top - ($(window).height() / 2) }, 'slow');
+            } catch (e) {
+                console.log('An error occurred: ' + e.message);
+            }
+        }
+        /* Why Use : Scroll On Form Error */
+
+        /* Official : https://www.polonel.com/snackbar */
+        function python(snackText, snackActionText = '', snakColor = 'green'){
+            Snackbar.show({text: snackText, pos: 'bottom-center', actionText: snackActionText, actionTextColor: snakColor, duration: 5000});
+        }
+        // python('Hello Word');
+        // python('Hello Word', 'Thank You');
+        // python('Hello Word', 'Thank You', 'red');
+
+        /*
+        function imageSlideBox() {
+            $('a.popup_gallery_box').each(function() {
+                var gallery = new SimpleLightbox(this, {});
+            });
+        }
+
+        imageSlideBox();
+        */
+        /* Official : https://simplelightbox.com/ */
+        // <a class="popup_gallery_box" href="https://picsum.photos/id/237/200/300"> <img class="w-25 br-5 img-fluid srb-img-s" src="https://picsum.photos/id/237/200/300"></a>
+        // imageSlideBox();
+
+
+        // function handleBrokenLinkClick(link) {
+        //     link.click(function(event) {
+        //         event.preventDefault();
+        //         var url = link.attr("href");
+        //         $.ajax({
+        //             type: "HEAD",
+        //             url: url,
+        //             complete: function(xhr) {
+        //                 if (xhr.status === 200) {
+        //                     window.open(url, '_blank');
+        //                 } else if (xhr.status === 404) {
+        //                     python('Image Link Broken', 'Status 404', 'red');
+        //                 }
+        //             }
+        //         });
+        //     });
+        // }
+
+        // $(function() {
+        //     handleBrokenLinkClick($(".broken_404"));
+        // });
+        // <a href="' . asset('documents12/'.$getInfo->employee_profile) . '" target="_NEW" class="broken_404">View Image</a>
+
+
+        function _showBorder(attributeName='required') {
+            const elements = document.querySelectorAll(`[${attributeName}]`);
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].style.border = '2px solid red';
+            }
+            const select2Fields = document.querySelectorAll('.select2[required]');
+            for (let i = 0; i < select2Fields.length; i++) {
+                select2Fields[i].nextElementSibling.querySelector('.select2-selection').style.border = '2px solid red';
+            }
+        }
+        // _showBorder();
+        // _showBorder('required');
+        // only required attribute html tag border red
+
+    </script>
     @yield('script')
 </body>
 

@@ -1,30 +1,30 @@
 $(function() {
 	'use strict'
-	
+
 	// Toggle Switches
 	$('.main-toggle').on('click', function() {
 		$(this).toggleClass('on');
 	})
-	
+
 	// Input Masks
 	$('#dateMask').mask('99/99/9999');
 	$('#phoneMask').mask('(999) 999-9999');
 	$('#phoneExtMask').mask('(999) 999-9999? ext 99999');
 	$('#ssnMask').mask('999-99-9999');
-	
-	
+
+
 	// Color picker
 	$('#colorpicker').spectrum({
 		color: '#17A2B8'
 	});
-	
+
 	// transparency selection
 	$('#showAlpha').spectrum({
 		color: 'rgba(23,162,184,0.5)',
 		showAlpha: true
 	});
-	
-	//Palettes selection 
+
+	//Palettes selection
 	$('#showPaletteOnly').spectrum({
 		showPaletteOnly: true,
 		showPalette: true,
@@ -34,31 +34,31 @@ $(function() {
 			['#DC3545', '#17A2B8', '#6610F2', '#fa1e81', '#72e7a6']
 		]
 	});
-	
-	
+
+
 	// Fc-datepicker
 	$('.fc-datepicker').datepicker({
 		showOtherMonths: true,
 		selectOtherMonths: true
 	});
-	
+
 	// Datepicker no of months
 	$('#datepickerNoOfMonths').datepicker({
 		showOtherMonths: true,
 		selectOtherMonths: true,
 		numberOfMonths: 2
 	});
-	
+
 	// Rangeslider1
 	$('.rangeslider1').ionRangeSlider();
-	
+
 	// Rangeslider2
 	$('.rangeslider2').ionRangeSlider({
 		min: 100,
 		max: 1000,
 		from: 550
 	});
-	
+
 	// Rangeslider3
 	$('.rangeslider3').ionRangeSlider({
 		type: 'double',
@@ -69,7 +69,7 @@ $(function() {
 		to: 800,
 		prefix: '$'
 	});
-	
+
 	// Rangeslider4
 	$('.rangeslider4').ionRangeSlider({
 		type: 'double',
@@ -80,7 +80,7 @@ $(function() {
 		to: 500,
 		step: 250
 	});
-	
+
 	// Filebrowser
 	$(document).on('change', ':file', function() {
 	var input = $(this),
@@ -99,13 +99,13 @@ $(function() {
 		  if( input.length ) {
 			  input.val(log);
 		  } else {
-			  if( log ) alert(log);
+			  //if( log ) alert(log);
 		  }
 
 	  });
 	});
-	
-	
+
+
 	//Date picker
 	$('#datepicker-date').bootstrapdatepicker({
 		format: "dd-mm-yyyy",
@@ -113,7 +113,7 @@ $(function() {
 		multidate: true,
 		multidateSeparator: "-",
 	})
-	
+
 	//Month picker
 	$('#datepicker-month').bootstrapdatepicker({
 		format: "MM",
@@ -122,7 +122,7 @@ $(function() {
 		multidate: true,
 		multidateSeparator: "-",
 	})
-	
+
 	//Year picker
 	$('#datepicker-year').bootstrapdatepicker({
 		format: "yyyy",
@@ -136,8 +136,8 @@ $(function() {
 		format: 'yyyy-mm-dd hh:ii:ss',
 		autoclose: true
 	});
-	
-	
-	
-	
+
+
+
+
 });

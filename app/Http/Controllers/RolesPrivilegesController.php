@@ -71,8 +71,6 @@ class RolesPrivilegesController extends Controller
         ]);
 
     }
-
-
     public function privilegesList(Request $request, $roleid)
     {
         $roleid_get = lock($roleid,'decrypt');
