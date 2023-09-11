@@ -75,9 +75,9 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Add New Path Lab</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Add New Radiology Diagnostics Vendor</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Vendor</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Add New Radiology Diagnostics Vendor</a></li>
                         <li class="breadcrumb-item active" aria-current="page">New Path Lab</li>
                     </ol>
                 </div>

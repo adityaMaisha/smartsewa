@@ -75,9 +75,9 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Add New Path Lab</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Add New Doctors Other Vendor</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Vendor</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Add New Doctors Other Vendor</a></li>
                         <li class="breadcrumb-item active" aria-current="page">New Path Lab</li>
                     </ol>
                 </div>
@@ -366,12 +366,137 @@
                 </div>
                 <!-- End Row -->
 
+
                 <!-- Row -->
                 <div class="row row-sm">
                     <div class="col-lg-12 col-md-12">
                         <div class="card custom-card">
                             <div class="mb-4 hny_tt">
-                                <h6 class="main-content-label mb-1">Bank Detials</h6>
+                                <h6 class="main-content-label mb-1">Professional Details</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row row-sm mg-b-20">
+
+                                    <div class="col-lg-4">
+                                        <p class="mg-b-10">Practice Category <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Practice Category" type="text" name="practice_category" list="practice_category_list" required>
+                                        <datalist id="practice_category_list">
+                                            <option value="Allopathy">
+                                            <option value="Homeopathy">
+                                            <option value="Ayurveda">
+                                        </datalist>
+                                        <span class="text-danger ERROR__practice_category_list"></span>
+                                    </div>
+
+                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10">Licence Number <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Licence Number" type="text" name="licence_number">
+                                        <span class="text-danger ERROR__licence_number"></span>
+                                    </div>
+                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10">Registration State <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Registration State" type="text" name="registration_state">
+                                            <span class="text-danger ERROR__registration_state"></span>
+                                    </div>
+                                </div>
+                                <div class="row row-sm mg-b-20">
+                                    <div class="col-lg-4">
+                                        <p class="mg-b-10">Qualification <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Qualification" required type="text" name="qualification">
+                                            <span class="text-danger ERROR__qualification"></span>
+                                    </div>
+                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10">Specialization <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Specialization" required name="specialization" type="text">
+                                            <span class="text-danger ERROR__specialization"></span>
+                                    </div>
+                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10">Department <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Department" type="text" required name="department">
+                                            <span class="text-danger ERROR__department"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+
+
+                <!-- Row -->
+                <div class="row row-sm">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card custom-card">
+                            <div class="mb-4 hny_tt">
+                                <h6 class="main-content-label mb-1">Practice Details</h6>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row row-sm mg-b-20">
+                                    <div class="col-lg-4">
+                                        <p class="mg-b-10">Available for home Visit <b class="text-danger">*</b></p>
+                                        <select class="form-control select2" name="available_for_home_visit" required>
+                                            <option label="Available for home Visit"></option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                        <span class="text-danger ERROR__available_for_home_visit"></span>
+                                    </div>
+
+                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10">If yes time slots</p>
+                                        <input class="form-control" placeholder="If yes time slots" type="text" name="if_yes_time_slots">
+                                    </div>
+
+                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10">Video Call time slot</p>
+                                        <input class="form-control" placeholder="Video Call time slot" type="text" name="video_call_time_slot">
+                                    </div>
+
+                                    {{-- <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+                                        <button class="remove" type="button">Remove</button>
+                                    </div> --}}
+                                </div>
+
+
+                                <span id="practiceDetailsSection">
+
+                                    <div class="row row-sm mg-b-20">
+                                        <div class="col-lg-5 mg-t-20 mg-lg-t-0">
+                                            <p class="mg-b-10">Location <b class="text-danger">*</b></p>
+                                            <input class="form-control" placeholder="Location" type="text" name="location">
+                                        </div>
+
+                                        <div class="col-lg-5 mg-t-20 mg-lg-t-0">
+                                            <p class="mg-b-10">Visiting Hours <b class="text-danger">*</b></p>
+                                            <input class="form-control" placeholder="Visiting Hours" type="text" name="visiting_hours">
+                                        </div>
+
+                                        {{-- <div class="col-lg-2 mg-t-20 mg-lg-t-0">
+                                            <button class="remove" type="button">Remove</button>
+                                        </div> --}}
+                                    </div>
+
+                                </span>
+                                <div class="row row-sm mg-b-20">
+                                    <div class="col-12">
+                                        <button class="add-more btn btn-primary" type="button">Add One More Location</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+
+
+                <!-- Row -->
+                <div class="row row-sm">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card custom-card">
+                            <div class="mb-4 hny_tt">
+                                <h6 class="main-content-label mb-1">Coordinator Details Bank Detials</h6>
                             </div>
                             <div class="card-body">
 
@@ -517,6 +642,37 @@
                     $("body").css("pointer-events", "auto");
                 });
             },
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Add More Button Click Event
+        $(".add-more").click(function () {
+            var html = `
+            <div class="row row-sm mg-b-20">
+                <div class="col-5 mg-t-20 mg-lg-t-0">
+                    <p class="mg-b-10">Location <b class="text-danger">*</b></p>
+                    <input class="form-control" placeholder="Location" type="text" name="location">
+                </div>
+
+                <div class="col-5 mg-t-20 mg-lg-t-0">
+                    <p class="mg-b-10">Visiting Hours <b class="text-danger">*</b></p>
+                    <input class="form-control" placeholder="Visiting Hours" type="text" name="visiting_hours">
+                </div>
+
+                <div class="col-2 mg-t-20 mg-lg-t-0">
+                    <p class="mg-b-10">&nbsp;</p>
+                    <button class="remove btn btn-danger" type="button">Remove</button>
+                </div>
+            </div>
+            `;
+            $("#practiceDetailsSection").append(html);
+        });
+
+        // Remove Button Click Event
+        $("#practiceDetailsSection").on("click", ".remove", function () {
+            $(this).closest(".row").remove();
         });
     });
 </script>
