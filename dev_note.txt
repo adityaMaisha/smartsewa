@@ -160,6 +160,46 @@ to
 
 
 
-----------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Jenssegers\Mongodb\Eloquent\Model;
+
+class VendorPathLab extends Model
+{
+    use HasFactory;
+    protected $collection = 'vendor_path_lab';
+    protected $guarded = [];
+
+    public function getState()
+    {
+        return $this->belongsTo(states::class, 'state_id', 'id');
+        // Model  =>  states::class
+        // Model  =>  vendor_path_lab table and column state_id
+        // Model =>   states table and column id
+    }
+
+}
 
 
+
+@foreach ($getVendorPathLab as $PathLab)
+    <tr>
+        <td>{{ $loop->iteration  }}</td>
+        <td>{{ $PathLab->vendor_id }}</td>
+        <td>{{ $PathLab->getState->name ?? '' }} / {{ $PathLab->getCity->name ?? '' }}</td>
+        <td>{{ $PathLab->office_email }}</td>
+        <td>
+            <a href="#" class="btn btn-sm btn-edit"><i class="fas fa-eye"></i> &nbsp; View &nbsp;</a>
+            <a href="#" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+            <a href="#" class="btn btn-sm btn-remove" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i> &nbsp; Delete</a>
+        </td>
+    </tr>
+@endforeach
+
+
+------------------------------------------------------------------------------------------------------------------------------------------

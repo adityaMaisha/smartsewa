@@ -65,6 +65,9 @@
         margin-top: 0;
         margin-bottom: 10px;
     }
+    .other{
+        display: none;
+    }
 </style>
 @endsection @section('content')
 <div class="main-content side-content pt-0">
@@ -105,8 +108,29 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Vendor Type <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text" name="vendor_type" value="Doctors & Other" readonly>
+                                        <select class="form-control select2" name="vendor_type" onchange="get_vendor(this.value)" required>
+                                            <option label="Select Vendor Type"></option>
+                                            <option value="Doctor">Doctor</option>
+                                            <option value="Other">Other</option>
+                                        </select>
                                         <span class="text-danger ERROR__vendor_type"></span>
+                                    </div>
+
+                                    <div class="col-lg-4 other">
+                                        <p class="mg-b-10">Other <b class="text-danger">*</b></p>
+                                        <input class="form-control" type="text"
+                                            name="other_vendor_doctor" placeholder="Enter Other Vendor">
+                                        <span class="text-danger ERROR__other_vendor_doctor"></span>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <p class="mg-b-10">Salutation <b class="text-danger">*</b></p>
+                                        <select class="form-control select2" name="salutation" required>
+                                            <option label="Select Vendor Type"></option>
+                                            <option value="Dr">Dr</option>
+                                            <option value="MD">MD</option>
+                                        </select>
+                                        <span class="text-danger ERROR__salutation"></span>
                                     </div>
 
                                     <div class="col-lg-4">
@@ -117,76 +141,17 @@
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <p class="mg-b-10">Owner/Business Head Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Owner/Business Head Name" type="text" required
-                                            name="head_name">
-                                        <span class="text-danger ERROR__head_name"></span>
-                                    </div>
-
-
-
-
-
-                                </div>
-                                <div class="row row-sm mg-b-20">
-
-
-                                    <div class="col-lg-4">
-                                        <p class="mg-b-10">Services <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Services" type="text" name="services" list="serviceList" required>
-                                        <datalist id="serviceList">
-                                            <option value="CEO (Chief Executive Officer)">
-                                            <option value="CFO (Chief Financial Officer)">
-                                            <option value="COO (Chief Operating Officer)">
-                                            <option value="CTO (Chief Technology Officer)">
-                                            <option value="CMO (Chief Marketing Officer)">
-                                            <option value="CIO (Chief Information Officer)">
-                                            <option value="HR Director (Human Resources Director)">
-                                            <option value="VP of Sales (Vice President of Sales)">
-                                            <option value="VP of Marketing (Vice President of Marketing)">
-                                            <option value="VP of Operations (Vice President of Operations)">
-                                            <option value="VP of Finance (Vice President of Finance)">
-                                            <option value="Project Manager">
-                                            <option value="Account Manager">
-                                            <option value="Software Engineer">
-                                            <option value="Data Analyst">
-                                            <option value="Graphic Designer">
-                                            <option value="Marketing Manager">
-                                            <option value="Sales Manager">
-                                            <option value="Operations Manager">
-                                            <option value="Financial Analyst">
-                                            <option value="Administrative Assistant">
-                                            <option value="Customer Service Representative">
-                                            <option value="Human Resources Manager">
-                                            <option value="Business Development Manager">
-                                            <option value="IT Support Specialist">
-                                            <option value="Product Manager">
-                                            <option value="Quality Assurance Analyst">
-                                            <option value="Research Analyst">
-                                            <option value="Content Writer">
-                                            <option value="Public Relations Specialist">
-                                            <option value="Executive Assistant">
-                                            <option value="Web Developer">
-                                            <option value="Systems Administrator">
-                                            <option value="Supply Chain Manager">
-                                            <option value="Procurement Specialist">
-                                            <option value="Legal Counsel">
-                                            <option value="Network Engineer">
-                                            <option value="UX/UI Designer">
-                                            <option value="Accountant">
-                                            <option value="Social Media Manager">
-                                            <option value="Brand Manager">
-                                            <option value="Sales Representative">
-                                            <option value="Customer Success Manager">
-                                            <option value="Project Coordinator">
-                                            <option value="Operations Coordinator">
-                                            <option value="Financial Controller">
-                                            <option value="Compliance Officer">
-                                            <option value="Event Coordinator">
-                                            <option value="Business Analyst">
-                                            <option value="Inside Sales Representative">
-                                        </datalist>
-                                        <span class="text-danger ERROR__services"></span>
+                                        <p class="mg-b-10">Date of birth <b class="text-danger">*</b></p>
+                                        <div class="mg-b-20">
+                                            <div class="input-group">
+                                                <div class="input-group-text border-end-0">
+                                                    <i class="fe fe-calendar lh--9 op-6"></i>
+                                                </div>
+                                                <input class="form-control fc-datepicker" required
+                                                    placeholder="MM/DD/YYYY" type="text" name="date_of_birth">
+                                            </div>
+                                            <span class="text-danger ERROR__date_of_birth"></span>
+                                        </div>
                                     </div>
 
                                     <div class="col-lg-4">
@@ -196,12 +161,7 @@
                                         <span class="text-danger ERROR__address"></span>
                                     </div>
 
-
-                                </div>
-
-                                <div class="row row-sm mg-b-20">
-
-                                    <div class="col-lg-4 mg-t-10 mg-lg-t-0">
+                                    <div class="col-lg-4">
                                         <p class="mg-b-10">Profile Picture <b class="text-danger">*</b></p>
                                         <div class="input-group file-browser">
                                             <input type="text" class="form-control border-end-0 browse-file"
@@ -215,6 +175,13 @@
                                         </div>
                                         <span class="text-danger ERROR__employee_profile"></span>
                                     </div>
+
+
+
+
+
+                                </div>
+                                <div class="row row-sm mg-b-20">
 
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Email <b class="text-danger">*</b></p>
@@ -259,6 +226,17 @@
                                                 <span class="text-danger ERROR__city"></span>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="row row-sm mg-b-20">
+
+                                    <div class="col-lg-12 mg-t-10 mg-lg-t-0">
+                                        <p class="mg-b-10">Short Brief <b class="text-danger">*</b></p>
+                                        <textarea class="form-control" placeholder="Enter Short Brief" type="text"
+                                            name="short_brief" required></textarea>
+                                            <span class="text-danger ERROR__short_brief"></span>
+                                    </div>
+                                    
                                 </div>
 
                             </div>
@@ -590,7 +568,7 @@
                 <div class="row mt-3 mb-4">
                     <div class="col-12 text-center">
                         <input type="submit" class="btn btn-primary my-2 btn-icon-text" style="color: white;"
-                            value="&nbsp; Create New Lab &nbsp;">
+                            value="&nbsp; Create New Doctor &nbsp;">
                     </div>
                 </div>
             </form>
@@ -675,5 +653,15 @@
             $(this).closest(".row").remove();
         });
     });
+
+    function get_vendor(val)
+    {
+        if(val == 'Other')
+        {
+            $('.other').css('display','block');
+        }else{
+            $('.other').css('display','none');
+        }
+    }
 </script>
 @endsection

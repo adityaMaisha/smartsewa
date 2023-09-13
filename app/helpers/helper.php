@@ -492,7 +492,7 @@ if (!function_exists('authChecker')) {
 
         // View
         <?php if(authChecker('admin', [
-            'manpower_management_category_create',
+            'dashboard_total_manpower',
             'manpower_management_category_list',
             'manpower_management_category_remove',
             'manpower_management_category_edit'

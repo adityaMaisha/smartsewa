@@ -76,22 +76,22 @@
             <div class="page-header">
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Add New Path Lab Vendor</h2>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Add New Path Lab Vendor</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">New Path Lab</li>
-                    </ol>
+                    {{-- <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Path Lab List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Add New Path Lab Vendor</li>
+                    </ol> --}}
                 </div>
                 <div class="d-flex">
                     <div class="justify-content-center">
                         <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                            <a href="{{ route('list.employee') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
+                            <a href="{{ route('labs.list') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
                         </button>
                     </div>
                 </div>
             </div>
             <!-- End Page Header -->
 
-            <form action="{{ route('new.employee') }}" method="POST" enctype="multipart/form-data" id="employeeFormData">
+            <form action="{{ route('vendor.new.path.lab') }}" method="POST" enctype="multipart/form-data" id="formData">
                 @csrf
 
                 <div class="row row-sm">
@@ -112,7 +112,7 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text"
+                                        <input class="form-control" type="text" required
                                             name="vendor_name" placeholder="Enter Name">
                                         <span class="text-danger ERROR__vendor_name"></span>
                                     </div>
@@ -124,13 +124,8 @@
                                         <span class="text-danger ERROR__head_name"></span>
                                     </div>
 
-
-
-
-
                                 </div>
                                 <div class="row row-sm mg-b-20">
-
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Services <b class="text-danger">*</b></p>
@@ -194,13 +189,9 @@
                                         <p class="mg-b-10">Address <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Address" type="text" required
                                             name="address">
+
                                         <span class="text-danger ERROR__address"></span>
                                     </div>
-
-
-                                </div>
-
-                                <div class="row row-sm mg-b-20">
 
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Profile Picture <b class="text-danger">*</b></p>
@@ -217,17 +208,22 @@
                                         <span class="text-danger ERROR__employee_profile"></span>
                                     </div>
 
+                                </div>
+
+                                <div class="row row-sm mg-b-20">
+
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
-                                        <p class="mg-b-10">Email <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Enter Email" type="email"
-                                            name="email_id" required>
-                                            <span class="text-danger ERROR__email_id"></span>
-                                    </div>
-                                    <div class="col-lg-4 mg-t-10 mg-lg-t-0">
-                                        <p class="mg-b-10">Mobile </p>
-                                        <input class="form-control" type="text" name="mobile_number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
+                                        <p class="mg-b-10">Mobile <b class="text-danger">*</b></p>
+                                        <input class="form-control" type="text" name="mobile_number" pattern="[0-9]{10}" required title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10" readonly onfocus="this.removeAttribute('readonly');">
                                             <span class="text-danger ERROR__mobile_number"></span>
                                     </div>
+
+                                    <div class="col-lg-8 mg-t-10 mg-lg-t-0">
+                                        <p class="mg-b-10">Email <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Enter Email" type="email" name="email_id" required readonly onfocus="this.removeAttribute('readonly');">
+                                        <span class="text-danger ERROR__email_id"></span>
+                                    </div>
+
                                 </div>
 
                                 <div class="row row-sm mg-b-20">
@@ -236,10 +232,10 @@
                                         <div class="form-group ">
                                             <select name="country" class="form-control select2" required
                                                 id="user_country">
-                                                <option value="">Select Employee Country</option>
-                                                {{-- @foreach ($countries as $country)
+                                                <option value="">Select Country</option>
+                                                @foreach ($countries as $country)
                                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                             <span class="text-danger ERROR__country"></span>
                                         </div>
@@ -247,16 +243,18 @@
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">State <b class="text-danger">*</b></p>
                                         <div class="form-group">
-                                            <select name="state" class="form-control select2" required
-                                                id="user_state"></select>
+                                            <select name="state" class="form-control select2" required id="user_state">
+                                                <option value="">Select State</option>
+                                            </select>
                                                 <span class="text-danger ERROR__state"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">City <b class="text-danger">*</b></p>
                                         <div class="form-group">
-                                            <select name="city" class="form-control select2" required
-                                                id="user_city"></select>
+                                            <select name="city" class="form-control select2" required id="user_city">
+                                                <option value="">Select City</option>
+                                            </select>
                                                 <span class="text-danger ERROR__city"></span>
                                         </div>
                                     </div>
@@ -296,7 +294,7 @@
                                     </div>
                                     <div class="col-lg-6 mt-3 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Contact Person Mobile <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text" name="contact_per_mobile" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
+                                        <input class="form-control" type="text" required name="contact_per_mobile" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
                                             <span class="text-danger ERROR__contact_per_mobile"></span>
                                     </div>
 
@@ -330,34 +328,42 @@
                                             name="pan_card_number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter Valid Pan Card Number ( Example: ABCTY1234D )">
                                             <span class="text-danger ERROR__pan_card_number"></span>
                                     </div>
-                                    <div class="col-lg-6 col-md-4  mt-3">
-                                        <p class="mg-b-10 fw-bold">GST Certificate</p>
-                                        <input type="file" class="dropify" data-height="200"
-                                            name="gst_certificate">
-                                            <span class="text-danger ERROR__gst_certificate"></span>
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-lg-6 col-md-4  mt-3">
-                                        <p class="mg-b-10 fw-bold">Upload PAN Card</p>
-                                        <input type="file" class="dropify" data-height="200"
-                                            name="upload_pan_card_attachment">
-                                            <span class="text-danger ERROR__upload_pan_card_attachment"></span>
+                                      <div class="col-lg-4">
+                                        <p class="mg-b-10 fw-bold">GST No <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="GST No" type="text" required
+                                            name="gst_number" title="Enter Goods and Services Tax Number">
+                                            <span class="text-danger ERROR__gst_number"></span>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-4 mt-3">
+                                </div>
+                                <div class="row mb-4">
+
+                                    <div class="col-lg-4 col-md-4 mt-3">
                                         <p class="mg-b-10 fw-bold"> Registration Certificate</p>
                                         <input type="file" class="dropify" data-height="200"
                                             name="registration_docs">
                                             <span class="text-danger ERROR__registration_docs"></span>
                                     </div>
 
+                                    <div class="col-lg-4 col-md-4  mt-3">
+                                        <p class="mg-b-10 fw-bold">Upload PAN Card</p>
+                                        <input type="file" class="dropify" data-height="200"
+                                            name="upload_pan_card_attachment">
+                                            <span class="text-danger ERROR__upload_pan_card_attachment"></span>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4  mt-3">
+                                        <p class="mg-b-10 fw-bold">GST Certificate</p>
+                                        <input type="file" class="dropify" data-height="200"
+                                            name="gst_certificate">
+                                            <span class="text-danger ERROR__gst_certificate"></span>
+                                    </div>
+
                                 </div>
                                 <div>
                                     <div class="col-lg-12 p-0">
                                         <p class="mg-b-10 fw-bold">Upload Other Documents</p>
-                                        <input type="file" class="dropify" data-height="100"
-                                            name="upload_other_documents">
+                                        <input type="file" class="dropify" data-height="100" name="upload_other_documents[]" multiple>
                                             <span class="text-danger ERROR__upload_other_documents"></span>
                                     </div>
                                 </div>
@@ -379,13 +385,13 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank Name" type="text"
+                                        <input class="form-control" placeholder="Bank Name" type="text" required
                                             name="employee_bank_name">
                                             <span class="text-danger ERROR__employee_bank_name"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Account Holder Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="First Name" type="text"
+                                        <input class="form-control" placeholder="First Name" type="text" required
                                             name="bank_account_holder_name">
                                             <span class="text-danger ERROR__bank_account_holder_name"></span>
                                     </div>
@@ -476,49 +482,157 @@
     </div>
 </div>
 @endsection @section('script')
-<script>
-    $(document).on("submit", "#htmlForm", function (ev) {
-        ev.preventDefault();
-        var frm = $("#htmlForm");
-        var form = $("#htmlForm")[0];
-        var data = new FormData(form);
-
-        $.ajax({
-            type: frm.attr("method"),
-            url: frm.attr("action"),
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            async: false,
-            cache: false,
-            data: data,
-            beforeSend: function () {
-                $('span[class*="ERROR__"]').html("");
-                $("body").css("pointer-events", "none");
-            },
-            success: function (data) {
-                if (data.success == true) {
-                    python(data.message, "Great");
-                    setTimeout(function() {
-                        location.href = "{{ route('list.customers') }}";
-                    }, 1000);
-                } else {
-                    python(data.message, "Whoops!", "red");
-                    $.each(data.errors, function (field, message) {
-                        $(".ERROR__" + field).html('<div class="text-danger">' + message + "</div>");
-                    });
-                }
-            },
-            error: function (err) {
-                //
-            },
-            complete: function (data) {
-                $(function () {
-                    htmlError();
-                    $("body").css("pointer-events", "auto");
-                });
-            },
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
-    });
-</script>
+
+        function getDynamicStates() {
+
+            var country_id = $('select#user_country').val();
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('states.ajax') }}",
+                //dataType:'json',
+                data: {
+                    country_id: country_id
+                },
+                beforeSend: function() {
+
+                    $('#user_state').html('');
+                    $('#user_city').html('');
+
+                },
+                success: function(data) {
+
+
+                    if (data.solve == true) {
+                        $('#user_state').html(data.html_data);
+                    }
+
+                },
+                error: function(err) {
+
+                    var content_data = '<option value=""> Select State</option>';
+                    $('#user_state').html(content_data);
+
+                },
+                complete: function() {
+
+                    $(function() {
+                        $('#user_state').select2();
+                    });
+
+                }
+            });
+
+        }
+
+
+        function getDynamicCities() {
+
+            var state_id = $('select#user_state').val();
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cities.ajax') }}",
+                //dataType:'json',
+                data: {
+                    state_id: state_id
+                },
+                beforeSend: function() {
+
+                    $('#user_city').html('');
+
+                },
+                success: function(data) {
+
+                    if (data.solve == true) {
+                        $('#user_city').html(data.html_data);
+                    }
+
+                },
+                error: function(err) {
+
+                    var content_data = '<option value=""> Select City</option>';
+                    $('#user_city').html(content_data);
+
+                },
+                complete: function() {
+
+                    $(function() {
+                        $('#user_city').select2();
+                    });
+
+                }
+            });
+
+        }
+
+
+        // onLoad || onChange
+        $(function() {
+            $('#user_country').select2();
+            // getDynamicStates();
+            // getDynamicCities();
+            $("select#user_country").change(getDynamicStates);
+            $("select#user_state").change(getDynamicCities);
+        });
+
+
+        $(document).on('submit', '#formData', function(ev) {
+
+            ev.preventDefault();
+            var frm = $('#formData');
+            var form = $('#formData')[0];
+            var data = new FormData(form);
+
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                async: false,
+                cache: false,
+                data: data,
+                beforeSend: function() {
+
+                    $('span[class*="ERROR__"]').html("");
+                    $('body').css('pointer-events', 'none');
+
+                },
+                success: function(data) {
+
+                    if (data.success == true) {
+                        python(data.message, 'Great');
+                    }else{
+                        python(data.message, 'Whoops!', 'red');
+                        $.each(data.errors, function (field, message) {
+                            $(".ERROR__" + field).html('<div class="text-danger">' + message + "</div>");
+                        });
+                    }
+
+                },
+                error: function(err) {
+
+                    //
+
+                },
+                complete: function(data) {
+
+                    $(function() {
+                        htmlError();
+                        $('body').css('pointer-events', 'auto');
+                    });
+
+                }
+
+            });
+
+        });
+
+    </script>
 @endsection

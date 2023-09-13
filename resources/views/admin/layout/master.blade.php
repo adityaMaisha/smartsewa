@@ -195,18 +195,19 @@
                                 </a>
                                 <ul class="nav-sub">
                                     <li class="side-menu-label1"><a href="javascript:void(0)">E-Commerce</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.path.lab') }}">Path Lab</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('labs.list') }}">Path Lab</a></li>
+                                    {{-- <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.path.lab') }}">Path Lab</a></li> --}}
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.radiology.diagnostics') }}">Radiology Diagnostics</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.hospitals.others') }}">Hospitals & Others</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.setup') }}">Hospitals & Others</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.doctors.other') }}">Doctors & Other</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.healthcare.professionals') }}">Healthcare Professionals</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.htm.consumables.suplliers') }}">HTM Consumables Suplliers</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="#">Products</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="javascript:void(0)">Medicine</a></li>
+                                    {{-- <li class="nav-sub-item"><a class="nav-sub-link" href="#">Products</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="javascript:void(0)">Medicine</a></li> --}}
                                 </ul>
                             </li>
-                            <li class="nav-item">
+
+                            {{-- <li class="nav-item">
                                 <a class="nav-link with-sub" href="javascript:void(0)">
                                     <span class="shape1"></span>
                                     <span class="shape2"></span>
@@ -215,28 +216,27 @@
                                     <i class="angle fa fa-chevron-circle-right"></i>
                                 </a>
                                 <ul class="nav-sub">
-                                    <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="javascript:;">DoctLabsors</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="javascript:;">Doctors</a>
-                                    </li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="javascript:;">Hospital</a>
-                                    </li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('labs.list') }}">Labs List</a> </li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="javascript:;">Doctors</a> </li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.setup') }}">Hospital</a> </li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item">
                                 <a class="nav-link with-sub" href="javascript:void(0)">
                                     <span class="shape1"></span>
                                     <span class="shape2"></span>
                                     <i class="fa fa-adjust sidemenu-icon menu-icon"></i>
-                                    <span class="sidemenu-label">Services</span>
+                                    <span class="sidemenu-label">SmartSewa Services</span>
                                     <i class="angle fa fa-chevron-circle-right"></i>
                                 </a>
                                 <ul class="nav-sub">
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="javascript:;">Hospital
-                                            Services</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('end.custumers') }}">End Custumers</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('business.clients') }}">Business Clients</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('packages.list') }}">Packages</a></li>
                                 </ul>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link with-sub" href="javascript:void(0)">
                                     <span class="shape1"></span>
