@@ -38490,7 +38490,7 @@ table.dataTable thead .sorting_asc_disabled:after,
 #recentorders {
     padding: 0;
     max-width: 650px;
-    margin: 7px auto;
+    margin: 0px auto;
 }
 
 @media (max-width: 567px) {
@@ -38926,7 +38926,7 @@ button.bg-dark:focus {
 }
 
 .bg-primary-transparent {
-    background-color: var(--primary01);
+    background-color: #6259ca1a;
 }
 
 .bg-info-transparent {
@@ -74476,6 +74476,7 @@ input[type=search]::-webkit-search-cancel-button {
 
 .icon-service {
     display: inline-flex;
+    justify-content: center;
     width: 3.5rem;
     height: 3.5rem;
     padding: 1.1rem;

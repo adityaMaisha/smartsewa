@@ -6,7 +6,11 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RolesPrivilegesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentHistoryController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\WalletController;
 
 Route::match(['get', 'post'], 'login', [EmployeeController::class, 'loginProcess'])->name('login.process');
 
@@ -14,6 +18,7 @@ Route::middleware(['loginAuth'])->group(function () {
 
     /* =====[ Dashboard ]===== */
     Route::get('dashboard-page', [EmployeeController::class, 'dashboardPage'])->name('dashboard.home');
+    Route::get('dashboard-vendor', [EmployeeController::class, 'vendor_dashboard'])->name('dashboard.vendor');
 
     /* =====[ Employee Management ]===== */
     Route::match(['get', 'post'], 'employee-list', [EmployeeController::class, 'employeeList'])->name('list.employee');
@@ -46,8 +51,6 @@ Route::middleware(['loginAuth'])->group(function () {
 
     /* =====[ Vendor Management ]===== */
     Route::get('labs-list', [ClientsController::class, 'labsList'])->name('labs.list');
-
-
     Route::get('labs-diagnosis-csv', [ClientsController::class, 'labsDiagnosisCsv'])->name('labs.diagnosis.csv');
 
 
@@ -62,7 +65,9 @@ Route::middleware(['loginAuth'])->group(function () {
 
     /* =====[ Client Management ]===== */
     Route::get('labs-diagnostics-list', [ClientsController::class, 'labsDiagnosticsList'])->name('labs.diagnostics.list');
+    Route::get('list-end-custumers', [ClientsController::class, 'listendCustumers'])->name('list.end.custumers');
     Route::get('end-custumers', [ClientsController::class, 'endCustumers'])->name('end.custumers');
+    Route::get('list-business-clients', [ClientsController::class, 'businessClientslist'])->name('list.business.clients');
     Route::get('business-clients', [ClientsController::class, 'businessClients'])->name('business.clients');
 
 
@@ -70,5 +75,31 @@ Route::middleware(['loginAuth'])->group(function () {
     Route::get('packages-list', [ClientsController::class, 'packagesList'])->name('packages.list');
     Route::get('create-diagnostics-packages', [ClientsController::class, 'createDiagnosticsPackages'])->name('create.diagnostics.packages');
 
+    /* =====[ Order Management ]===== */
 
+    Route::get('order-end-customer', [OrderController::class, 'end_customer_order'])->name('order.end.customer');
+    Route::get('order-business-clients', [OrderController::class, 'business_clients_order'])->name('order.business.clients');
+    Route::get('view-order-business-clients', [OrderController::class, 'business_clients_order_view'])->name('order.view.business.clients');
+    Route::get('assign-lab', [OrderController::class, 'assign_lab'])->name('assign.lab');
+    Route::get('assign-lab-form', [OrderController::class, 'assign_lab_form'])->name('assignlab.form');
+    Route::post('pushData-to-lab', [OrderController::class, 'send_data_to_lab'])->name('sendData.labAPI');
+    Route::get('lab-data', [OrderController::class, 'data_from_lab'])->name('lab.data');
+    /* =====[ Payment History ]===== */
+
+    Route::get('payment-end-customer', [PaymentHistoryController::class, 'end_customer_payment'])->name('payment.end.customer');
+    Route::get('payment-business-clients', [PaymentHistoryController::class, 'business_clients_payment'])->name('payment.business.clients');
+    
+    /* =====[ Settings ]===== */
+
+    Route::get('setting', [SettingController::class, 'index'])->name('setting.home');
+
+    /* =====[ Wallet Details ]===== */
+
+    Route::match(['get', 'post'], 'wallet-details/{id}', [WalletController::class, 'wallet_details'])->name('wallet.details');
+    Route::match(['get', 'post'], 'add-wallet', [WalletController::class, 'add_money_in_wallet'])->name('wallet.addmoney');
+    //Route::match(['get', 'post'], 'wallet-return', [WalletController::class, 'return_payment'])->name('wallet.returnurl');
+    //Route::post('wallet-return', [WalletController::class, 'return_payment'])->name('wallet.returnurl');
+    
 });
+//Route::get('/return_payment', [WalletController::class, 'return_payment']);
+Route::match(['get', 'post'], '/return_payment', [WalletController::class, 'return_payment']);

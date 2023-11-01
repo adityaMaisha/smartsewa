@@ -33,7 +33,7 @@
                 <div class="main-header-left">
                     <a class="main-header-menu-icon" href="javascript:void(0);" id="mainSidebarToggle"><span></span></a>
                     <div class="hor-logo">
-                        <a class="main-logo" href="javascript:;">
+                        <a class="main-logo" href="{{ route('dashboard.home') }}">
                             <img src="{{ asset('dashboard/img/brand/logo.png') }}"
                                 class="header-brand-img desktop-logo" />
                         </a>
@@ -122,10 +122,70 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <!-- Search -->
+<!-- Theme-Layout -->
+                                <div class="dropdown d-flex main-header-theme">
+                                    <a class="nav-link icon layout-setting">
+                                        <span class="dark-layout">
+                                            <i class="fa fa-moon header-icons"></i>
+                                        </span>
+                                        <span class="light-layout">
+                                            <i class="fa fa-moon header-icons"></i>
+                                        </span>
+                                    </a>
+                                </div>
+<!-- Theme-Layout -->
 
+<!-- Notification -->
+                                <div class="dropdown main-header-notification">
+                                    <a class="nav-link icon" href="javascript:void(0);">
+                                        <i class="fa fa-bell header-icons"></i>
+                                        <span class="badge bg-danger nav-link-badge">4</span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <div class="header-navheading">
+                                            <p class="main-notification-text">You have 1 unread notification<span
+                                                    class="badge bg-pill bg-primary ms-3">View all</span></p>
+                                        </div>
+                                        <div class="main-notification-list">
+                                            <div class="media new">
+                                                <div class="main-img-user online"><img alt="avatar"
+                                                        src="https://php.spruko.com/spruha/spruha/assets/img/users/5.jpg"></div>
+                                                <div class="media-body">
+                                                    <p>Congratulate <strong>Olivia James</strong> for New template
+                                                        start</p>
+                                                    <span>Oct 15 12:32pm</span>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="main-img-user"><img alt="avatar"
+                                                        src="https://php.spruko.com/spruha/spruha/assets/img/users/2.jpg">
+                                                </div>
+                                                <div class="media-body">
+                                                    <p><strong>Joshua Gray</strong> New Message Received</p>
+                                                    <span>Oct 13
+                                                        02:56am</span>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="main-img-user online"><img alt="avatar"
+                                                        src="https://php.spruko.com/spruha/spruha/assets/img/users/3.jpg"></div>
+                                                <div class="media-body">
+                                                    <p><strong>Elizabeth Lewis</strong> added new schedule realease
+                                                    </p><span>Oct
+                                                        12 10:40pm</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-footer">
+                                            <a href="#">View All Notifications</a>
+                                        </div>
+                                    </div>
+                                </div>
+<!-- Notification -->
                                 <!-- Profile -->
                                 <div class="dropdown main-profile-menu">
                                     <a class="d-flex" href="javascript:void(0);">
@@ -134,8 +194,8 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         <div class="header-navheading">
-                                            <h6 class="main-notification-title">Sonia Taylor</h6>
-                                            <p class="main-notification-text">Web Designer</p>
+                                            <h6 class="main-notification-title">Smart Sewa</h6>
+                                            <p class="main-notification-text">Super Admin</p>
                                         </div>
                                         <a class="dropdown-item border-top" href="profile.php.html"> <i
                                                 class="fa fa-user"></i> My Profile </a>
@@ -157,7 +217,7 @@
             <div class="main-menu main-sidebar main-sidebar-sticky side-menu">
                 <div class="main-sidebar-header main-container-1 active">
                     <div class="sidemenu-logo">
-                        <a class="main-logo" href="javascript:;">
+                        <a class="main-logo" href="{{ route('dashboard.home') }}">
                             <img src="{{ asset('dashboard/img/logo.png') }}" class="header-brand-img desktop-logo" />
                         </a>
                     </div>
@@ -165,7 +225,7 @@
                         <div class="slide-left disabled" id="slide-left"><i class="fe fe-chevron-left"></i></div>
                         <ul class="menu-nav nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:;">
+                                <a class="nav-link" href="{{ route('dashboard.home') }}">
                                     <span class="shape1"></span>
                                     <span class="shape2"></span>
                                     <i class="fa fa-dashboard sidemenu-icon menu-icon"></i>
@@ -194,7 +254,7 @@
                                     <i class="angle fa fa-chevron-circle-right"></i>
                                 </a>
                                 <ul class="nav-sub">
-                                    <li class="side-menu-label1"><a href="javascript:void(0)">E-Commerce</a></li>
+                                    
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('labs.list') }}">Path Lab</a></li>
                                     {{-- <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.path.lab') }}">Path Lab</a></li> --}}
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.radiology.diagnostics') }}">Radiology Diagnostics</a></li>
@@ -230,10 +290,43 @@
                                     <span class="sidemenu-label">SmartSewa Services</span>
                                     <i class="angle fa fa-chevron-circle-right"></i>
                                 </a>
+                                
                                 <ul class="nav-sub">
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('end.custumers') }}">End Custumers</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('business.clients') }}">Business Clients</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('list.end.custumers') }}">End Custumers</a></li>
+                                    
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('list.business.clients') }}">Business Clients</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('packages.list') }}">Packages</a></li>
+                                </ul>
+                            </li>
+
+
+
+                            <li class="nav-item">
+                                <a class="nav-link with-sub" href="javascript:void(0)">
+                                    <span class="shape1"></span>
+                                    <span class="shape2"></span>
+                                    <i class="fa fa-adjust sidemenu-icon menu-icon"></i>
+                                    <span class="sidemenu-label">Order Management</span>
+                                    <i class="angle fa fa-chevron-circle-right"></i>
+                                </a>
+                                <ul class="nav-sub">
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('order.end.customer') }}">End Custumers</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('order.business.clients') }}">Business Clients</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('assign.lab') }}">Assigns Lab</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link with-sub" href="javascript:void(0)">
+                                    <span class="shape1"></span>
+                                    <span class="shape2"></span>
+                                    <i class="fa fa-adjust sidemenu-icon menu-icon"></i>
+                                    <span class="sidemenu-label">Payment History</span>
+                                    <i class="angle fa fa-chevron-circle-right"></i>
+                                </a>
+                                <ul class="nav-sub">
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('payment.end.customer') }}">End Custumers</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('payment.business.clients') }}">Business Clients</a></li>
                                 </ul>
                             </li>
 
@@ -269,9 +362,16 @@
                                 </ul>
                             </li>
 
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('setting.home') }}">
+                                    <span class="shape1"></span>
+                                    <span class="shape2"></span>
+                                    <i class="fa fa-cog sidemenu-icon menu-icon"></i>
+                                    <span class="sidemenu-label">Settings</span>
+                                </a>
+                            </li>
                         </ul>
-                        <div class="slide-right" id="slide-right"><i class="fa fa-chevron-circle-right"></i></div>
+                        <div class="slide-right" id="slide-right"><i class="fa fa-arrow-up"></i></div>
                     </div>
                 </div>
             </div>
@@ -391,6 +491,10 @@
 
     <!-- INTERNAL FORM-WIZAR JS -->
     <script src="{{ asset('dashboard/js/form-wizard.js') }}"></script>
+
+    <script src="{{ asset('dashboard/js/apexcharts.js') }}"></script>
+    <script src="{{ asset('dashboard/js/ecommerce-dashboard.js') }}"></script>
+    <script src="{{ asset('dashboard/js/themeColors.js') }}"></script>
 
 
 

@@ -65,6 +65,42 @@
         margin-top: 0;
         margin-bottom: 10px;
     }
+    input:checked+label.payment-cards {
+        border-color: var(--primary-bg-color) !important;
+        position: relative !important;
+        display: block !important;
+        border-width: 1px;
+        color: var(--primary-bg-color);
+    }
+    .payment-type input:checked+label:before {
+        content: "\f00c";
+        z-index: 999;
+        position: absolute;
+        right: -16px;
+        top: -13px;
+        padding: 0px 12px;
+        font-size: 11px;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: #093a81;
+        border-radius: 50%;
+        font-family: "Font Awesome 6 Free";
+    }
+    .payment-type input {
+        display: none;
+    }
+    .payment-type label {
+        height: fit-content;
+        border: 1px solid #093a81;
+        background-color: #f0f0f0;
+        padding: 0px !important;
+        font-size: 10px;
+        line-height: 33px;
+        max-width: 150px !important;
+    }
+    .quotes{
+        display: none;
+    }
 </style>
 @endsection @section('content')
 <div class="main-content side-content pt-0">
@@ -214,13 +250,31 @@
                                         <span class="text-danger ERROR__login_password"></span>
                                     </div>
 
-                                    <div class="col-lg-12 mt-3">
-                                        <p class="mg-b-10">Address</p>
+                                    <div class="col-lg-6 mt-3">
+                                        <p class="mg-b-10">Address <b class="text-danger">*</b></p>
                                         <textarea class="form-control" name="address" id="" cols="3" rows="3" placeholder="Enter Full Address"></textarea>
                                         <span class="text-danger ERROR__address"></span>
                                     </div>
-                                </div>
+                                    <div class="col-md-6 mt-3">
+                                        <p class="mg-b-10">Pin <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="Pin Code" type="number" required name="pin_code" />
+                                        <span class="text-danger ERROR__pin_code"></span>
+                                    </div>
 
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 mb-4">
+                                        <div class="payment-type">
+                                            <input class="form-check-input" type="checkbox" id="is_eco" onclick="is_eco()">
+                                            <label class="paypal-label payment-cards four col" for="is_eco"><span class="">Is Economically Weaker?</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info mg-b-0 quotes" role="alert">
+                                    <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button">
+                                    </button>
+                                    <strong>Some Quotes for Economical Weaker</strong> 
+                                </div>
                                 <div class="row mt-3 mb-4">
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary my-2 btn-icon-text">Add New customer <i class="fa fa-add"></i></button>
@@ -236,6 +290,17 @@
 </div>
 @endsection @section('script')
 <script>
+    function is_eco()
+    {
+        var eco_text = $('#is_eco').val();
+        if ($("input[type=checkbox]").prop(":checked"))
+        {
+            $('.quotes').css('display','block');
+        }else{
+            $('.quotes').css('display','none');
+        }
+    }
+
     $(document).on("submit", "#htmlForm", function (ev) {
         ev.preventDefault();
         var frm = $("#htmlForm");

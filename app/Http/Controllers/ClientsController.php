@@ -43,4 +43,14 @@ class ClientsController extends Controller
 
     }
 
+    public function listendCustumers()
+    {
+        return view('admin.customer.endCustumerslist');
+    }
+
+    public function businessClientslist()
+    {
+        return view('admin.customer.businessClientslist');
+    }
+
 }

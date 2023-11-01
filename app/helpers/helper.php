@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\FrontFunctions;
+use App\Models\DiagnosticsImport as DiagnosticsImportModel;
 
 if ( !function_exists( "lock" ) ) {
     function lock( $string, $action = 'encrypt' )
@@ -10,10 +11,10 @@ if ( !function_exists( "lock" ) ) {
         $secret_iv = '43240425234203263'; // user define secret key
         $key = hash( 'sha256', $secret_key );
         $iv = substr( hash( 'sha256', $secret_iv ), 0, 16 ); // sha256 is hash_hmac_algo
-        if ( $action == 'encrypt' ) {
+        if ( $action == 'encrypt') {
             $output = openssl_encrypt( json_encode( $string ), $encrypt_method, $key, 0, $iv );
             $output = base64_encode( $output );
-        } else if ( $action == 'decrypt' ) {
+        } else if ( $action == 'decrypt') {
             $output = json_decode( openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv ) );
         }
         return $output;
@@ -505,3 +506,43 @@ if (!function_exists('authChecker')) {
 
 
 */
+
+
+function testSachin($row){
+
+    // echo '<pre>';
+    // print_r([
+    //     $row[0],
+    //     $row[1],
+    //     $row[2],
+    //     $row[3],
+    //     $row[4],
+    //     $row[5],
+    //     $row[6],
+    //     $row[7],
+    //     $row[8],
+    //     $row[9],
+    //     $row[10],
+    //     $row[11],
+    //     $row[12],
+    //     $row[13],
+    //     $row[14],
+    //     $row[15],
+    //     $row[16],
+    //     $row[17],
+    //     $row[18],
+    //     $row[19],
+    // ]);
+    // echo '</pre>';
+// dd('hi');
+    // _insert('test123', ['fname'=> 123, 'lname'=> 3234]);
+// die();
+    $diagnosticsImport = new DiagnosticsImportModel;
+    $diagnosticsImport->uid = uniqid();
+    $diagnosticsImport->testIdF = 'hello';
+    $diagnosticsImport->save();
+    sleep(1);
+dd('sachin');
+    die();
+
+}

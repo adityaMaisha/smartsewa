@@ -44,7 +44,7 @@
                                         <div class="col-lg">
                                             <p class="mg-b-10">Vendor Type <b class="text-danger">*</b></p>
                                             <select class="form-control select2" name="vendorType">
-                                                <option label="Choose one"> </option>
+                                                <option value="" label="Choose one"> </option>
                                                 <option value="hospitals">Hospitals</option>
                                                 <option value="health_insurance">Health Insurance</option>
                                                 <option value="gym">Gym</option>

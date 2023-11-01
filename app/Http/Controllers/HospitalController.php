@@ -11,9 +11,7 @@ class HospitalController extends Controller
         try {
 
             if ( request()->isMethod('post') ) {
-
-                return response()->json(['success' => true, 'url' => route('vendor.new.step.01', 123123), 'msg' => 'next step open']);
-
+                return response()->json(['success' => true, 'url' => route('vendor.new.step.01', $request->input('vendorType')), 'msg' => 'next step open']);
             }else{
                 return view('admin/hospital/hospital-step-0');
             }
@@ -31,7 +29,10 @@ class HospitalController extends Controller
                 prx( $request->all() );
 
             }else{
-                return view('admin/hospital/hospital-step-1');
+
+                return view('admin/hospital/hospital-step-1',[
+                    'nextToken' => $nextToken
+                ]);
             }
 
         } catch (\Exception $e) {

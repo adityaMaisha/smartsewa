@@ -1,5 +1,22 @@
 @extends('admin.layout.master')
 @section('style')
+<style>
+.remove-address-row {
+    display: none!important;
+}
+
+.address-row:nth-child(even) {
+  margin-top: 10px!important;
+  background-color: #ECECEC!important;
+  padding: 10px!important;
+}
+
+.address-row:nth-child(odd) {
+  margin-top: 10px!important;
+  background-color: #f7f7f7!important;
+  padding: 10px!important;
+}
+</style>
 @endsection
 @section('content')
 <div class="main-content side-content pt-0">
@@ -69,6 +86,23 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-lg-12 mt-3">
+                                                        <p class="mg-b-10">Short Brief</p>
+                                                        <textarea class="form-control" name="shortBrief" id="" cols="3" rows="3" placeholder="Enter Short Brief"></textarea>
+                                                        <span class="text-danger ERROR__shortBrief"></span>
+                                                    </div>
+
+                                                    <div class="col-lg-12 mt-3">
+                                                        <p class="mg-b-10">Speciality</p>
+                                                        <select name="speciality" class="form-control select2">
+                                                            <option value="">Select Speciality</option>
+                                                            <option value="superSpeciality">Super Speciality</option>
+                                                            <option value="multispeciality">Multispeciality</option>
+                                                        </select>
+                                                        <span class="text-danger ERROR__shortBrief"></span>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -91,6 +125,10 @@
                                                                     <option value="it_head">IT Head</option>
                                                                 </select>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-lg mg-t-10 mg-lg-t-0">
+                                                            <p class="mg-b-10 fw-bold">Department  <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Department" type="text" name="department" required />
                                                         </div>
                                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                                             <p class="mg-b-10 fw-bold">Name <b class="text-danger">*</b></p>
@@ -171,8 +209,8 @@
                                     </div>
                                 </section>
 
-                                <h3>Address</h3>
 
+                                <h3>Address</h3>
                                 <section>
                                     <div class="row row-sm">
                                         <div class="col-lg-12 col-md-12">
@@ -181,69 +219,88 @@
                                                     <h6 class="main-content-label mb-1">Address</h6>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="row row-sm mg-b-20">
-                                                        <div class="col-lg">
-                                                            <p class="mg-b-10">Select Country</p>
-                                                            <div class="form-group">
-                                                                <select name="AddressCountry" class="form-control select2">
-                                                                    <option value="">Default Select</option>
-                                                                    <option value="cz">Czech Republic</option>
-                                                                    <option value="de">Germany</option>
-                                                                    <option value="pl">Poland</option>
-                                                                </select>
+                                                    <div class="address-container">
+                                                        <div class="address-row mb-4">
+                                                            <div class="row row-sm mg-b-20">
+                                                                <div class="col-lg">
+                                                                    <p class="mg-b-10">Select Country</p>
+                                                                    <div class="form-group">
+                                                                        <select name="AddressCountry" class="form-control select2">
+                                                                            <option value="">Default Select</option>
+                                                                            <option value="cz">Czech Republic</option>
+                                                                            <option value="de">Germany</option>
+                                                                            <option value="pl">Poland</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg mg-t-10 mg-lg-t-0">
+                                                                    <p class="mg-b-10">State</p>
+                                                                    <div class="form-group">
+                                                                        <select name="AddressState" class="form-control select2">
+                                                                            <option value="">Default Select</option>
+                                                                            <option value="cz">Czech Republic</option>
+                                                                            <option value="de">Germany</option>
+                                                                            <option value="pl">Poland</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg mg-t-10 mg-lg-t-0">
+                                                                    <p class="mg-b-10">City</p>
+                                                                    <div class="form-group">
+                                                                        <select name="AddressCity" class="form-control select2">
+                                                                            <option value="">Default Select</option>
+                                                                            <option value="cz">Czech Republic</option>
+                                                                            <option value="de">Germany</option>
+                                                                            <option value="pl">Poland</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                            <p class="mg-b-10">State</p>
-                                                            <div class="form-group">
-                                                                <select name="AddressState" class="form-control select2">
-                                                                    <option value="">Default Select</option>
-                                                                    <option value="cz">Czech Republic</option>
-                                                                    <option value="de">Germany</option>
-                                                                    <option value="pl">Poland</option>
-                                                                </select>
+                                                            <div class="row row-sm mg-b-20">
+                                                                <div class="col-lg mg-t-10 mg-lg-t-0">
+                                                                    <p class="mg-b-10">Pin Code</p>
+                                                                    <input
+                                                                        class="form-control"
+                                                                        placeholder="Pin Code"
+                                                                        type="text"
+                                                                        name="addressPinCode"
+                                                                        onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )"
+                                                                    />
+                                                                </div>
+                                                                <div class="col-lg mg-t-10 mg-lg-t-0">
+                                                                    <p class="mg-b-10">Landmark</p>
+                                                                    <input class="form-control" placeholder="Landmark" type="text" name="AddressLandmark" />
+                                                                </div>
+                                                                <div class="col-lg mg-t-10 mg-lg-t-0">
+                                                                    <p class="mg-b-10">Latitude</p>
+                                                                    <input class="form-control" placeholder="Latitude" type="text" name="AddressLatitude" />
+                                                                </div>
+                                                                <div class="col-lg mg-t-10 mg-lg-t-0">
+                                                                    <p class="mg-b-10">Longitude</p>
+                                                                    <input class="form-control" placeholder="Longitude" type="text" name="AddressLongitude" />
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <p class="mg-b-10">Address</p>
+                                                                    <textarea name="full_address" class="form-control"></textarea>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                            <p class="mg-b-10">City</p>
-                                                            <div class="form-group">
-                                                                <select name="AddressCity" class="form-control select2">
-                                                                    <option value="">Default Select</option>
-                                                                    <option value="cz">Czech Republic</option>
-                                                                    <option value="de">Germany</option>
-                                                                    <option value="pl">Poland</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row row-sm mg-b-20">
-                                                        <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                            <p class="mg-b-10">Pin Code</p>
-                                                            <input
-                                                                class="form-control"
-                                                                placeholder="Pin Code"
-                                                                type="text"
-                                                                name="addressPinCode"
-                                                                onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )"
-                                                            />
-                                                        </div>
-                                                        <div class="col-lg mg-t-10 mg-lg-t-0">
-                                                            <p class="mg-b-10">Landmark</p>
-                                                            <input class="form-control" placeholder="Landmark" type="text" name="AddressLandmark" />
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <p class="mg-b-10">Address</p>
-                                                            <textarea name="full_address" class="form-control"></textarea>
+                                                            {{-- <button class="btn btn-danger addRemoveAddressButton" type="button">Remove Address</button> --}}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row row-sm">
+                                        <div class="col-lg-12 col-md-12 text-center">
+                                            <button type="button" class="btn btn-primary" id="addMoreAddressButton">Add More Address</button>
+                                        </div>
+                                    </div>
                                 </section>
 
-                                <h3>Documents</h3>
 
+                                <h3>Documents</h3>
                                 <section>
                                     <div class="row row-sm">
                                         <div class="col-lg-12 col-md-12">
@@ -344,7 +401,62 @@
                                                                 <option value="no">No</option>
                                                             </select>
                                                         </div>
+
                                                     </div>
+
+
+                                                    <div class="row row-sm mg-t-20">
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number Patient/Day In OPD <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number Patient/Day In OPD" type="text" name="numberPatientDayInOpd" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of Beds in total <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of Beds in total" type="text" name="numberOfBedsInTotal" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of General Wards <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of General Wards" type="text" name="numberOfGeneralWards" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of ICU <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of ICU" type="text" name="numberOfIcu" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of Private Rooms <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of Private Rooms" type="text" name="numberOfPrivateRooms" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of Semi Priavate rooms <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of Semi Priavate rooms" type="text" name="numberOfSemiPriavateRooms" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of Beds iN Emergency Number of departments <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of Beds iN Emergency Number of departments" type="text" name="numberOfBedsINEmergencyNumberOfDepartments" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of clinics <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of clinics" type="text" name="numberOfClinics" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Blood Bank Available or not <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Blood Bank Available or not" type="text" name="bloodBankAvailableOrNot" />
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <p class="mg-b-10 fw-bold">Number of Doctors on-roll <b class="text-danger">*</b></p>
+                                                            <input class="form-control" placeholder="Number of Doctors On Roll" type="text" name="numberOfDoctorsOnRoll" />
+                                                        </div>
+                                                    </div>
+
 
                                                     <div class="row row-sm mg-t-20">
                                                         <div class="col-lg">
@@ -503,6 +615,37 @@
                                         </div>
                                     </form>
                                 </section>
+
+                                <?php if($nextToken != 'hospitals'){ ?>
+
+                                    <h3>Other</h3>
+                                    <section>
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="shortBrief">Short Brief</label>
+                                                        <textarea name="shortBrief" id="shortBrief" cols="30" rows="10"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="logo">Logo</label>
+                                                        <input type="file" class="form-control" name="logo" id="logo" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="bannerImage">Banner Image</label>
+                                                        <input type="file" class="form-control" id="bannerImage" name="bannerImage" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </section>
+
+                                <?php } ?>
+
                             </div>
                         </div>
                     </div>
@@ -525,4 +668,107 @@
 
 @endsection
 @section('script')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        var maxAddresses = 10;
+        var minAddresses = 1;
+        var addressCount = 1;
+
+        // Function to add a new address field
+        function addAddressField() {
+            if (addressCount < maxAddresses) {
+                addressCount++;
+                var newAddressField = `
+                    <div class="address-row">
+                        <div class="row row-sm mg-b-20">
+                            <div class="col-lg">
+                                <p class="mg-b-10">Select Country</p>
+                                <div class="form-group">
+                                    <select name="AddressCountry" class="form-control select2">
+                                        <option value="">Default Select</option>
+                                        <option value="cz">Czech Republic</option>
+                                        <option value="de">Germany</option>
+                                        <option value="pl">Poland</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg mg-t-10 mg-lg-t-0">
+                                <p class="mg-b-10">State</p>
+                                <div class="form-group">
+                                    <select name="AddressState" class="form-control select2">
+                                        <option value="">Default Select</option>
+                                        <option value="cz">Czech Republic</option>
+                                        <option value="de">Germany</option>
+                                        <option value="pl">Poland</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg mg-t-10 mg-lg-t-0">
+                                <p class="mg-b-10">City</p>
+                                <div class="form-group">
+                                    <select name="AddressCity" class="form-control select2">
+                                        <option value="">Default Select</option>
+                                        <option value="cz">Czech Republic</option>
+                                        <option value="de">Germany</option>
+                                        <option value="pl">Poland</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-sm mg-b-20">
+                            <div class="col-lg mg-t-10 mg-lg-t-0">
+                                <p class="mg-b-10">Pin Code</p>
+                                <input
+                                    class="form-control"
+                                    placeholder="Pin Code"
+                                    type="text"
+                                    name="addressPinCode"
+                                    onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )"
+                                />
+                            </div>
+                            <div class="col-lg mg-t-10 mg-lg-t-0">
+                                <p class="mg-b-10">Landmark</p>
+                                <input class="form-control" placeholder="Landmark" type="text" name="AddressLandmark" />
+                            </div>
+                            <div class="col-lg mg-t-10 mg-lg-t-0">
+                                <p class="mg-b-10">Latitude</p>
+                                <input class="form-control" placeholder="Latitude" type="text" name="AddressLatitude" />
+                            </div>
+                            <div class="col-lg mg-t-10 mg-lg-t-0">
+                                <p class="mg-b-10">Longitude</p>
+                                <input class="form-control" placeholder="Longitude" type="text" name="AddressLongitude" />
+                            </div>
+                            <div class="col-lg-12">
+                                <p class="mg-b-10">Address</p>
+                                <textarea name="full_address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <!-- Modified Remove button -->
+                        <div style="text-align: right;">
+                            <button class="btn btn-danger addRemoveAddressButton" type="button"><i class="fa fa-trash"></i> Remove </button>
+                        </div>
+                    </div>`;
+                $(".address-container").append(newAddressField);
+            }
+        }
+
+        // Function to remove an address field
+        function removeAddressField() {
+            if (addressCount > minAddresses) {
+                $(this).closest('.address-row').remove();
+                addressCount--;
+            }
+        }
+
+        // Add an initial address field
+        // addAddressField();
+
+        // Event handler for adding more addresses
+        $("#addMoreAddressButton").click(addAddressField);
+
+        // Event handler for removing addresses (dynamic elements)
+        $(document).on("click", ".addRemoveAddressButton", removeAddressField);
+    });
+</script>
 @endsection

@@ -47,9 +47,9 @@ return [
             'driver' => 'mongodb',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', 'homestead'),
+            'database' => env('DB_DATABASE', 'DHP_DB'),
             'username' => env('DB_USERNAME', 'homestead'),
-            'password' => env('DB_PASSWORD', 'secret'),
+            'password' => env('DB_PASSWORD', 'homestead'),
             'options' => [
                 'appname' => 'homestead',
             ],

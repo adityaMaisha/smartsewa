@@ -261,6 +261,20 @@
                                     </div>
                                 </div>
 
+                                <div class="row row-sm mg-b-20">
+                                    <div class="col-lg-12">
+                                        <p class="mg-b-10">Map location <b class="text-danger">*</b></p>
+                                        <input type="text" name="mapLocation" class="form-control" >
+                                        <span class="text-danger ERROR__mapLocation"></span>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <p class="mg-b-10">Short Brief <b class="text-danger">*</b></p>
+                                        <textarea name="shortBrief" class="form-control" cols="30" rows="10"></textarea>
+                                        <span class="text-danger ERROR__shortBrief"></span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

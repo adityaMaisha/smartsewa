@@ -556,4 +556,9 @@ TABLEHEADER;
         return response()->json(['solve' => true, 'html_data' => $html]);
     }
 
+    public function vendor_dashboard()
+    {
+        return view('admin.dashboard.vendor_dashboard');
+    }
+
 }

@@ -29,9 +29,9 @@
                     <div class="row row-sm">
                         <div class="col-lg-12 col-md-12">
                             <div class="card custom-card">
-                                {{-- <div class="mb-4 hny_tt">
-                                    <h6 class="main-content-label mb-1">Personal Detail</h6>
-                                </div> --}}
+                                <div class="mb-4 hny_tt">
+                                    <h6 class="main-content-label mb-1">Service Details</h6>
+                                </div>
                                 <div class="card-body">
 
                                     <div class="row row-sm mg-b-20">
@@ -75,11 +75,12 @@
                                         </div>
 
 
-                                        <div class="col-lg">
+                                        {{-- <div class="col-lg">
                                             <p class="mg-b-10">Title <b class="text-danger">*</b></p>
                                             <input class="form-control" placeholder="Title" type="text" name="employee_first_name" required>
                                             <span class="text-danger ERROR__employee_first_name"></span>
-                                        </div>
+                                        </div> --}}
+
                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                             <p class="mg-b-10">Details <b class="text-danger">*</b></p>
                                             <input class="form-control" placeholder="Details" type="text" name="employee_last_name" required>
@@ -95,11 +96,7 @@
                                             <input class="form-control" placeholder="Cost" type="text" name="employee_first_name" required>
                                             <span class="text-danger ERROR__employee_first_name"></span>
                                         </div>
-                                        <div class="col-lg mg-t-10 mg-lg-t-0">
-                                            <p class="mg-b-10">Vitals- Unit <b class="text-danger">*</b></p>
-                                            <input class="form-control" placeholder="Vitals- Unit" type="text" name="employee_last_name" required>
-                                            <span class="text-danger ERROR__employee_last_name"></span>
-                                        </div>
+                                        
 
                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                             <p class="mg-b-10">Vitals Range <b class="text-danger">*</b></p>
@@ -135,6 +132,77 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="row row-sm">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card custom-card">
+                                <div class="mb-4 hny_tt">
+                                    <h6 class="main-content-label mb-1">Select Customer</h6>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="row row-sm mg-b-20">
+                                        <div class="col-lg">
+                                            <p class="mg-b-10">Gender</p>
+                                            <div class="form-group">
+                                                <select name="customer_gender" class="form-control select2">
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                                <span class="text-danger ERROR__customer_gender"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg mg-t-10 mg-lg-t-0">
+                                            <p class="mg-b-10">Age Group <b class="text-danger">*</b></p>
+                                            <input class="form-control" placeholder="Age Group" type="text" name="ageGroup" required>
+                                            <span class="text-danger ERROR__ageGroup"></span>
+                                        </div>
+                                        <div class="col-lg mg-t-10 mg-lg-t-0">
+                                            <p class="mg-b-10">Organ Vital <b class="text-danger">*</b></p>
+                                            <input class="form-control" placeholder="Organ Vital" type="text" name="organVital" required>
+                                            <span class="text-danger ERROR__organVital"></span>
+                                        </div>
+                                        <div class="col-lg mg-t-10 mg-lg-t-0">
+                                            <p class="mg-b-10">Vital Range <b class="text-danger">*</b></p>
+                                            <input class="form-control" placeholder="Vital Range" type="text" name="vitalRange" required>
+                                            <span class="text-danger ERROR__vitalRange"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row row-sm">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card custom-card">
+                                <div class="mb-4 hny_tt">
+                                    <h6 class="main-content-label mb-1">Activation time</h6>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="row row-sm mg-b-20">
+                                        <div class="col-lg mg-t-10 mg-lg-t-0">
+                                            <p class="mg-b-10">Start date & time <b class="text-danger">*</b></p>
+                                            <input class="form-control" type="datetime-local" name="startDateTime" required>
+                                        </div>
+                                        <div class="col-lg mg-t-10 mg-lg-t-0">
+                                            <p class="mg-b-10">End date & time <b class="text-danger">*</b></p>
+                                            <input class="form-control" type="datetime-local" name="endDateTime" required>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
                     <div class="row mt-3 mb-4">

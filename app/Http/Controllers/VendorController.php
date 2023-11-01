@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Models\countries;
-use App\Models\VendorPathLab;
 use Illuminate\Http\Request;
+use App\Models\VendorPathLab;
+use App\Imports\DiagnosticsImport;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -130,6 +132,11 @@ class VendorController extends Controller
                 }
 
             } else {
+
+
+                // Excel::import( new DiagnosticsImport, 'sample_file.xlsx' );
+                // dd('hello sachin');
+
 
                 return view('admin.vendor.path_lab_create', [
                     'countries' => countries::get()
