@@ -317,7 +317,7 @@
                                     <li class="nav-sub-item"><a class="nav-sub-link"
                                             href="{{route('products.homecare.index')}}">Home care</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="">Critical care</a></li>
+                                            href="{{route('products.criticalcare.index')}}">Critical care</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
                                             href="{{route('products.organs.index')}}">Organs</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"

@@ -88,7 +88,8 @@ class HomeCareController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editData = HomeCare::where('_id',decrypt($id))->first();
+        return view('admin.products.homecare.edit',compact('editData'));
     }
 
     /**
@@ -100,7 +101,33 @@ class HomeCareController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $this->validate($request,[
+                'name'=>'required'
+            ],[
+                'name.required'=>'Please fill name home care name field'
+            ]);
+            $input = $request->all();
+            unset($input['_token']);
+            if($request->hasFile('image')){
+                $file = $request->file('image')->store('homecarefiles','public');
+                $input['image'] = $file;
+            }
+            $update = HomeCare::where('_id',decrypt($id))->update($input);
+            if($update){
+                return response()->json([
+                    'message'=>'update successfull'
+                ],200);
+            }else{
+                return response()->json([
+                    'message'=>'Internal Server Error'
+                ],500);
+            }
+        }catch(ValidationException $e){
+            throw $e;
+        }catch(Exception $e){
+            throw $e;
+        }
     }
 
     /**
@@ -111,6 +138,11 @@ class HomeCareController extends Controller
      */
     public function destroy($id)
     {
-        
+        $delete = HomeCare::where('_id',$id)->update([
+            'trash'=>'1'
+        ]);
+        return response()->json([
+            'message'=>'Delete successfull'
+        ]);
     }
 }

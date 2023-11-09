@@ -17,6 +17,7 @@ use App\Http\Controllers\LabTestController;
 use App\Http\Controllers\SmartHealthCheckup;
 use App\Http\Controllers\OrganController;
 use App\Http\Controllers\HomeCareController;
+use App\Http\Controllers\CriticalCareController;
 
 Route::match(['get', 'post'], 'login', [EmployeeController::class, 'loginProcess'])->name('login.process');
 
@@ -46,6 +47,8 @@ Route::middleware(['loginAuth'])->group(function () {
         Route::post('/organs/update/{id}',[OrganController::class,'update']);
         Route::resource('homecare',HomeCareController::class);
         Route::post('/homecare/update/{id}',[HomeCareController::class,'update']);
+        Route::resource('criticalcare',CriticalCareController::class);
+        Route::post('/criticalcare/update/{id}',[CriticalCareController::class,'update']);
     });
 
     /* =====[ Department and Privileges ]===== */

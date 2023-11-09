@@ -131,6 +131,8 @@ class SmartHealthCheckup extends Controller
             ]);
             $inputs = $request->all();
             if($request->hasFile('checkup_image')){
+                $deleteFile = SmartHealthCheckupModel::where('_id',decrypt($id))->first();
+                // unlink(asset($deleteFile->checkup_image));
                 $file = $request->file('checkup_image')->store('smart_health_checkup_files','public');
                 $inputs['checkup_image']=$file;
             }

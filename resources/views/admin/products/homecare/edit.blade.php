@@ -5,21 +5,21 @@
 <div class="main-content side-content pt-0">
     <div class="main-container container-fluid">
         <div class="inner-body">
-            <form enctype="multipart/form-data" id="organsform">
+            <form enctype="multipart/form-data" id="homecareform">
                 @csrf
 
                 <div class="page-header">
                     <div>
-                        <h2 class="main-content-title tx-24 mg-b-5">Edit Organ</h2>
+                        <h2 class="main-content-title tx-24 mg-b-5">Edit Home Care</h2>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('products.organs.index') }}">Organs</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Organ</li>
+                            <li class="breadcrumb-item"><a href="{{ route('products.homecare.index') }}">Home Care</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Home Care</li>
                         </ol>
                     </div>
                     <div class="d-flex">
                         <div class="justify-content-center">
                             <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                                <a href="{{ route('products.organs.index') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
+                                <a href="{{ route('products.homecare.index') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
                             </button>
                         </div>
                     </div>
@@ -31,33 +31,26 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card custom-card">
                             <div class="mb-4 hny_tt">
-                                <h6 class="main-content-label mb-1">Organ Information</h6>
+                                <h6 class="main-content-label mb-1">Home Care Information</h6>
                             </div>
                             <div class="alert alert-danger d-none" id="formerror"></div>
                             <div class="card-body">
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-md-4">
-                                        <p class="mg-b-10">Organ Name <b class="text-danger">*</b></p>
+                                        <p class="mg-b-10">Home Care Name <b class="text-danger">*</b></p>
                                         <input
                                             class="form-control"
-                                            placeholder="Checkup Name"
+                                            placeholder="Home Care Name"
                                             type="text"
                                             name="name"
                                             value="{{$editData->name}}"
                                         />
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="mg-b-10">Organ 3D Image<b class="text-danger">*</b></p>
+                                        <p class="mg-b-10">Home Care Image<b class="text-danger">*</b></p>
                                         <div class="custom-file">
-                                            <input type="file" class="form-control" name="3d_image" accept="image/*"/>
-                                            <a href="{{asset($editData->d3_image)}}" target="_blank">Click here to preview</a>
-                                          </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p class="mg-b-10">Organ Icon<b class="text-danger">*</b></p>
-                                        <div class="custom-file">
-                                            <input type="file" class="form-control" name="icon" accept="image/*"/>
-                                            <a href="{{asset($editData->icon)}}" target="_blank">Click here to preview</a>
+                                            <input type="file" class="form-control" name="image" accept="image/*"/>
+                                            <a href="{{asset($editData->image)}}"   target="_blank">Click to preview</a>
                                           </div>
                                     </div>
 
@@ -272,7 +265,7 @@
 
                                 <div class="row mt-3 mb-4">
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-primary my-2 btn-icon-text">Edit Organ <i class="fa fa-add"></i></button>
+                                        <button type="submit" class="btn btn-primary my-2 btn-icon-text">Add New Home care <i class="fa fa-add"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -286,13 +279,13 @@
 @endsection
 @section('script')
 <script>
-    $('#organsform').submit(function(e){
+    $('#homecareform').submit(function(e){
         e.preventDefault();
         let formid = "<?php print_r(encrypt($editData->_id)) ?>";
         $.ajax({
-            url:`/products/organs/update/${formid}`,
+            url:`/products/homecare/update/${formid}`,
             type:'POST',
-            data:new FormData(document.getElementById('organsform')),
+            data:new FormData(document.getElementById('homecareform')),
             contentType:false,
             processData:false,
             headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
@@ -300,7 +293,7 @@
             success:function(res){
                 // console.log('success');
                 // console.log(res);
-                window.location.href='/products/organs';
+                window.location.href='/products/homecare';
             },
             error:function(res){
                 console.log('error');
