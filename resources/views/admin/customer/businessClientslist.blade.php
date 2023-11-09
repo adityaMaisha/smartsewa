@@ -96,43 +96,34 @@
                                       <th>Service Name</th>
                                       <th>Category</th>
                                       <th>Cost</th>
-                                      <th>Vital Units</th>
-                                      <th>Vital Range</th>
-                                      <th>Organs</th>
                                       <th>Consumable Time</th>
                                       <th>Pin Code</th>
                                       <th>Act. Start Time</th>
                                       <th>Act. End Time</th>
-                                      <th>Status</th>
-                                      <th>Created at</th>
                                       <th>Action</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td><div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple  dropdown-toggle" data-bs-toggle="dropdown" type="button"><i class="fa fa-ellipsis-v" aria-hidden="true" style="font-size: 18px;"></i></button>
-                                        <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                            {{-- <a class="dropdown-item" href="#">Edit</a> --}}
-                                            <a class="dropdown-item" href="javascript:void(0)" >Delete</a>
-                                            <a class="dropdown-item" href="#" data-bs-target="#modal-datepicker" data-bs-toggle="modal" >Take Service</a>
-                                        </div>
-                                     </div></td>
-                                    </tr>
+                                    @foreach($businessClients as $businessClient)
+                                        <tr>
+                                        <td>1</td>
+                                        <td>{{$businessClient->service_name}}</td>
+                                        <td>{{$businessClient->service_category}}</td>
+                                        <td>{{$businessClient->per_cust_cost}}</td>
+                                        <td>{{$businessClient->time_consume_customer}}</td>
+                                        <td>{{$businessClient->ser_pin_code}}</td>
+                                        <td>{{$businessClient->startDateTime}}</td>
+                                        <td>{{$businessClient->endDateTime}}</td>
+                                        <td><div class="dropdown">
+                                            <button aria-expanded="false" aria-haspopup="true" class="btn ripple  dropdown-toggle" data-bs-toggle="dropdown" type="button"><i class="fa fa-ellipsis-v" aria-hidden="true" style="font-size: 18px;"></i></button>
+                                            <div class="dropdown-menu tx-13">
+                                                <a class="dropdown-item" href="edit-business-clients/{{encrypt($businessClient->_id)}}">Edit</a>
+                                                <a class="dropdown-item" href="/delete-business-clients/{{encrypt($businessClient->_id)}}">Delete</a>
+                                                <a class="dropdown-item" href="#" data-bs-target="#modal-datepicker" data-bs-toggle="modal" >Take Service</a>
+                                            </div>
+                                        </div></td>
+                                        </tr>
+                                    @endforeach
                                   </tbody>
                                 </table>
 
@@ -150,19 +141,39 @@
                         <span aria-hidden="true">×</span>
                         </button>
                       </div>
+                      @if($wallet_sum > 900)
+                      <div class="alert alert-info" role="alert" style="text-align: center;">
+                        <a href="javascript:void(0);" class="alert-link">Awesome 😊 ! Your wallet amount is ₹ {{ $wallet_sum }}/- Sufficiant for this service</a>
+                      </div>
+                      @else
+                      <div class="alert alert-danger" role="alert" style="text-align: center;">
+                        <a href="javascript:void(0);" class="alert-link">Oops ☹️ ! Your wallet amount is low ₹ {{ $wallet_sum }}/- for this service</a>
+                      </div>
+                      @endif
                       <div class="modal-body">
+                        <form method="post" id="purchase_service" enctype="multipart/form-data">
                         <div class="row">
+                          @if($wallet_sum > 900)
+                          <div class="col-md-6">
+                            <p class="mg-b-10">Proceed With Wallet? <b class="text-danger">*</b></p>
+                            <select class="form-control" name="is_wallet_pay" id="is_wallet_pay" onchange="is_wallet_payment(this.value)">
+                              <option value="" selected> Select</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
+                        </div>
+                        @endif
                           <div class="col-md-6">
                               <p class="mg-b-10">Number Of Customer <b class="text-danger">*</b></p>
-                              <input class="form-control" type="number" name="number_of_customer" id="number_of_customer" required>
+                              <input class="form-control" type="number" name="number_of_customer" id="number_of_customer" placeholder="Number of customer" required>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-6 mg-t-10 mg-lg-t-0 mt-2">
                             <p class="mg-b-10">Cost Per Customer<b class="text-danger">*</b></p>
-                            <input class="form-control" type="number" name="number_of_customer" id="number_of_customer" required>
+                            <input class="form-control" type="number" name="cost_per_customer" id="cost_per_customer" placeholder="Cost per customer" required>
                         </div>
                           <div class="col-md-6 mg-t-10 mg-lg-t-0 mt-2">
                             <p class="mg-b-10">Total Cost<b class="text-danger">*</b></p>
-                            <input class="form-control" type="number" name="number_of_customer" id="number_of_customer" required>
+                            <input class="form-control" type="number" name="total_cost" id="total_cost" value="400" required>
                         </div>
 
                         <div class="col-md-6 mg-t-10 mg-lg-t-0 mt-2">
@@ -170,12 +181,13 @@
                           <input class="form-control" type="file" name="number_of_customer" id="number_of_customer" required>
                       </div>
                         </div>
-                        
+                        </form>
+
                         <!-- Select2 -->
                       </div>
                       <div class="modal-footer">
                         <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                        <button class="btn ripple btn-primary" type="button">Proceed To Pay</button>
+                        <button class="btn ripple btn-primary pay_btn" type="button">Proceed To Pay</button>
                       </div>
                     </div>
                   </div>
@@ -188,5 +200,18 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <script>
     new DataTable('#dataTable');
+</script>
+<script>
+function is_wallet_payment(val)
+{
+  if(val == 'Yes')
+  {
+    $('.pay_btn').html('Purchase Service');
+  }else{
+    $('.pay_btn').html('Proceed To Pay');
+  }
+}
+
+
 </script>
 @endsection

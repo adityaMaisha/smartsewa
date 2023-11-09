@@ -8,6 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class cities extends Model
 {
     use HasFactory;
+    protected $connection = 'mongodb';
     protected $collection = 'cities';
 
     protected $guarded = [];

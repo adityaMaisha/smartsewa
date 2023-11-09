@@ -18,7 +18,7 @@
                         <div class="justify-content-center">
                             
                             <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                              <i class="fa fa-refresh me-2"></i> Wallet Amount - ₹ 1,80,000/-
+                              <i class="fa fa-refresh me-2"></i> Wallet Amount - ₹ {{ $total_wallet_amt }}/-
                             </button>
                         </div>
                     </div>
@@ -57,8 +57,8 @@
                                             </div>
                                             <div class="card-item-body">
                                                 <div class="card-item-stat">
-                                                    <h4 class="font-weight-bold">₹ 1,80,000/-</h4>
-                                                    <small><a href="{{ route('wallet.details', 1122) }}"><b class="text-success">Manage Wallet</b></a></small> 
+                                                    <h4 class="font-weight-bold">₹ {{ $total_wallet_amt }}/-</h4>
+                                                    <small><a href="{{ route('wallet.details', 'SSVENDOR1122') }}"><b class="text-success">Manage Wallet</b></a></small> 
                                                 </div>
                                             </div>
                                         </div>

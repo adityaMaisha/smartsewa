@@ -122,7 +122,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <!-- Search -->
@@ -254,7 +254,7 @@
                                     <i class="angle fa fa-chevron-circle-right"></i>
                                 </a>
                                 <ul class="nav-sub">
-                                    
+
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('labs.list') }}">Path Lab</a></li>
                                     {{-- <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.path.lab') }}">Path Lab</a></li> --}}
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.radiology.diagnostics') }}">Radiology Diagnostics</a></li>
@@ -290,15 +290,42 @@
                                     <span class="sidemenu-label">SmartSewa Services</span>
                                     <i class="angle fa fa-chevron-circle-right"></i>
                                 </a>
-                                
+
                                 <ul class="nav-sub">
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('list.end.custumers') }}">End Custumers</a></li>
-                                    
+
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('list.business.clients') }}">Business Clients</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('packages.list') }}">Packages</a></li>
+
                                 </ul>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link with-sub" href="javascript:void(0)">
+                                    <span class="shape1"></span>
+                                    <span class="shape2"></span>
+                                    <i class="fa fa-adjust sidemenu-icon menu-icon"></i>
+                                    <span class="sidemenu-label">SmartSewa Products</span>
+                                    <i class="angle fa fa-chevron-circle-right"></i>
+                                </a>
+                                <ul class="nav-sub">
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('packages.list') }}">Packages</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="{{route('products.labtest')}}">Lab Test</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="{{route('products.smarthealthcheckup.index')}}">Smart health checkup</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="">Appointment with doctor</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="{{route('products.homecare.index')}}">Home care</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="">Critical care</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="{{route('products.organs.index')}}">Organs</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="">Banner</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link"
+                                            href="">Coupon</a></li>
+                                </ul>
+                            </li>
 
 
                             <li class="nav-item">
@@ -361,7 +388,6 @@
                                             href="{{ route('new.roles') }}">Department Create</a></li>
                                 </ul>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('setting.home') }}">
                                     <span class="shape1"></span>
@@ -573,5 +599,4 @@
     </script>
     @yield('script')
 </body>
-
 </html>

@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
-
+    protected $connection = 'mongodb';
     protected $collection = 'employees';
 
     /**

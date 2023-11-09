@@ -122,7 +122,7 @@
                                                 <input type="checkbox" class="DiagnosticsBox" >
                                             </td>
                                             <td>LT-01</td>
-                                            <td>AHDPL-001</td>
+                                            <td>AHD01</td>
                                             <td>ABO Group & RH Type (Blood Group)</td>
                                             <td>Blood Sample</td>
                                             <td>99</td>

@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\countries;
 use App\Models\states;
 use App\Models\cities;
+use App\Models\Client_Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -21,17 +22,17 @@ class EmployeeController extends Controller
             if (request()->isMethod('post')) {
                 $html = '';
                 $results = Employee::orderBy('created_at', 'desc')->get();
-
+                // dd($results);
                 if ($results->isEmpty()) {
                     $emptyImage = asset('dashboard_assets/media/illustrations/sketchy-1/1.png');
                     $createNewCustomer = route('new.employee');
                     $html = <<<TABLEEMPTY
-<h2 class="text-center fs-2x fw-bold mb-0">No Employees Found</h2>
-<p class="text-center text-gray-400 fs-4 fw-semibold py-7">Right now, there are no Employees. If you want to create a Employees, please click on the link. <br><br> <a href="{$createNewCustomer}" class="btn btn-primary border-radius-50"><i class="fa fa-plus" aria-hidden="true"></i> Create New Employees</a> </p>
-<div class="text-center pb-15 px-5">
-<img src="{$emptyImage}" alt="" class="mw-100 h-200px h-sm-325px">
-</div>
-TABLEEMPTY;
+                    <h2 class="text-center fs-2x fw-bold mb-0">No Employees Found</h2>
+                    <p class="text-center text-gray-400 fs-4 fw-semibold py-7">Right now, there are no Employees. If you want to create a Employees, please click on the link. <br><br> <a href="{$createNewCustomer}" class="btn btn-primary border-radius-50"><i class="fa fa-plus" aria-hidden="true"></i> Create New Employees</a> </p>
+                    <div class="text-center pb-15 px-5">
+                    <img src="{$emptyImage}" alt="" class="mw-100 h-200px h-sm-325px">
+                    </div>
+                    TABLEEMPTY;
 
                     return response()->json(['success' => true, 'data' => $html, 'msg' => 'No records found.']);
                 }
@@ -511,7 +512,8 @@ TABLEHEADER;
 
                 $email = $request->user_email;
                 $password = $request->user_password;
-                $userDetails = Employee::where('office_email', $email)->first();
+                $userDetails = Employee::where('email_id', $email)->first();
+                // dd($userDetails);
                 if (!empty($userDetails) && Hash::check($password, $userDetails->password)) {
                     if ($userDetails->employee_status != 'active') {
                         return response()->json(['success' => false, 'title' => '', 'msg' => 'User Deactive. Contact executive for more info.']);
@@ -558,7 +560,8 @@ TABLEHEADER;
 
     public function vendor_dashboard()
     {
-        return view('admin.dashboard.vendor_dashboard');
+        $data['total_wallet_amt'] = Client_Wallet::where('vendor_id', 'SSVENDOR1122')->sum('wallet_amt');
+        return view('admin.dashboard.vendor_dashboard',$data);
     }
 
 }

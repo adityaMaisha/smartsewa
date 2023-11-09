@@ -91,10 +91,6 @@ class OrderController extends Controller
                     }
                 }
 
-
-
-
-
                 // $url = 'https://lims-test.corediagnostics.in/api/collection/createcollection';
                 // $ch = curl_init($url);
                 $lab_data['priority'] = $request->priority ?? '';
@@ -149,80 +145,9 @@ class OrderController extends Controller
                     $lab_data['specimen'][$y]['unit_name'] = $sp_unit_name[$y];
                     $lab_data['specimen'][$y]['quantity'] = $sp_quantity[$y];
                 }
-                // $test = [
-                //     'test' => $request->test,
-                // ];
 
-                // $lab_data['test'][] = $request->test;
-                // $lab_data['panel'][] = $request->panel;
-
-
-                // $panel = [
-                //     'panel' => $request->panel,
-                // ];
-
-                // $lab_data['test'] = $test;
-                // $lab_data['panel'] = $panel;
                 $lab_data['api_key'] = 'GJ9jOG1w7T6QnbF9SDIqM43C5dTvnVs1jBoF6J2Z2gEh4peyDgz2sCcnLKXI7mCC';
-
-                // echo '<pre>';
-                // print_r($lab_data);
-                // echo '</pre>';
-                // die();
-
-                // $jsonData = json_encode($lab_data);
-
-
-
-
-                // $curl = curl_init();
-
-                // curl_setopt_array($curl, array(
-                //     CURLOPT_URL => 'https://lims-test.corediagnostics.in/api/collection/create-collection',
-                //     CURLOPT_RETURNTRANSFER => true,
-                //     CURLOPT_ENCODING => '',
-                //     CURLOPT_MAXREDIRS => 10,
-                //     CURLOPT_TIMEOUT => 0,
-                //     CURLOPT_FOLLOWLOCATION => true,
-                //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                //     CURLOPT_CUSTOMREQUEST => 'POST',
-                //     CURLOPT_POSTFIELDS => $lab_data,
-                // ));
-
-                // $response = curl_exec($curl);
-
-                // curl_close($curl);
-                // echo $response;
-
-                // die();
-
-
-
-                // // echo 'hiii';die();
-
-                // //echo json_encode($lab_data);exit;
-                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                // curl_setopt($ch, CURLOPT_POST, true);
-                // curl_setopt($ch, CURLOPT_POSTFIELDS, $lab_data);
-
-                // $response = curl_exec($ch);
-                // print_r($response);
-                // exit;
-
-                // if (curl_errno($ch)) {
-                //     echo 'cURL Error: ' . curl_error($ch);
-                // } else {
-                //     echo $response;
-                // }
-
-                // // Close cURL session
-                // curl_close($ch);
-                // exit;
-
-
                 $curl = curl_init();
-
                 // Create an array for the 'specimen' data
                 $specimenData = array();
                 for ($y = 0; $y < count($sp_barcode); ++$y) {
@@ -236,14 +161,19 @@ class OrderController extends Controller
                 }
 
                 for ($y = 0; $y < count($request->test); ++$y) {
-                    $test['test'][$y] = $request->test[$y];
+                    $test[$y] = $request->test[$y];
                 }
+
+                $json_test = json_encode($test);
 
                 for ($y = 0; $y < count($request->panel); ++$y) {
-                    $panel['panel'][$y] = $request->panel[$y];
+                    $panel[$y] = $request->panel[$y];
                 }
 
+                $json_panel = json_encode($panel);
                 // Define the rest of the data
+
+
                 $data = array(
                     'priority' => $request->priority ?? '',
                     'barcode' => $request->barcode,
@@ -262,8 +192,8 @@ class OrderController extends Controller
                     'physician' => $request->physician,
                 ) + $specimenData + $test + $panel; // Combine the 'specimen' data with the main data array
 
-                // $lab_data['test'][] = $request->test;
-                // $lab_data['panel'][] = $request->panel;
+                // $data['test'] = json_encode($test);
+                // $data['panel'] = json_encode($panel);
 
                 $data['temperature'] = $request->temperature ?? '';
                 $data['clinicalhistoryattached'] = $request->clinicalhistoryattached ?? '';
@@ -275,15 +205,14 @@ class OrderController extends Controller
                 $data['otherhistory'] = $request->otherhistory ?? '';
                 $data['other_hist_desc'] = $request->other_hist_desc ?? '';
                 $data['api_key'] = 'GJ9jOG1w7T6QnbF9SDIqM43C5dTvnVs1jBoF6J2Z2gEh4peyDgz2sCcnLKXI7mCC';
-
+                    //echo json_encode($data);exit;
                 curl_setopt($curl, CURLOPT_URL, 'https://lims-test.corediagnostics.in/api/collection/create-collection');
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($curl, CURLOPT_POST, 1);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Encode the data as a URL-encoded string
 
                 $response = curl_exec($curl);
-                print_r($response);
-                exit;
+                print_r($response);exit;
                 if ($response === false) {
                     echo 'cURL Error: ' . curl_error($curl);
                 } else {

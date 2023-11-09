@@ -92,34 +92,128 @@
                     <div class="col-sm-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-striped table-hover" style="width:100%" id="example2">
-                                  <thead>
-                                    <tr>
-                                      <th>Sr No.</th>
-                                      <th>Order Details</th>
-                                      <th>Client Details</th>
-                                      <th>Payment Details</th>
-                                      <th>Created At</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>1</td>
-                                      <td>Order ID - SM1122 <br>Order Details - Service One <br> Total Customer - 100 <br> Order Amt - ₹ 99/-</td>
-                                      <td>Customer ID - CUST1234 <br>Name - Client One</td>
-                                      <td>Payment ID - rzp_112233 <br>Payment Status - <span class="status bg-success"></span> Success <br>Payment Mode - Online</td>
-                                      
-                                      <td>26-09-2023</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
 
+                              <div class="text-wrap">
+                                <div class="example">
+                                  <div class="panel panel-primary tabs-style-2">
+                                    <div class=" tab-menu-heading">
+                                      <div class="tabs-menu1">
+                                        <!-- Tabs -->
+                                        <ul class="nav panel-tabs main-nav-line">
+                                          <li><a href="#tab4" class="nav-link active mt-1" data-bs-toggle="tab">Payment Success Report</a></li>
+                                          <li><a href="#tab5" class="nav-link mt-1" data-bs-toggle="tab">Payment Failure Report</a></li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                    <div class="panel-body tabs-menu-body main-content-body-right border">
+                                      <div class="tab-content">
+                                        <div class="tab-pane active" id="tab4">
+                                          <table class="table table-striped table-hover example3" style="width:100%">
+                                            <thead>
+                                              <tr>
+                                                <th>Sr No.</th>
+                                                <th>Payment Status</th>
+                                                <th>Order ID</th>
+                                                <th>Order For</th>
+                                                <th>Amount</th>
+                                                <th>TXN code</th>
+                                                <th>TXN Message</th>
+                                                <th>Acquirer Name</th>
+                                                <th>Pay TXN ID</th>
+                                                <th>Captured Amt</th>
+                                                <th>Pay Mode</th>
+                                                <th>Mask Card No.</th>
+                                                <th>Card Holder Name</th>
+                                                <th>Date & time</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              @if(!empty($success_payment))
+                                              @foreach($success_payment as $key => $val)
+                                              <tr>
+                                                <td>{{ $key+1 }}</td>
+                                                <td><a class="badge bg-pill bg-success">{{ $val->txn_response_msg }}</a></td>
+                                                <td>{{ $val->unique_merchant_txn_id }}</td>
+                                                <td>Service One</td>
+                                                <td>{{ $val->final_amt }}</td>
+                                                <td>{{ $val->txn_response_code }}</td>
+                                                <td>{{ $val->txn_response_msg }}</td>
+                                                <td>{{ $val->acquirer_name }}</td>
+                                                <td>{{ $val->pine_pg_transaction_id }}</td>
+                                                <td>{{ $val->captured_amount_in_paisa }} (In Paisa)</td>
+                                                <td>{{ $val->payment_mode }}</td>
+                                                <td>{{ $val->masked_card_number }}</td>
+                                                <td>{{ $val->card_holder_name }}</td>
+
+                                                <td>{{ $val->created_at }}</td>
+                                              </tr>
+                                              @endforeach
+                                              @endif
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div class="tab-pane" id="tab5">
+                                          <table class="table table-striped table-hover example3" style="width:100%" >
+                                            <thead>
+                                              <tr>
+                                                <th>Sr No.</th>
+                                                <th>Payment Status</th>
+                                                <th>Order ID</th>
+                                                <th>Order For</th>
+                                                <th>Amount</th>
+                                                <th>TXN code</th>
+                                                <th>TXN Message</th>
+                                                <th>Acquirer Name</th>
+                                                <th>Pay TXN ID</th>
+                                                <th>Captured Amt</th>
+                                                <th>Pay Mode</th>
+                                                <th>Mask Card No.</th>
+                                                <th>Card Holder Name</th>
+                                                <th>Date & time</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              @if(!empty($failed_payment))
+                                              @foreach($failed_payment as $key => $val)
+                                              <tr>
+                                                <td>{{ $key+1 }}</td>
+                                                <td><a class="badge bg-pill bg-success">{{ $val->txn_response_msg }}</a></td>
+                                                <td>{{ $val->unique_merchant_txn_id }}</td>
+                                                <td>Service One</td>
+                                                <td>{{ $val->final_amt }}</td>
+                                                <td>{{ $val->txn_response_code }}</td>
+                                                <td>{{ $val->txn_response_msg }}</td>
+                                                <td>{{ $val->acquirer_name }}</td>
+                                                <td>{{ $val->pine_pg_transaction_id }}</td>
+                                                <td>{{ $val->captured_amount_in_paisa }} (In Paisa)</td>
+                                                <td>{{ $val->payment_mode }}</td>
+                                                <td>{{ $val->masked_card_number }}</td>
+                                                <td>{{ $val->card_holder_name }}</td>
+
+                                                <td>{{ $val->created_at }}</td>
+                                              </tr>
+                                              @endforeach
+                                              @endif
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div class="tab-pane" id="tab6">
+                                          <p>praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,</p>
+                                          <p class="mb-0">similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                               </div>
                         </div>
                     </div>
                 </div>
+
+
                 {{-- assign to lab model --}}
-                
+
             </div>
         </div>
     </div>
@@ -127,6 +221,20 @@
 @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <script>
-    new DataTable('#dataTable');
+    $('.example3').DataTable({
+      responsive: {
+         details: {
+            display: $.fn.dataTable.Responsive.display.modal({
+               header: function (row) {
+                  var data = row.data();
+                  return 'Payment Details Of ' + data[2];
+               }
+            }),
+            renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+               tableClass: 'table'
+            })
+         }
+      }
+   });
 </script>
 @endsection

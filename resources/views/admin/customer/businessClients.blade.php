@@ -78,7 +78,7 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Add New Business Service</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Add New Business Client Service</h2>
                     {{-- <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0);">Path Lab List</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Add New Path Lab Vendor</li>
@@ -94,7 +94,7 @@
             </div>
             <!-- End Page Header -->
 
-            <form action="{{ route('vendor.new.path.lab') }}" method="POST" enctype="multipart/form-data" id="formData">
+            <form action="{{ route('service.new.businessClinet') }}" method="POST" enctype="multipart/form-data" id="formData">
                 @csrf
 
                 <div class="row row-sm">
@@ -103,12 +103,13 @@
                             <div class="mb-4 hny_tt">
                                 <h6 class="main-content-label mb-1">Service Details</h6>
                             </div>
+                            <div class="alert alert-danger d-none" id="errorMessage"></div>
                             <div class="card-body">
 
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Service Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Service Name" type="text" name="employee_first_name" required>
+                                        <input class="form-control" placeholder="Service Name" type="text" name="service_name" id="service_name">
                                         <span class="text-danger ERROR__employee_first_name"></span>
                                     </div>
 
@@ -125,7 +126,7 @@
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">City </p>
                                         <div class="form-group ">
-                                            <select name="bus_client_city" class="form-control">
+                                            <select name="bus_client_city" id="bus_client_city" class="form-control">
                                                 <option value="" selected>Select City</option>
                                                 <option value="New Delhi">New Delhi</option>
                                             </select>
@@ -136,7 +137,7 @@
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Category </p>
                                         <div class="form-group ">
-                                            <select name="blood_group" class="form-control select2">
+                                            <select name="service_category" id="service_category" class="form-control select2">
                                                 <option value="preventive health checkup">Preventive health checkup</option>
                                                 <option value="DHP">DHP</option>
                                                 <option value="Subscription">Subscription</option>
@@ -148,46 +149,48 @@
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Mode of delivery </p>
                                         <div class="form-group ">
-                                            <select name="blood_group" class="form-control select2">
+                                            <select name="del_mode" id="del_mode" class="form-control">
                                                 <option value="At store">At store</option>
                                                 <option value="at home">at home</option>
                                                 <option value="digital">digital</option>
                                             </select>
-                                            <span class="text-danger ERROR__blood_group"></span>
+                                            <span class="text-danger ERROR__del_mode"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
-                                        <p class="mg-b-10">Details <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Details" type="text" name="employee_last_name" required>
-                                        <span class="text-danger ERROR__employee_last_name"></span>
+                                        <p class="mg-b-10">servicable pin codes <b class="text-danger">*</b></p>
+                                        <input class="form-control" placeholder="servicable pin codes" type="text" name="ser_pin_code" id="ser_pin_code">
+                                        <span class="text-danger ERROR__ser_pin_code"></span>
                                     </div>
                                 </div>
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Time cosume per customer </p>
                                         <div class="form-group ">
-                                            <select name="blood_group" class="form-control select2">
-                                                <option value="At store">minutes</option>
-                                                <option value="at home">seconds</option>
+                                            <select name="time_consume_customer" id="time_consume_customer" class="form-control select2">
+                                                <option value="minutes">minutes</option>
+                                                <option value="seconds">seconds</option>
                                             </select>
-                                            <span class="text-danger ERROR__blood_group"></span>
+                                            <span class="text-danger ERROR__time_consume_customer"></span>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Number of customer can be engaged/day <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Number of customer can be engaged/day" type="text" name="employee_first_name" required>
-                                        <span class="text-danger ERROR__employee_first_name"></span>
+                                        <input class="form-control" placeholder="Number of customer can be engaged/day" type="text" name="cust_eng_day">
+                                        <span class="text-danger ERROR__cust_eng_day"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Per customer cost <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Per customer cost" type="text" name="employee_last_name" required>
-                                        <span class="text-danger ERROR__employee_last_name"></span>
+                                        <input class="form-control" placeholder="Per customer cost" type="text" name="per_cust_cost">
+                                        <span class="text-danger ERROR__per_cust_cost"></span>
                                     </div>
 
-                                    <div class="col-lg-4 mg-t-10 mg-lg-t-0">
-                                        <p class="mg-b-10">servicable pin codes <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="servicable pin codes" type="text" name="employee_last_name" required>
+
+
+                                    <div class="col-lg-12 mg-t-10 mg-lg-t-0">
+                                        <p class="mg-b-10">Details <b class="text-danger">*</b></p>
+                                        <textarea class="form-control" placeholder="Details" type="text" name="description"></textarea>
                                         <span class="text-danger ERROR__employee_last_name"></span>
                                     </div>
 
@@ -211,8 +214,8 @@
                                         <div class="form-group ">
                                             <select name="bus_client_customer_vendor" id="bus_client_customer_vendor" class="form-control">
                                                 <option value="" selected>Select</option>
-                                                <option value="at home">Hospital & Others</option>
-                                                <option value="digital">Doctor & Others</option>
+                                                <option value="Hospital & Others">Hospital & Others</option>
+                                                <option value="Doctor & Others">Doctor & Others</option>
                                             </select>
                                             <span class="text-danger ERROR__bus_client_customer_vendor"></span>
                                         </div>
@@ -231,12 +234,12 @@
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Use For The End Customer<b class="text-danger">*</b></p>
                                         <div class="form-group ">
-                                            <select name="bus_client_customer_vendorname" id="bus_client_customer_vendorname" class="form-control">
+                                            <select name="is_end_cust" id="is_end_cust" class="form-control">
                                                 <option value="" selected>Select</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
                                             </select>
-                                            <span class="text-danger ERROR__bus_client_customer_vendorname"></span>
+                                            <span class="text-danger ERROR__is_end_cust"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -244,7 +247,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row row-sm">
                     <div class="col-lg-12 col-md-12">
                         <div class="card custom-card">
@@ -256,11 +259,11 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Start date & time <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="datetime-local" name="startDateTime" required>
+                                        <input class="form-control" type="datetime-local" name="startDateTime" >
                                     </div>
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">End date & time <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="datetime-local" name="endDateTime" required>
+                                        <input class="form-control" type="datetime-local" name="endDateTime" >
                                     </div>
 
                                 </div>
@@ -269,7 +272,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <!-- End Row -->
                 <div class="row mt-3 mb-4">
                     <div class="col-12 text-center">
@@ -373,6 +376,7 @@
                     var content_data = '<option value=""> Select City</option>';
                     $('#user_city').html(content_data);
 
+
                 },
                 complete: function() {
 
@@ -419,20 +423,31 @@
 
                 },
                 success: function(data) {
-
-                    if (data.success == true) {
-                        python(data.message, 'Great');
-                    }else{
-                        python(data.message, 'Whoops!', 'red');
-                        $.each(data.errors, function (field, message) {
-                            $(".ERROR__" + field).html('<div class="text-danger">' + message + "</div>");
-                        });
-                    }
+                    window.location.href="/list-business-clients";
+                    // if (data.success == true) {
+                    //     python(data.message, 'Great');
+                    // }else{
+                    //     python(data.message, 'Whoops!', 'red');
+                    //     $.each(data.errors, function (field, message) {
+                    //         $(".ERROR__" + field).html('<div class="text-danger">' + message + "</div>");
+                    //     });
+                    // }
 
                 },
                 error: function(err) {
 
-                    //
+                    if(err.status==422){
+                        const error = Object.entries(err.responseJSON.errors)[0][1];
+                        $('#errorMessage').text(error);
+                        if($('#errorMessage').hasClass('d-none')){
+                            $('#errorMessage').removeClass('d-none');
+                        }
+                        $('html,body').animate({scrollTop:0},'slow');
+                        setTimeout(() => {
+                            $('#errorMessage').text('');
+                            $('#errorMessage').addClass('d-none');
+                        }, 4000);
+                    }
 
                 },
                 complete: function(data) {

@@ -89,42 +89,60 @@
                     <div class="col-sm-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-striped table-hover" style="width:100%" id="example2">
+                                <table class="table table-striped table-hover" style="width:100%" id="example3">
                                   <thead>
                                     <tr>
                                       <th>Sr No.</th>
                                       <th>Service Name</th>
                                       <th>Category</th>
-                                      <th>Cost</th>
-                                      <th>Vital Units</th>
-                                      <th>Vital Range</th>
+                                      <th>Mode Of Del.</th>
+                                      <th>Price</th>
+                                      <th>Disease</th>
                                       <th>Organs</th>
                                       <th>Consumable Time</th>
+                                      <th>Description</th>
                                       <th>Pin Code</th>
-                                      <th>Act. Start Time</th>
-                                      <th>Act. End Time</th>
+                                      <th>Gender</th>
+                                      <th>Age Group</th>
+                                      <th>Start Time</th>
+                                      <th>End Time</th>
                                       <th>Status</th>
                                       <th>Created at</th>
                                       <th>Action</th>
                                     </tr>
                                   </thead>
                                   <tbody>
+                                    @if(!empty($end_cust_serv))
+                                    @foreach ($end_cust_serv as $key => $val )
+
                                     <tr>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
-                                      <td>1</td>
+                                      <td>{{ $key+1 }}</td>
+                                      <td>{{ $val->service_name }}</td>
+                                      <td>{{ $val->service_category }}</td>
+                                      <td>{{ $val->del_mode }}</td>
+                                      <td>{{ $val->service_price }}</td>
+                                      <td>{{ $val->disease }}</td>
+                                      <td>{{ $val->attach_organ }}</td>
+                                      <td>{{ $val->time_consume }}</td>
+                                      <td>{{ $val->ser_details }}</td>
+                                      <td>{{ $val->service_pincode }}</td>
+                                      <td>{{ $val->customer_gender }}</td>
+                                      <td>{{ $val->ageGroup }}</td>
+                                      <td>{{ $val->startDateTime }}</td>
+                                      <td>{{ $val->endDateTime }}</td>
+                                      <td>{{ $val->flag }}</td>
+                                      <td>{{ $val->created_at }}</td>
+                                      <td>
+                                        <a href="{{ route('edit.endCustSer',$val->_id) }}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+                                        <a href="/delete-list-end-custumers/{{encrypt($val->_id)}}" class="btn btn-sm btn-remove" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
+                                        <a href="/smartsewa-endcustomer-status/{{encrypt($val->_id)}}" class="btn btn-sm btn-remove" >
+                                            <i class="fas fa-trash"></i> &nbsp;
+                                            {{$val->flag=="1"?"Active":"Deactive"}}
+                                        </a>
+                                    </td>
                                     </tr>
+                                    @endforeach
+                                    @endif
                                   </tbody>
                                 </table>
 
@@ -139,6 +157,6 @@
 @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <script>
-    new DataTable('#dataTable');
+    // new DataTable('#dataTable');
 </script>
 @endsection

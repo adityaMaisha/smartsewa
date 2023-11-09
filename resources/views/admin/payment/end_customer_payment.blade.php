@@ -108,7 +108,7 @@
                                       <td>Order ID - SM1122 <br>Order Details - Service One <br> Order Amt - ₹ 99/-</td>
                                       <td>Customer ID - CUST1234 <br>Name - Customer One</td>
                                       <td>Payment ID - rzp_112233 <br>Payment Status - <span class="status bg-success"></span> Success <br>Payment Mode - Online</td>
-                                      
+
                                       <td>26-09-2023</td>
                                     </tr>
                                   </tbody>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 {{-- assign to lab model --}}
-                
+
             </div>
         </div>
     </div>

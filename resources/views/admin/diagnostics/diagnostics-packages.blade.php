@@ -112,85 +112,51 @@
                         <div class="card-body">
                             <div class="table-responsive">
 
-                                <table class="tableizer-table" id="dataTable">
+                                <table class="tableizer-table w-100" id="dataTable">
                                     <thead>
                                         <tr class="tableizer-firstrow">
                                             <th>ID</th>
-                                            <th>providerId</th>
-                                            <th>name</th>
-                                            <th>category</th>
-                                            <th>test included ids</th>
-                                            <th>basePrice</th>
-                                            <th>discount</th>
-                                            <th>sampleType</th>
-                                            <th>method</th>
-                                            <th>description</th>
-                                            <th>resultTime</th>
-                                            <th>age group</th>
-                                            <th>gender</th>
-                                            <th>organs</th>
-                                            <th>tags</th>
+                                            <th>Provider Id</th>
+                                            <th>Name</th>
+                                            <th>Lab Tests</th>
+                                            <th>Base Price</th>
+                                            <th>Sample Type</th>
+                                            <th>Method</th>
+                                            <th>Result Time</th>
+                                            <th>Gender</th>
+                                            <th>Organs</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>LP-01</td>
-                                            <td>AHDPL-001</td>
-                                            <td>Full Body Health Check- Basic</td>
-                                            <td>Pathalogy</td>
-                                            <td>
-                                                <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-128</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-232</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-98</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-192</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-118</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-32</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-29</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-30</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-217</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-218</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-15</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-199</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-14</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-116</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-115</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-247</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-74</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-248</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-219</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-195</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-58</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-47</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-190</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-39</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-61</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-239</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-59</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-60</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-257</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-251</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-225</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-226</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-240</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-163</span>,
-                                                    <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">LT-127</span>
-                                            </td>
-                                            <td>799</td>
-                                            <td>upto 15%</td>
-                                            <td>Serum (1 ml)</td>
-                                            <td>CLIA</td>
-                                            <td>AFP (Alpha Feto Protein)</td>
-                                            <td>Same Day</td>
-                                            <td>0-100</td>
-                                            <td>Both</td>
-                                            <td>Liver, Yolk Sac</td>
-                                            <td>Baby risk, Genetic Problem, Birth Defects, Liver Cancer</td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
-                                                <a href="#" class="btn btn-sm btn-remove" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i> &nbsp; Delete</a>
-                                            </td>
-                                        </tr>
+                                        @foreach($packageDatas as $packageData)
+                                            <tr>
+                                                <td>{{$packageData->lab_package}}</td>
+                                                <td>{{$packageData->providerid}}</td>
+                                                <td>{{$packageData->package_name}}</td>
+                                                <td>
+                                                    @foreach($packageData->labtestid as $labtestids)
+                                                        @php
+                                                            $data = \App\Models\LabTest::where('_id',$labtestids)->first();
+                                                        @endphp
+                                                        <span class="badge badge-pill badge-secondary my-badge"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">{{$data->test_idf}}</span>
+                                                    @endforeach
+                                                </td>
+                                                <td>{{$packageData->basePrice}}</td>
+                                                <td>{{$packageData->sample_type}}</td>
+                                                <td>{{$packageData->method}}</td>
+                                                <td>{{$packageData->result_time}}</td>
+                                                <td>{{$packageData->gender}}</td>
+                                                @php
+                                                    $organ = \App\Models\Organ::where('_id',$packageData->organs)->first();
+                                                @endphp
+                                                <td>{{$organ->name}}</td>
+                                                <td>
+                                                    <a href="{{route('edit.diagnostics.packages',encrypt($packageData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+                                                    <a data-delete-id="{{encrypt($packageData->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -240,6 +206,26 @@
 @endsection @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 <script>
+    $('.removeItem').click(function(){
+        // console.log();
+        let data_delete = $(this).attr('data-delete-id');
+        let elem = this;
+        $.ajax({
+            url:`/delete-diagnostics-packages/${data_delete}`,
+            type:'delete',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            datatype:'json',
+            success:function(res){
+                console.log('success');
+                console.log(res);
+                $(elem).closest('tr').remove();
+            },
+            error:function(res){
+                console.log('error');
+                console.log(res);
+            }
+        });
+    });
     new DataTable("#dataTable");
 </script>
 @endsection
