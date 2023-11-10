@@ -117,13 +117,13 @@ class SmartHealthCheckup extends Controller
         try{
             // dd($request->all());
             $this->validate($request,[
-                "checkup_name"=>'required',
+                "name"=>'required',
                 "checkup_price"=>'required',
                 "discount_price"=>'required',
                 "description"=>'required',
                 "instructions"=>'required',
             ],[
-                "checkup_name.required"=>"Please fill checkup name field",
+                "name.required"=>"Please fill checkup name field",
                 "checkup_price.required"=>"Please fill checkup price field",
                 "discount_price.required"=>"Please fill discount price field",
                 "description.required"=>"Please fill description field",
@@ -131,8 +131,8 @@ class SmartHealthCheckup extends Controller
             ]);
             $inputs = $request->all();
             if($request->hasFile('checkup_image')){
-                // $deleteFile = SmartHealthCheckupModel::where('_id',decrypt($id))->first();
-                // unlink(asset($deleteFile->checkup_image));
+                $deleteFile = SmartHealthCheckupModel::where('_id',decrypt($id))->first();
+                unlink(public_path($deleteFile->checkup_image));
                 $file = $request->file('checkup_image')->store('smart_health_checkup_files','public');
                 $inputs['checkup_image']=$file;
             }

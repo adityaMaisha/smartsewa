@@ -108,7 +108,9 @@ class CriticalCareController extends Controller
             $input = $request->all();
             unset($input['_token']);
             if($request->hasFile('image')){
-                $file = $request->file('image')->store('homecarefiles','public');
+                $deleteFile = CriticalCare::where('_id',decrypt($id))->first();
+                unlink(public_path($deleteFile->image));
+                $file = $request->file('image')->store('criticalcarefiles','public');
                 $input['image'] = $file;
             }
             $update = CriticalCare::where('_id',decrypt($id))->update($input);

@@ -115,11 +115,15 @@ class OrganController extends Controller
             ]);
             $inputs= $request->all();
             unset($inputs['_token']);
-            if($request->hasFile('3d_image')){
-                $d3file=$request->file('3d_image')->store('organs_file','public');
-                $inputs['3d_image']=$d3file;
+            if($request->hasFile('d3_image')){
+                $deleteFile = Organ::where('_id',decrypt($id))->first();
+                unlink(public_path($deleteFile->d3_image));
+                $d3file=$request->file('d3_image')->store('organs_file','public');
+                $inputs['d3_image']=$d3file;
             }
             if($request->hasFile('icon')){
+                $deleteFile1 = Organ::where('_id',decrypt($id))->first();
+                unlink(public_path($deleteFile1->icon));
                 $iconfile=$request->file('icon')->store('organs_file','public');
                 $inputs['icon']=$iconfile;
             }

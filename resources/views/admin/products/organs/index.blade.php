@@ -115,6 +115,8 @@
                                     <thead>
                                         <tr class="tableizer-firstrow">
                                             <th>Organ Name</th>
+                                            <th>3D Organ Image</th>
+                                            <th>Organ Icon</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -122,6 +124,8 @@
                                         @foreach ($getDatas as $getData)
                                             <tr>
                                                 <td>{{$getData->name}}</td>
+                                                <td><img src="{{asset($getData->d3_image)}}" width="50" height="50"/></td>
+                                                <td><img src="{{asset($getData->icon)}}" width="50" height="50"/></td>
                                                 <td>
                                                     <a href="{{route('products.organs.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
                                                     {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}

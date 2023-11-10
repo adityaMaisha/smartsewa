@@ -110,6 +110,8 @@ class HomeCareController extends Controller
             $input = $request->all();
             unset($input['_token']);
             if($request->hasFile('image')){
+                $deleteFile = HomeCare::where('_id',decrypt($id))->first();
+                unlink(public_path($deleteFile->image));
                 $file = $request->file('image')->store('homecarefiles','public');
                 $input['image'] = $file;
             }
