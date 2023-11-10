@@ -18,6 +18,8 @@ use App\Http\Controllers\SmartHealthCheckup;
 use App\Http\Controllers\OrganController;
 use App\Http\Controllers\HomeCareController;
 use App\Http\Controllers\CriticalCareController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\AppointmentDoctor;
 
 Route::match(['get', 'post'], 'login', [EmployeeController::class, 'loginProcess'])->name('login.process');
 
@@ -49,6 +51,12 @@ Route::middleware(['loginAuth'])->group(function () {
         Route::post('/homecare/update/{id}',[HomeCareController::class,'update']);
         Route::resource('criticalcare',CriticalCareController::class);
         Route::post('/criticalcare/update/{id}',[CriticalCareController::class,'update']);
+        Route::resource('banner',BannerController::class);
+        Route::post('/banner/update/{id}',[BannerController::class,'update']);
+        Route::post('/banner/getlist',[BannerController::class,'getlist']);
+        Route::post('/banner/changeStatus',[BannerController::class,'changeStatus']);
+        Route::resource('appointmentdoctor',AppointmentDoctor::class);
+        Route::post('/appointmentdoctor/update/{id}',[AppointmentDoctor::class,'update']);
     });
 
     /* =====[ Department and Privileges ]===== */

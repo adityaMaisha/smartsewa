@@ -86,7 +86,7 @@
 
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Home Care</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Banner</h2>
 
                 </div>
                 <div class="d-flex">
@@ -95,11 +95,9 @@
                         {{-- <button type="button" class="btn btn-white btn-icon-text my-2 me-2">
                             <i class="fa fa-filter me-2"></i> Filter
                         </button> --}}
-                        <button type="button" id="switch" class="btn btn-primary my-2 btn-icon-text">
-                            <a style="color: white;"> Switch to Enquiry </a>
-                          </button>
+
                         <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                          <a href="{{ route('products.homecare.create') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add Home Care</a>
+                          <a href="{{ route('products.banner.create') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add Banner</a>
                         </button>
 
                     </div>
@@ -113,50 +111,36 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="tableizer-table w-100" id="laravelTable">
+                                <table class="tableizer-table w-100" id="dataTable">
                                     <thead>
                                         <tr class="tableizer-firstrow">
-                                            <th>Name</th>
-                                            <th>Image</th>
+                                            <th>Banner Name</th>
+                                            <th>Banner Image</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getDatas as $getData)
+                                        @foreach ($banners as $banner)
                                             <tr>
-                                                <td>{{$getData->name}}</td>
+                                                <td>{{$banner->banner_name}}</td>
                                                 <td>
-                                                    <img src="{{asset($getData->image)}}" width="50" height="50"/>
+                                                    <img src="{{asset($banner->banner_image)}}" width="50" height="50"/>
+                                                    {{-- {{$banner->name}} --}}
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('products.homecare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
-                                                    {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
-                                                    <a data-delete-id="{{encrypt($getData->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
+                                                    <select name="status" class="form-control select2">
+                                                        <option value="1" {{$banner->status=='1'?'selected':''}}>Active</option>
+                                                        <option value="0"{{$banner->status=='0'?'selected':''}}>Deactive</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('products.banner.edit',encrypt($banner->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+
+                                                    <a data-delete-id="{{encrypt($banner->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    </tbody>
-                                </table>
-                                <table class="tableizer-table w-100 d-none" id="enquiryTable">
-                                    <thead>
-                                        <tr class="tableizer-firstrow">
-                                            <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    {{-- <img src="" width="50" height="50"/> --}}1
-                                                </td>
-                                                <td>
-                                                    <a href="{{route('products.homecare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
-                                                    {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
-                                                    <a data-delete-id="{{encrypt($getData->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
-                                                </td>
-                                            </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -206,29 +190,12 @@
 @endsection @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 <script>
-    // enquiryTable
-    // laravelTable
-    $('#switch').click(function(){
-        if($('#switch').text().trim() == "Switch to Enquiry"){
-            if($('#enquiryTable').hasClass('d-none')){
-                $('#laravelTable').addClass('d-none');
-                $('#enquiryTable').removeClass('d-none');
-                $('#switch').text('Switch to Table');
-            }
-        }else{
-            if($('#laravelTable').hasClass('d-none')){
-                $('#enquiryTable').addClass('d-none');
-                $('#laravelTable').removeClass('d-none');
-                $('#switch').text('Switch to Enquiry');
-            }
-        }
-    });
     $('.removeItem').click(function(){
         // console.log();
         let data_delete = $(this).attr('data-delete-id');
         let elem = this;
         $.ajax({
-            url:`/products/homecare/${data_delete}`,
+            url:`/products/banner/${data_delete}`,
             type:'delete',
             headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
             datatype:'json',
@@ -242,6 +209,25 @@
                 // console.log(res);
             }
         });
+    });
+    $('select[name="status"]').change(function(){
+        let value = $(this).val();
+        let data_delete = $('.removeItem').attr('data-delete-id');
+        $.ajax({
+            url:'/products/banner/changeStatus',
+            method:'post',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            datatype:'json',
+            data:{data:value,id:data_delete},
+            success:function(res){
+                console.log('success');
+                console.log(res);
+            },
+            error:function(res){
+                console.log('error');
+                console.log(res);
+            }
+        })
     });
     new DataTable("#dataTable");
 </script>

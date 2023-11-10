@@ -131,7 +131,7 @@
                                     <tbody>
                                         @foreach($packageDatas as $packageData)
                                             <tr>
-                                                <td>{{$packageData->lab_package}}</td>
+                                                <td>{{$packageData->name}}</td>
                                                 <td>{{$packageData->providerid}}</td>
                                                 <td>{{$packageData->package_name}}</td>
                                                 <td>

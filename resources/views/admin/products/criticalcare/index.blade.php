@@ -86,7 +86,7 @@
 
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Home Care</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Critical Care</h2>
 
                 </div>
                 <div class="d-flex">
@@ -99,7 +99,7 @@
                             <a style="color: white;"> Switch to Enquiry </a>
                           </button>
                         <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                          <a href="{{ route('products.homecare.create') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add Home Care</a>
+                          <a href="{{ route('products.criticalcare.create') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add Critical Care</a>
                         </button>
 
                     </div>
@@ -122,14 +122,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getDatas as $getData)
+                                        @foreach ($criticalcare as $getData)
                                             <tr>
                                                 <td>{{$getData->name}}</td>
                                                 <td>
                                                     <img src="{{asset($getData->image)}}" width="50" height="50"/>
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('products.homecare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+                                                    <a href="{{route('products.criticalcare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
                                                     {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
                                                     <a data-delete-id="{{encrypt($getData->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
                                                 </td>
@@ -149,10 +149,12 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>
-                                                    {{-- <img src="" width="50" height="50"/> --}}1
+                                                    {{-- <img src="" width="50" height="50"/>
+                                                    --}}
+                                                    1
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('products.homecare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+                                                    <a href="{{route('products.criticalcare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
                                                     {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
                                                     <a data-delete-id="{{encrypt($getData->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
                                                 </td>
@@ -206,8 +208,6 @@
 @endsection @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 <script>
-    // enquiryTable
-    // laravelTable
     $('#switch').click(function(){
         if($('#switch').text().trim() == "Switch to Enquiry"){
             if($('#enquiryTable').hasClass('d-none')){
@@ -228,7 +228,7 @@
         let data_delete = $(this).attr('data-delete-id');
         let elem = this;
         $.ajax({
-            url:`/products/homecare/${data_delete}`,
+            url:`/products/criticalcare/${data_delete}`,
             type:'delete',
             headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
             datatype:'json',

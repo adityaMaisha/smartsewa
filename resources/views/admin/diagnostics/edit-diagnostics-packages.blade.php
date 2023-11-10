@@ -63,11 +63,11 @@
                                             class="form-control"
                                             placeholder="Example: Full Body Health Check- Basic"
                                             type="text"
-                                            name="package_name"
+                                            name="name"
                                             pattern="[a-zA-Z ]*"
                                             title="Only Alphabet with Space Allow"
                                             onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"
-                                            value="{{$editData->package_name}}"
+                                            value="{{$editData->name}}"
                                         />
                                     </div>
 

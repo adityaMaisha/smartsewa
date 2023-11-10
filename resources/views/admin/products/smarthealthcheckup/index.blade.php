@@ -123,7 +123,7 @@
                                     <tbody>
                                         @foreach ($getDatas as $getData)
                                             <tr>
-                                                <td>{{$getData->checkup_name}}</td>
+                                                <td>{{$getData->name}}</td>
                                                 <td>{{$getData->checkup_price}}</td>
                                                 <td>{{$getData->discount_price}}</td>
                                                 <td>

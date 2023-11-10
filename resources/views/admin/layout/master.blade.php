@@ -321,7 +321,7 @@
                                     <li class="nav-sub-item"><a class="nav-sub-link"
                                             href="{{route('products.organs.index')}}">Organs</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="">Banner</a></li>
+                                            href="{{route('products.banner.index')}}">Banner</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
                                             href="">Coupon</a></li>
                                 </ul>

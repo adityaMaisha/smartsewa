@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class SmartHealthCheckupModel extends Model
+class CriticalCare extends Model
 {
     use HasFactory;
     protected $connection = 'mongodb';
-    protected $collection = 'smartHealthCheckup';
+    protected $collection = 'criticalCare';
     protected $fillable = [
         "name",
-        "checkup_price",
-        "discount_price",
-        "description",
-        "instructions",
-        "checkup_image",
+        "image",
+        "status",
         "created_at",
         "updated_at",
         'trash'

@@ -42,8 +42,8 @@
                                             class="form-control"
                                             placeholder="Checkup Name"
                                             type="text"
-                                            name="checkup_name"
-                                            value="{{$editData->checkup_name}}"
+                                            name="name"
+                                            value="{{$editData->name}}"
                                         />
                                     </div>
                                     <div class="col-md-4">
