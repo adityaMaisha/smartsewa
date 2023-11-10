@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AppointmentDoctorModel;
+use Illuminate\Validation\ValidationException;
 
 class AppointmentDoctor extends Controller
 {
@@ -13,7 +15,8 @@ class AppointmentDoctor extends Controller
      */
     public function index()
     {
-        //
+        $appointment = AppointmentDoctorModel::where('trash',"0")->get();
+        return view('admin.products.appointmentdoctor.index',compact('appointment'));
     }
 
     /**
@@ -23,7 +26,7 @@ class AppointmentDoctor extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.appointmentdoctor.create');
     }
 
     /**
@@ -34,7 +37,34 @@ class AppointmentDoctor extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $this->validate($request,[
+                "dr_name"=>'required',
+                "appointment_date"=>'required',
+                "appointment_time"=>'required',
+            ],[
+                "dr_name.required"=>"Please fill doctor name field",
+                "appointment_date.required"=>"Please select appointment date field",
+                "appointment_time.required"=>"Please select appointment time field ",
+            ]);
+            $input = $request->all();
+            unset($input['token']);
+            $input['trash']="0";
+            $insert = AppointmentDoctorModel::create($input);
+            if($insert){
+                return response()->json([
+                    'message'=>'insert successfull'
+                ],200);
+            }else{
+                return response()->json([
+                    'message'=>'Internal server error'
+                ],500);
+            }
+        }catch(ValidationException $e){
+            throw $e;
+        }catch(Exception $e){
+            throw $e;
+        }
     }
 
     /**
@@ -56,7 +86,8 @@ class AppointmentDoctor extends Controller
      */
     public function edit($id)
     {
-        //
+        $editData = AppointmentDoctorModel::where('_id',decrypt($id))->first();
+        return view('admin.products.appointmentdoctor.edit',compact('editData'));
     }
 
     /**
@@ -68,7 +99,33 @@ class AppointmentDoctor extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $this->validate($request,[
+                "dr_name"=>'required',
+                "appointment_date"=>'required',
+                "appointment_time"=>'required',
+            ],[
+                "dr_name.required"=>"Please fill doctor name field",
+                "appointment_date.required"=>"Please select appointment date field",
+                "appointment_time.required"=>"Please select appointment time field ",
+            ]);
+            $input = $request->all();
+            unset($input['token']);
+            $update = AppointmentDoctorModel::where('_id',decrypt($id))->update($input);
+            if($update){
+                return response()->json([
+                    'message'=>'update successfull'
+                ],200);
+            }else{
+                return response()->json([
+                    'message'=>'Internal server error'
+                ],500);
+            }
+        }catch(ValidationException $e){
+            throw $e;
+        }catch(Exception $e){
+            throw $e;
+        }
     }
 
     /**
@@ -79,6 +136,11 @@ class AppointmentDoctor extends Controller
      */
     public function destroy($id)
     {
-        //
+        AppointmentDoctorModel::where('_id',decrypt($id))->update([
+            'trash'=>'1'
+        ]);
+        return response()->json([
+            'message'=>'delete successfull'
+        ],200);
     }
 }

@@ -313,7 +313,7 @@
                                     <li class="nav-sub-item"><a class="nav-sub-link"
                                             href="{{route('products.smarthealthcheckup.index')}}">Smart health checkup</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
-                                            href="">Appointment with doctor</a></li>
+                                            href="{{route('products.appointmentdoctor.index')}}">Appointment with doctor</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
                                             href="{{route('products.homecare.index')}}">Home care</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link"
