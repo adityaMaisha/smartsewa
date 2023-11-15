@@ -1,9 +1,11 @@
 @extends('admin.layout.master')
 @section('style')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js">
+
 @endsection
 @section('content')
 <div class="main-content side-content pt-0">
+
     <div class="main-container container-fluid">
         <div class="inner-body">
             <div class="page-header">
@@ -43,7 +45,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getVendorPathLab as $PathLab)
+                                        @foreach ($vendors as $PathLab)
                                             <tr>
                                                 <td>{{ $loop->iteration  }}</td>
                                                 <td>{{ $PathLab->vendor_id }}</td>
@@ -55,9 +57,9 @@
                                                 <td>{{ $PathLab->contact_per_mobile }}</td>
                                                 <td>{{ strtoupper($PathLab->vendor_status) }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-sm btn-edit"><i class="fas fa-eye"></i> &nbsp; View &nbsp;</a>
-                                                    <a href="#" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
-                                                    <a href="#" class="btn btn-sm btn-remove" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i> &nbsp; Delete</a>
+                                                    <a href="{{route('vendor.show.path.lab',encrypt($PathLab->_id))}}" class="viewPage btn btn-sm btn-edit" data-get=""><i class="fas fa-eye"></i> &nbsp; View &nbsp;</a>
+                                                    <a href="{{route('vendor.edit.path.lab',encrypt($PathLab->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+                                                    <a href="{{route('labs.delete',encrypt($PathLab->_id))}}" class="btn btn-sm btn-remove" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -68,7 +70,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -76,6 +77,7 @@
 @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <script>
-    new DataTable('#dataTable');
+
+    // new DataTable('#dataTable');
 </script>
 @endsection

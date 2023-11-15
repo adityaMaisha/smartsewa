@@ -75,7 +75,7 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Add New Path Lab Vendor</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Edit Path Lab Vendor</h2>
                     {{-- <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0);">Path Lab List</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Add New Path Lab Vendor</li>
@@ -91,8 +91,6 @@
             </div>
             <!-- End Page Header -->
 
-            <form action="{{ route('vendor.new.path.lab') }}" method="POST" enctype="multipart/form-data" id="formData">
-                @csrf
 
                 <div class="row row-sm">
                     <div class="col-lg-12 col-md-12">
@@ -106,21 +104,21 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Vendor Type <b class="text-danger">*</b></p>
                                         <input class="form-control" type="text"
-                                            name="vendor_type" value="Path Lab" readonly>
+                                            name="vendor_type" value="Path Lab" disabled>
                                         <span class="text-danger ERROR__vendor_type"></span>
                                     </div>
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Name <b class="text-danger">*</b></p>
                                         <input class="form-control" type="text"
-                                            name="vendor_name" placeholder="Enter Name">
+                                            name="vendor_name" disabled value="{{$vendor->vendor_name}}" placeholder="Enter Name">
                                         <span class="text-danger ERROR__vendor_name"></span>
                                     </div>
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Owner/Business Head Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Owner/Business Head Name" type="text"
-                                            name="head_name">
+                                        <input disabled class="form-control" placeholder="Owner/Business Head Name" type="text"
+                                            name="head_name" value="{{$vendor->head_name}}">
                                         <span class="text-danger ERROR__head_name"></span>
                                     </div>
 
@@ -129,7 +127,7 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Services <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Services" type="text" name="services" list="serviceList" >
+                                        <input disabled class="form-control" placeholder="Services" type="text" name="services" value="{{$vendor->services}}" list="serviceList" >
                                         <datalist id="serviceList">
                                             <option value="CEO (Chief Executive Officer)">
                                             <option value="CFO (Chief Financial Officer)">
@@ -187,8 +185,7 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Address <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Address" type="text"
-                                            name="address">
+                                        <input class="form-control" placeholder="Address" type="text" name="address" disabled value="{{$vendor->address}}"/>
 
                                         <span class="text-danger ERROR__address"></span>
                                     </div>
@@ -196,15 +193,16 @@
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Profile Picture <b class="text-danger">*</b></p>
                                         <div class="input-group file-browser">
-                                            <input type="text" class="form-control border-end-0 browse-file"
+                                            <input type="text" disabled class="form-control border-end-0 browse-file"
                                                 placeholder="Choose File" readonly="">
                                             <label class="input-group-btn">
                                                 <span class="btn btn-primary">
                                                     Browse <input type="file" style="display: none;"
-                                                        name="employee_profile">
+                                                    name="employee_profile">
                                                 </span>
                                             </label>
                                         </div>
+                                        <a href="{{asset('documents/'.$vendor->employee_profile)}}" target="_blank">Click to preview</a>
                                         <span class="text-danger ERROR__employee_profile"></span>
                                     </div>
 
@@ -214,13 +212,13 @@
 
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Mobile <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text" name="mobile_number" pattern="[0-9]{10}"  title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10" readonly onfocus="this.removeAttribute('readonly');">
+                                        <input disabled value="{{$vendor->mobile_number}}" class="form-control" type="text" name="mobile_number" pattern="[0-9]{10}"  title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10" readonly onfocus="this.removeAttribute('readonly');">
                                             <span class="text-danger ERROR__mobile_number"></span>
                                     </div>
 
                                     <div class="col-lg-8 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Email <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Enter Email" type="email" name="email_id"  readonly onfocus="this.removeAttribute('readonly');">
+                                        <input disabled value="{{$vendor->email_id}}" class="form-control" placeholder="Enter Email" type="email" name="email_id"  onfocus="this.removeAttribute('readonly');">
                                         <span class="text-danger ERROR__email_id"></span>
                                     </div>
 
@@ -230,11 +228,11 @@
                                     <div class="col-lg">
                                         <p class="mg-b-10">Country <b class="text-danger">*</b></p>
                                         <div class="form-group ">
-                                            <select name="country" class="form-control select2"
+                                            <select disabled name="country" class="form-control select2"
                                                 id="user_country">
                                                 <option value="">Select Country</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}"{{$vendor->country == $country->id?'selected':''}}>{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="text-danger ERROR__country"></span>
@@ -243,7 +241,7 @@
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">State <b class="text-danger">*</b></p>
                                         <div class="form-group">
-                                            <select name="state" class="form-control select2"  id="user_state">
+                                            <select disabled name="state" class="form-control select2"  id="user_state">
                                                 <option value="">Select State</option>
                                             </select>
                                                 <span class="text-danger ERROR__state"></span>
@@ -252,7 +250,7 @@
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">City <b class="text-danger">*</b></p>
                                         <div class="form-group">
-                                            <select name="city" class="form-control select2"  id="user_city">
+                                            <select disabled name="city" class="form-control select2"  id="user_city">
                                                 <option value="">Select City</option>
                                             </select>
                                                 <span class="text-danger ERROR__city"></span>
@@ -276,25 +274,25 @@
                                 <div class="row row-sm">
                                     <div class="col-lg-6">
                                         <p class="mg-b-10">Office Email <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Office Email" type="Email" readonly onfocus="this.removeAttribute('readonly');"
+                                        <input disabled class="form-control" placeholder="Office Email" type="Email" value="{{$vendor->office_email}}" readonly onfocus="this.removeAttribute('readonly');"
                                             name="office_email" >
                                         <span class="text-danger ERROR__office_email"></span>
                                     </div>
                                     <div class="col-lg-6">
                                         <p class="mg-b-10">Login Password <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Login Password" type="password" name="password"  readonly onfocus="this.removeAttribute('readonly');">
+                                        <input disabled class="form-control" placeholder="Login Password" type="password" name="password"  readonly onfocus="this.removeAttribute('readonly');">
                                         <span class="text-danger ERROR__password"></span>
                                     </div>
                                 </div>
                                 <div class="row row-sm">
                                     <div class="col-lg-6 mt-3 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Contact Person Name </p>
-                                        <input class="form-control" type="text" name="contact_person_name" placeholder="Enter Contact Person Name">
+                                        <input disabled class="form-control" type="text" name="contact_person_name" placeholder="Enter Contact Person Name" value="{{$vendor->contact_person_name}}">
                                             <span class="text-danger ERROR__contact_person_name"></span>
                                     </div>
                                     <div class="col-lg-6 mt-3 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Contact Person Mobile <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text"  name="contact_per_mobile" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
+                                        <input disabled value="{{$vendor->contact_per_mobile}}" class="form-control" type="text"  name="contact_per_mobile" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
                                             <span class="text-danger ERROR__contact_per_mobile"></span>
                                     </div>
 
@@ -318,19 +316,19 @@
                                 <div class="row row-sm mg-t-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">Adhaar Card No <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Adhaar Card No" type="text"
+                                        <input disabled value="{{$vendor->adhaar_card_number}}" class="form-control" placeholder="Adhaar Card No" type="text"
                                             name="adhaar_card_number" pattern="[0-9]{12}" title="Please enter valid 12 digits" placeholder="12 Digit Adhaar Card Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="12">
                                             <span class="text-danger ERROR__adhaar_card_number"></span>
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">PAN Card No <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Card No" type="text"
+                                        <input disabled value="{{$vendor->pan_card_number}}" class="form-control" placeholder="Card No" type="text"
                                             name="pan_card_number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter Valid Pan Card Number ( Example: ABCTY1234D )">
                                             <span class="text-danger ERROR__pan_card_number"></span>
                                     </div>
                                       <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">GST No <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="GST No" type="text"
+                                        <input disabled value="{{$vendor->gst_number}}" class="form-control" placeholder="GST No" type="text"
                                             name="gst_number" title="Enter Goods and Services Tax Number">
                                             <span class="text-danger ERROR__gst_number"></span>
                                     </div>
@@ -340,22 +338,22 @@
 
                                     <div class="col-lg-4 col-md-4 mt-3">
                                         <p class="mg-b-10 fw-bold"> Registration Certificate</p>
-                                        <input type="file" class="dropify" data-height="200"
-                                            name="registration_docs">
+                                        <input disabled type="file" class="dropify" data-height="200"
+                                            name="registration_docs" data-default-file="{{asset('documents/'.$vendor->registration_docs)}}">
                                             <span class="text-danger ERROR__registration_docs"></span>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">Upload PAN Card</p>
-                                        <input type="file" class="dropify" data-height="200"
-                                            name="upload_pan_card_attachment">
+                                        <input disabled type="file" class="dropify" data-height="200"
+                                            name="upload_pan_card_attachment" data-default-file="{{asset('documents/'.$vendor->upload_pan_card_attachment)}}">
                                             <span class="text-danger ERROR__upload_pan_card_attachment"></span>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">GST Certificate</p>
-                                        <input type="file" class="dropify" data-height="200"
-                                            name="gst_certificate">
+                                        <input disabled type="file" class="dropify" data-height="200"
+                                            name="gst_certificate" data-default-file="{{asset('documents/'.$vendor->gst_certificate)}}">
                                             <span class="text-danger ERROR__gst_certificate"></span>
                                     </div>
 
@@ -363,7 +361,7 @@
                                 <div>
                                     <div class="col-lg-12 p-0">
                                         <p class="mg-b-10 fw-bold">Upload Other Documents</p>
-                                        <input type="file" class="dropify" data-height="100" name="upload_other_documents[]" multiple>
+                                        <input disabled type="file" class="dropify" data-height="100" name="upload_other_documents[]" multiple data-default-file="{{asset('documents/'.$vendor->upload_other_documents)}}">
                                             <span class="text-danger ERROR__upload_other_documents"></span>
                                     </div>
                                 </div>
@@ -385,23 +383,23 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank Name" type="text"
-                                            name="employee_bank_name">
+                                        <input disabled class="form-control" placeholder="Bank Name" type="text"
+                                            name="employee_bank_name" value="{{$vendor->employee_bank_name}}">
                                             <span class="text-danger ERROR__employee_bank_name"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Account Holder Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="First Name" type="text"
-                                            name="bank_account_holder_name">
+                                        <input disabled class="form-control" placeholder="First Name" type="text"
+                                            name="bank_account_holder_name" value="{{$vendor->bank_account_holder_name}}">
                                             <span class="text-danger ERROR__bank_account_holder_name"></span>
                                     </div>
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Account Type <b class="text-danger">*</b></p>
-                                        <select class="form-control select2" name="bank_account_type" >
+                                        <select disabled class="form-control select2" name="bank_account_type" >
                                             <option label="Account Type"></option>
-                                            <option value="saving">Saving</option>
-                                            <option value="current">Current</option>
+                                            <option value="saving" {{$vendor->bank_account_type =="saving"?'selected':''}}>Saving</option>
+                                            <option value="current" {{$vendor->bank_account_type =="current"?'selected':''}}>Current</option>
                                         </select>
                                         <span class="text-danger ERROR__bank_account_type"></span>
                                     </div>
@@ -409,19 +407,19 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Account Number <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Account Number"
-                                            type="text" name="bank_account_number">
+                                        <input disabled class="form-control" placeholder="Account Number"
+                                            type="text" name="bank_account_number" value="{{$vendor->bank_account_number}}">
                                             <span class="text-danger ERROR__bank_account_number"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Confirm Account Number <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Confirm Account Number"
-                                            id="confirm_account_number" name="confirm_account_number" type="number">
+                                        <input disabled class="form-control" placeholder="Confirm Account Number"
+                                            id="confirm_account_number" name="confirm_account_number" type="number" value="{{$vendor->confirm_account_number}}">
                                             <span class="text-danger ERROR__confirm_account_number"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">IFSC Code <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="IFSC Code" type="text"
+                                        <input disabled class="form-control" placeholder="IFSC Code" type="text" value="{{$vendor->bank_ifsc_code}}"
                                             name="bank_ifsc_code">
                                             <span class="text-danger ERROR__bank_ifsc_code"></span>
                                     </div>
@@ -429,13 +427,13 @@
                                 <div class="row row-sm">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Bank Branch <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank Branch" type="text"
+                                        <input disabled class="form-control" placeholder="Bank Branch" type="text" value="{{$vendor->bank_branch}}"
                                             name="bank_branch">
                                             <span class="text-danger ERROR__bank_branch"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank City <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank City" type="text"
+                                        <input disabled class="form-control" placeholder="Bank City" type="text" value="{{$vendor->bank_city}}"
                                             name="bank_city">
                                             <span class="text-danger ERROR__bank_city"></span>
                                     </div>
@@ -459,7 +457,7 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Reference</p>
-                                        <input class="form-control" placeholder="Reference (if any)" type="text"
+                                        <input disabled class="form-control" placeholder="Reference (if any)" type="text" value="{{$vendor->reference_name}}"
                                             name="reference_name">
                                             <span class="text-danger ERROR__reference_name"></span>
                                     </div>
@@ -470,12 +468,8 @@
                 </div>
                 <!-- End Row -->
                 <div class="row mt-3 mb-4">
-                    <div class="col-12 text-center">
-                        <input type="submit" class="btn btn-primary my-2 btn-icon-text" style="color: white;"
-                            value="&nbsp; Create New Lab &nbsp;">
-                    </div>
+
                 </div>
-            </form>
 
 
         </div>
@@ -488,6 +482,82 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $(document).ready(function(){
+            let country_id = $('select#user_country').val();
+            let state_id = "<?php print_r($vendor->state) ?>";
+            let city_id = "<?php print_r($vendor->city) ?>";
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('states.ajax') }}",
+                //dataType:'json',
+                data: {
+                    country_id: country_id
+                },
+                beforeSend: function() {
+
+                    $('#user_state').html('');
+                    $('#user_city').html('');
+
+                },
+                success: function(data) {
+
+
+                    if (data.solve == true) {
+                        $('#user_state').html(data.html_data);
+                        $('#user_state').val(state_id).prop('selected','true');
+                    }
+
+                },
+                error: function(err) {
+
+                    var content_data = '<option value=""> Select State</option>';
+                    $('#user_state').html(content_data);
+
+                },
+                complete: function() {
+
+                    $(function() {
+                        $('#user_state').select2();
+                    });
+
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cities.ajax') }}",
+                //dataType:'json',
+                data: {
+                    state_id: state_id
+                },
+                beforeSend: function() {
+
+                    $('#user_city').html('');
+
+                },
+                success: function(data) {
+
+                    if (data.solve == true) {
+                        $('#user_city').html(data.html_data);
+                        $('#user_city').val(city_id).prop('selected',true);
+                    }
+
+                },
+                error: function(err) {
+
+                    var content_data = '<option value=""> Select City</option>';
+                    $('#user_city').html(content_data);
+
+                },
+                complete: function() {
+
+                    $(function() {
+                        $('#user_city').select2();
+                    });
+
+                }
+            });
         });
 
         function getDynamicStates() {
@@ -572,68 +642,10 @@
         }
 
 
-        // onLoad || onChange
-        $(function() {
-            $('#user_country').select2();
-            // getDynamicStates();
-            // getDynamicCities();
-            $("select#user_country").change(getDynamicStates);
-            $("select#user_state").change(getDynamicCities);
-        });
 
 
-        $(document).on('submit', '#formData', function(ev) {
 
-            ev.preventDefault();
-            var frm = $('#formData');
-            var form = $('#formData')[0];
-            var data = new FormData(form);
 
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                enctype: 'multipart/form-data',
-                processData: false,
-                contentType: false,
-                async: false,
-                cache: false,
-                data: data,
-                beforeSend: function() {
-
-                    $('span[class*="ERROR__"]').html("");
-                    $('body').css('pointer-events', 'none');
-
-                },
-                success: function(data) {
-
-                    if (data.success == true) {
-                        window.location.href="/labs-list";
-                        // python(data.message, 'Great');
-                    }else{
-                        python(data.message, 'Whoops!', 'red');
-                        $.each(data.errors, function (field, message) {
-                            $(".ERROR__" + field).html('<div class="text-danger">' + message + "</div>");
-                        });
-                    }
-
-                },
-                error: function(err) {
-
-                    //
-
-                },
-                complete: function(data) {
-
-                    $(function() {
-                        htmlError();
-                        $('body').css('pointer-events', 'auto');
-                    });
-
-                }
-
-            });
-
-        });
 
     </script>
 @endsection

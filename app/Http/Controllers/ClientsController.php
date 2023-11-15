@@ -6,6 +6,7 @@ use App\Models\Client_Wallet;
 use App\Models\EndCustomerServiceModel;
 use Illuminate\Http\Request;
 use App\Models\VendorPathLab;
+use App\Models\Admin;
 use App\Models\LabTest;
 use App\Models\Package;
 use App\Models\BusinessClient;
@@ -16,11 +17,20 @@ class ClientsController extends Controller
 {
     public function labsList()
     {
-        return view('admin.lab.list', [
-            'getVendorPathLab' => VendorPathLab::get()
-        ]);
+        $vendors = VendorPathLab::where('trash','0')->get();
+        return view('admin.lab.list', compact('vendors'));
     }
-
+    public function deletelabsList($id){
+        $dataget = VendorPathLab::where('_id',decrypt($id))->first();
+        $admin = Admin::where('vendor_id',$dataget->vendor_id)->first();
+        $admin->update([
+            'trash'=>'1'
+        ]);
+        $dataget->update([
+            'trash'=>'1'
+        ]);
+        return redirect('/labs-list');
+    }
     public function labsDiagnosticsList()
     {
 

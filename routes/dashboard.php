@@ -82,9 +82,14 @@ Route::middleware(['loginAuth'])->group(function () {
     /* =====[ Vendor Management ]===== */
     Route::get('labs-list', [ClientsController::class, 'labsList'])->name('labs.list');
     Route::get('labs-diagnosis-csv', [ClientsController::class, 'labsDiagnosisCsv'])->name('labs.diagnosis.csv');
+    Route::get('delete-lab-list/{id}',[ClientsController::class, 'deletelabsList'])->name('labs.delete');
 
 
     Route::match(['get', 'post'], 'vendor-new-path-lab', [VendorController::class, 'vendorNewPathLab'])->name('vendor.new.path.lab');
+    Route::get('vendor-edit-path-lab/{id}', [VendorController::class, 'vendorEditPathLab'])->name('vendor.edit.path.lab');
+    Route::get('vendor-show-path-lab/{id}', [VendorController::class, 'vendorShowPathLab'])->name('vendor.show.path.lab');
+    Route::get('vendor-get-path-lab/{id}', [VendorController::class, 'vendorGetPathLab'])->name('vendor.get.path.lab');
+    Route::post('vendor-update-path-lab/{id}',[VendorController::class, 'vendorUpdatePathLab'])->name('vendor.update.path.lab');
     // Route::match(['get', 'post'], 'vendor-new-path-lab-list', [VendorController::class, 'vendorNewPathLabList'])->name('vendor.new.path.lab');
     Route::match(['get', 'post'], 'vendor-new-radiology-diagnostics', [VendorController::class, 'vendorNewRadiologyDiagnostics'])->name('vendor.new.radiology.diagnostics');
     Route::match(['get', 'post'], 'vendor-new-hospitals-others', [VendorController::class, 'vendorNewHospitalsOthers'])->name('vendor.new.hospitals.others');
