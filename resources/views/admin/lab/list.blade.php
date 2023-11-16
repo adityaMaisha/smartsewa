@@ -52,7 +52,7 @@
                                                 <td>{{ $PathLab->vendor_name }}</td>
                                                 <td>{{ $PathLab->mobile_number }}</td>
                                                 <td>{{ $PathLab->getState->name ?? '' }} / {{ $PathLab->getCity->name ?? '' }}</td>
-                                                <td>{{ $PathLab->office_email }}</td>
+                                                <td>{{ $PathLab->email_id }}</td>
                                                 <td>{{ $PathLab->contact_person_name }}</td>
                                                 <td>{{ $PathLab->contact_per_mobile }}</td>
                                                 <td>{{ strtoupper($PathLab->vendor_status) }}</td>

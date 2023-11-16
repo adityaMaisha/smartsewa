@@ -86,7 +86,7 @@
 
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Home Care</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Radiology Diagnostics Vendor</h2>
 
                 </div>
                 <div class="d-flex">
@@ -95,11 +95,8 @@
                         {{-- <button type="button" class="btn btn-white btn-icon-text my-2 me-2">
                             <i class="fa fa-filter me-2"></i> Filter
                         </button> --}}
-                        <button type="button" id="switch" class="btn btn-primary my-2 btn-icon-text">
-                            <a style="color: white;"> Switch to Enquiry </a>
-                          </button>
                         <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                          <a href="{{ route('products.homecare.create') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add Home Care</a>
+                          <a href="{{ route('vendor.new.radiology.diagnostics') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add Radiology Diagnostics Vendor</a>
                         </button>
 
                     </div>
@@ -117,50 +114,28 @@
                                     <thead>
                                         <tr class="tableizer-firstrow">
                                             <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Discount Price</th>
-                                            <th>Image</th>
+                                            <th>Services</th>
+                                            <th>Email Id</th>
+                                            <th>Mobile</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getDatas as $getData)
+                                        @foreach ($getData as $data)
                                             <tr>
-                                                <td>{{$getData->name}}</td>
-                                                <td>{{$getData->price}}</td>
-                                                <td>{{$getData->discount_price}}</td>
+                                                <td>{{$data->vendor_name}}</td>
+                                                <td>{{$data->services}}</td>
+                                                <td>{{$data->email_id}}</td>
                                                 <td>
-                                                    <img src="{{asset($getData->image)}}" width="50" height="50"/>
+                                                    {{$data->mobile_number}}
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('products.homecare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+                                                    <a href="{{route('vendor.edit.radiology.diagnostics',encrypt($data->admin_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
                                                     {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
-                                                    <a data-delete-id="{{encrypt($getData->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
+                                                    <a data-delete-id="{{encrypt($data->admin_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    </tbody>
-                                </table>
-                                <table class="tableizer-table w-100 d-none" id="enquiryTable">
-                                    <thead>
-                                        <tr class="tableizer-firstrow">
-                                            <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    {{-- <img src="" width="50" height="50"/> --}}1
-                                                </td>
-                                                <td>
-                                                    <a href="{{route('products.homecare.edit',encrypt($getData->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
-                                                    {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
-                                                    <a data-delete-id="{{encrypt($getData->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
-                                                </td>
-                                            </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -210,29 +185,13 @@
 @endsection @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 <script>
-    // enquiryTable
-    // laravelTable
-    $('#switch').click(function(){
-        if($('#switch').text().trim() == "Switch to Enquiry"){
-            if($('#enquiryTable').hasClass('d-none')){
-                $('#laravelTable').addClass('d-none');
-                $('#enquiryTable').removeClass('d-none');
-                $('#switch').text('Switch to Table');
-            }
-        }else{
-            if($('#laravelTable').hasClass('d-none')){
-                $('#enquiryTable').addClass('d-none');
-                $('#laravelTable').removeClass('d-none');
-                $('#switch').text('Switch to Enquiry');
-            }
-        }
-    });
+
     $('.removeItem').click(function(){
         // console.log();
         let data_delete = $(this).attr('data-delete-id');
         let elem = this;
         $.ajax({
-            url:`/products/homecare/${data_delete}`,
+            url:`/products/criticalcare/${data_delete}`,
             type:'delete',
             headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
             datatype:'json',

@@ -46,15 +46,32 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="mg-b-10">Appointment Date<b class="text-danger">*</b></p>
-                                        <div class="custom-file">
-                                            <input type="date" class="form-control" name="appointment_date"/>
-                                          </div>
-                                    </div>
-                                    <div class="col-md-4">
                                         <p class="mg-b-10">Appointment Time<b class="text-danger">*</b></p>
                                         <div class="custom-file">
                                             <input type="time" class="form-control" name="appointment_time"/>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mg-b-10">Consultation Fee<b class="text-danger">*</b></p>
+                                        <div class="custom-file">
+                                            <input type="text" class="form-control" name="consultation_fee"/>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <p class="mg-b-10">Discount Fee<b class="text-danger">*</b></p>
+                                        <div class="custom-file">
+                                            <input type="text" class="form-control" name="discount_fee"/>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <p class="mg-b-10">Doctor Availability<b class="text-danger">*</b></p>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="availability[]" value="online_prescription">
+                                            <label class="form-check-label" for="inlineCheckbox1">Online Prescription</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="availability[]" value="Available For Hospital Visit">
+                                            <label class="form-check-label" for="inlineCheckbox2">Available For Hospital Visit</label>
                                           </div>
                                     </div>
 

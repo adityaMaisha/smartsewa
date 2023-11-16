@@ -46,15 +46,32 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="mg-b-10">Appointment Date<b class="text-danger">*</b></p>
-                                        <div class="custom-file">
-                                            <input type="date" class="form-control" name="appointment_date" value="{{$editData->appointment_date}}"/>
-                                          </div>
-                                    </div>
-                                    <div class="col-md-4">
                                         <p class="mg-b-10">Appointment Time<b class="text-danger">*</b></p>
                                         <div class="custom-file">
                                             <input type="time" class="form-control" name="appointment_time" value="{{$editData->appointment_time}}"/>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mg-b-10">Consultation Fee<b class="text-danger">*</b></p>
+                                        <div class="custom-file">
+                                            <input type="text" class="form-control" name="consultation_fee" value="{{$editData->consultation_fee}}"/>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <p class="mg-b-10">Discount Fee<b class="text-danger">*</b></p>
+                                        <div class="custom-file">
+                                            <input type="text" class="form-control" name="discount_fee" value="{{$editData->consultation_fee}}"/>
+                                          </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <p class="mg-b-10">Doctor Availability<b class="text-danger">*</b></p>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="availability[]" value="online_prescription" {{in_array('online_prescription',$editData->availability)?"checked":""}}>
+                                            <label class="form-check-label" for="inlineCheckbox1">Online Prescription</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="availability[]" value="available_for_hospital_visit" {{in_array('available_for_hospital_visit',$editData->availability)?"checked":""}}>
+                                            <label class="form-check-label" for="inlineCheckbox2">Available For Hospital Visit</label>
                                           </div>
                                     </div>
 

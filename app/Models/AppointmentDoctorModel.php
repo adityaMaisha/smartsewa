@@ -12,10 +12,12 @@ class AppointmentDoctorModel extends Model
     protected $collection="appointmentDoctor";
     protected $fillable=[
         "dr_name",
-        "appointment_date",
         "appointment_time",
         "created_at",
         "updated_at",
-        "trash"
+        "trash",
+        "consultation_fee",
+        "discount_fee",
+        "availability"
     ];
 }

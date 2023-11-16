@@ -16,6 +16,10 @@ class CriticalCare extends Model
         "status",
         "created_at",
         "updated_at",
-        'trash'
+        'trash',
+        "price",
+        "discount_price",
+        "description",
+        "instructions"
     ];
 }

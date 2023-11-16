@@ -32,6 +32,7 @@ Route::middleware(['loginAuth'])->group(function () {
     /* =====[ Employee Management ]===== */
     Route::match(['get', 'post'], 'employee-list', [EmployeeController::class, 'employeeList'])->name('list.employee');
     Route::match(['get', 'post'], 'employee-new', [EmployeeController::class, 'employeeNew'])->name('new.employee');
+
     Route::match(['get', 'post'], 'employee-edit/{id}', [EmployeeController::class, 'employeeEdit'])->name('edit.employee');
     Route::match(['get', 'post'], 'employee-action', [EmployeeController::class, 'employeeAction'])->name('action.employee');
     Route::post('states', [EmployeeController::class, 'statesList'])->name('states.ajax');
@@ -92,6 +93,9 @@ Route::middleware(['loginAuth'])->group(function () {
     Route::post('vendor-update-path-lab/{id}',[VendorController::class, 'vendorUpdatePathLab'])->name('vendor.update.path.lab');
     // Route::match(['get', 'post'], 'vendor-new-path-lab-list', [VendorController::class, 'vendorNewPathLabList'])->name('vendor.new.path.lab');
     Route::match(['get', 'post'], 'vendor-new-radiology-diagnostics', [VendorController::class, 'vendorNewRadiologyDiagnostics'])->name('vendor.new.radiology.diagnostics');
+    Route::get('vendor-list-radiology-diagnostics', [VendorController::class, 'vendorListRadiologyDiagnostics'])->name('vendor.list.radiology.diagnostics');
+    Route::get('vendor-edit-radiology-diagnostics/{id}', [VendorController::class, 'vendorEditRadiologyDiagnostics'])->name('vendor.edit.radiology.diagnostics');
+    Route::post('vendor-update-radiology-diagnostics/{id}', [VendorController::class, 'vendorUpdateRadiologyDiagnostics'])->name('vendor.update.radiology.diagnostics');
     Route::match(['get', 'post'], 'vendor-new-hospitals-others', [VendorController::class, 'vendorNewHospitalsOthers'])->name('vendor.new.hospitals.others');
     Route::match(['get', 'post'], 'vendor-new-doctors-other', [VendorController::class, 'vendorNewDoctorsOther'])->name('vendor.new.doctors.other');
     Route::match(['get', 'post'], 'vendor-new-healthcare-professionals', [VendorController::class, 'vendorNewHealthcareProfessionals'])->name('vendor.new.healthcare.professionals');

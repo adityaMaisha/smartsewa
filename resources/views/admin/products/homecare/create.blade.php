@@ -46,10 +46,36 @@
                                         />
                                     </div>
                                     <div class="col-md-4">
+                                        <p class="mg-b-10">Home Care Price <b class="text-danger">*</b></p>
+                                        <input
+                                            class="form-control"
+                                            placeholder="Home Care Price"
+                                            type="text"
+                                            name="price"
+                                        />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mg-b-10">Home Care Discount Price <b class="text-danger">*</b></p>
+                                        <input
+                                            class="form-control"
+                                            placeholder="Home Care Discount Price"
+                                            type="text"
+                                            name="discount_price"
+                                        />
+                                    </div>
+                                    <div class="col-md-4 mt-3">
                                         <p class="mg-b-10">Home Care Image<b class="text-danger">*</b></p>
                                         <div class="custom-file">
                                             <input type="file" class="form-control" name="image" accept="image/*"/>
                                           </div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <p class="mg-b-10">Home Care Description <b class="text-danger">*</b></p>
+                                        <textarea rows="5" class="form-control" name="description"></textarea>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <p class="mg-b-10">Home Care Instructions <b class="text-danger">*</b></p>
+                                        <textarea rows="5" class="form-control" name="instructions"></textarea>
                                     </div>
 
 

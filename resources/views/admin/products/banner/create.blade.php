@@ -80,6 +80,30 @@
                                             name="discountper"
                                         />
                                     </div>
+                                    <div class="col-md-4">
+                                        <p class="mg-b-10">Banner Position <b class="text-danger">*</b></p>
+                                        <div class="form-group">
+                                            <select name="banner_position" class="form-control select2" >
+                                                <option value="">Select Category</option>
+                                                <option value="Top">Top</option>
+                                                <option value="Mid">Mid</option>
+                                                <option value="Bottom">Bottom</option>
+                                            </select>
+                                            <span class="text-danger ERROR__gender"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mg-b-10">Banner Validity <b class="text-danger">*</b></p>
+                                        <div class="form-group">
+                                            <input
+                                                class="form-control"
+                                                type="date"
+                                                name="banner_validity"
+                                                min="<?php echo date("Y-m-d"); ?>"
+                                            />
+                                            <span class="text-danger ERROR__gender"></span>
+                                        </div>
+                                    </div>
 
 
                                     {{-- <div class="col-md-4">

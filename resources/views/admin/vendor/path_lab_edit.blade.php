@@ -91,7 +91,7 @@
             </div>
             <!-- End Page Header -->
 
-            <form action="{{ route('vendor.update.path.lab',encrypt($vendor->_id)) }}" method="POST" enctype="multipart/form-data" id="formData">
+            <form action="{{ route('vendor.update.path.lab',encrypt($vendor->admin_id)) }}" method="POST" enctype="multipart/form-data" id="formData">
                 @csrf
                 <div class="row row-sm">
                     <div class="col-lg-12 col-md-12">
@@ -183,7 +183,19 @@
                                         </datalist>
                                         <span class="text-danger ERROR__services"></span>
                                     </div>
-
+                                    <div class="col-lg-4">
+                                        <p class="mg-b-10">Care Type <b class="text-danger">*</b></p>
+                                        <div class="form-check">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="home_care" name="care[]" {{in_array('home_care',$vendor->care)?'checked':''}}>
+                                                <label class="form-check-label" for="inlineCheckbox1">Home Care</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="critical_care" name="care[]" {{in_array('critical_care',$vendor->care)?'checked':''}}>
+                                                <label class="form-check-label" for="inlineCheckbox2">Critical Care</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Address <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Address" type="text" name="address" value="{{$vendor->address}}"/>

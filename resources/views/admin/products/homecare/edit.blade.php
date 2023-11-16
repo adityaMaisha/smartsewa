@@ -47,11 +47,39 @@
                                         />
                                     </div>
                                     <div class="col-md-4">
+                                        <p class="mg-b-10">Home Care Price <b class="text-danger">*</b></p>
+                                        <input
+                                            class="form-control"
+                                            placeholder="Home Care Price"
+                                            type="text"
+                                            name="price"
+                                            value="{{$editData->price}}"
+                                        />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mg-b-10">Home Care Discount Price <b class="text-danger">*</b></p>
+                                        <input
+                                            class="form-control"
+                                            placeholder="Home Care Discount Price"
+                                            type="text"
+                                            name="discount_price"
+                                            value="{{$editData->discount_price}}"
+                                        />
+                                    </div>
+                                    <div class="col-md-4 mt-3">
                                         <p class="mg-b-10">Home Care Image<b class="text-danger">*</b></p>
                                         <div class="custom-file">
                                             <input type="file" class="form-control" name="image" accept="image/*"/>
                                             <a href="{{asset($editData->image)}}"   target="_blank">Click to preview</a>
                                           </div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <p class="mg-b-10">Home Care Description <b class="text-danger">*</b></p>
+                                        <textarea rows="5" class="form-control" name="description">{{$editData->description}}</textarea>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <p class="mg-b-10">Home Care Instructions <b class="text-danger">*</b></p>
+                                        <textarea rows="5" class="form-control" name="instructions">{{$editData->instructions}}</textarea>
                                     </div>
 
 
@@ -265,7 +293,7 @@
 
                                 <div class="row mt-3 mb-4">
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-primary my-2 btn-icon-text">Add New Home care <i class="fa fa-add"></i></button>
+                                        <button type="submit" class="btn btn-primary my-2 btn-icon-text">Edit Home care <i class="fa fa-add"></i></button>
                                     </div>
                                 </div>
                             </div>

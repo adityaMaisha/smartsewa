@@ -117,6 +117,8 @@
                                     <thead>
                                         <tr class="tableizer-firstrow">
                                             <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Discount Price</th>
                                             <th>Image</th>
                                             <th>Action</th>
                                         </tr>
@@ -125,6 +127,8 @@
                                         @foreach ($criticalcare as $getData)
                                             <tr>
                                                 <td>{{$getData->name}}</td>
+                                                <td>{{$getData->price}}</td>
+                                                <td>{{$getData->discount_price}}</td>
                                                 <td>
                                                     <img src="{{asset($getData->image)}}" width="50" height="50"/>
                                                 </td>

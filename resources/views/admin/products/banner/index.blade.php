@@ -116,6 +116,7 @@
                                         <tr class="tableizer-firstrow">
                                             <th>Banner Name</th>
                                             <th>Banner Image</th>
+                                            <th>Banner Validity</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -127,6 +128,9 @@
                                                 <td>
                                                     <img src="{{asset($banner->banner_image)}}" width="50" height="50"/>
                                                     {{-- {{$banner->name}} --}}
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($banner->banner_validity)->format('jS F, Y') }}
                                                 </td>
                                                 <td>
                                                     <select name="status" class="form-control select2">

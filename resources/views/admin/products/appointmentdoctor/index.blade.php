@@ -115,7 +115,8 @@
                                     <thead>
                                         <tr class="tableizer-firstrow">
                                             <th>Doctor Name</th>
-                                            <th>Appointment Date</th>
+                                            <th>Consultation Fee</th>
+                                            <th>Discount Fee</th>
                                             <th>Appointment Time</th>
                                             <th>Action</th>
                                         </tr>
@@ -124,7 +125,8 @@
                                             @foreach ($appointment as $appoint)
                                             <tr>
                                                     <td>{{$appoint->dr_name}}</td>
-                                                    <td>{{date('d-m-Y',strtotime($appoint->appointment_date))}}</td>
+                                                    <td>{{$appoint->consultation_fee}}</td>
+                                                    <td>{{$appoint->discount_fee}}</td>
                                                     <td>{{\Carbon\Carbon::parse($appoint->appointment_time)->format('g:i A') }}</td>
                                                     <td>
                                                         <a href="{{route('products.appointmentdoctor.edit',encrypt($appoint->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>

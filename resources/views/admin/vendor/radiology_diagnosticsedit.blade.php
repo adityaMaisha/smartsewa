@@ -93,7 +93,6 @@
 
             <form enctype="multipart/form-data" id="employeeFormData">
                 @csrf
-
                 <div class="row row-sm">
                     <div class="col-lg-12 col-md-12">
                         <div class="card custom-card">
@@ -113,14 +112,14 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Name <b class="text-danger">*</b></p>
                                         <input class="form-control" type="text"
-                                            name="vendor_name" placeholder="Enter Name">
+                                            name="vendor_name" placeholder="Enter Name" value="{{$editData->vendor_name}}">
                                         <span class="text-danger ERROR__vendor_name"></span>
                                     </div>
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Owner/Business Head Name <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Owner/Business Head Name" type="text"
-                                            name="head_name">
+                                            name="head_name" value="{{$editData->head_name}}">
                                         <span class="text-danger ERROR__head_name"></span>
                                     </div>
 
@@ -134,9 +133,9 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Services <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Services" type="text" name="services" list="serviceList" >
+                                        <input class="form-control" placeholder="Services" type="text" name="services" list="serviceList" value="{{$editData->services}}">
                                         <datalist id="serviceList">
-                                            <option value="CEO (Chief Executive Officer)">
+                                            <option value="CEO (Chief Executive Officer)" >
                                             <option value="CFO (Chief Financial Officer)">
                                             <option value="COO (Chief Operating Officer)">
                                             <option value="CTO (Chief Technology Officer)">
@@ -193,11 +192,11 @@
                                         <p class="mg-b-10">Care Type <b class="text-danger">*</b></p>
                                         <div class="form-check">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="home_care" name="care[]">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="home_care" name="care[]" {{in_array('home_care',$editData->care)?'checked':''}}>
                                                 <label class="form-check-label" for="inlineCheckbox1">Home Care</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="critical_care" name="care[]">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="critical_care" name="care[]" {{in_array('critical_care',$editData->care)?'checked':''}}>
                                                 <label class="form-check-label" for="inlineCheckbox2">Critical Care</label>
                                             </div>
                                         </div>
@@ -205,7 +204,7 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Address <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Address" type="text"
-                                            name="address">
+                                            name="address" value="{{$editData->address}}">
                                         <span class="text-danger ERROR__address"></span>
                                     </div>
 
@@ -226,18 +225,19 @@
                                                 </span>
                                             </label>
                                         </div>
+                                        <a href="{{asset($editData->employee_profile)}}" target="_blank">Click to preview</a>
                                         <span class="text-danger ERROR__employee_profile"></span>
                                     </div>
 
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Email <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Enter Email" type="email"
-                                            name="email_id" >
+                                            name="email_id" value="{{$editData->email_id}}">
                                             <span class="text-danger ERROR__email_id"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Mobile </p>
-                                        <input class="form-control" type="text" name="mobile_number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
+                                        <input value="{{$editData->mobile_number}}" class="form-control" type="text" name="mobile_number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
                                             <span class="text-danger ERROR__mobile_number"></span>
                                     </div>
                                 </div>
@@ -250,7 +250,8 @@
                                                 id="user_country">
                                                 <option value="">Select Employee Country</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}"
+                                                        {{$editData->country==$country->id?'selected':''}}>{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="text-danger ERROR__country"></span>
@@ -277,13 +278,13 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-12">
                                         <p class="mg-b-10">Map location <b class="text-danger">*</b></p>
-                                        <input type="text" name="mapLocation" class="form-control" >
+                                        <input type="text" name="mapLocation" class="form-control" value="{{$editData->mapLocation}}">
                                         <span class="text-danger ERROR__mapLocation"></span>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <p class="mg-b-10">Short Brief <b class="text-danger">*</b></p>
-                                        <textarea name="shortBrief" class="form-control" cols="30" rows="10"></textarea>
+                                        <textarea name="shortBrief" class="form-control" cols="30" rows="10">{{$editData->shortBrief}}</textarea>
                                         <span class="text-danger ERROR__shortBrief"></span>
                                     </div>
                                 </div>
@@ -304,25 +305,20 @@
                                 <div class="row row-sm">
                                     <div class="col-lg-6">
                                         <p class="mg-b-10">Office Email <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Office Email" type="Email" readonly onfocus="this.removeAttribute('readonly');"
+                                        <input value="{{$editData->office_email}}" class="form-control" placeholder="Office Email" type="Email" readonly onfocus="this.removeAttribute('readonly');"
                                             name="office_email" >
                                         <span class="text-danger ERROR__office_email"></span>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p class="mg-b-10">Login Password <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Login Password" type="password" name="password"  readonly onfocus="this.removeAttribute('readonly');">
-                                        <span class="text-danger ERROR__password"></span>
                                     </div>
                                 </div>
                                 <div class="row row-sm">
                                     <div class="col-lg-6 mt-3 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Contact Person Name </p>
-                                        <input class="form-control" type="text" name="contact_person_name" placeholder="Enter Contact Person Name">
+                                        <input value="{{$editData->contact_person_name}}" class="form-control" type="text" name="contact_person_name" placeholder="Enter Contact Person Name">
                                             <span class="text-danger ERROR__contact_person_name"></span>
                                     </div>
                                     <div class="col-lg-6 mt-3 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Contact Person Mobile <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text" name="contact_per_mobile" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
+                                        <input value="{{$editData->contact_per_mobile}}" class="form-control" type="text" name="contact_per_mobile" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
                                             <span class="text-danger ERROR__contact_per_mobile"></span>
                                     </div>
 
@@ -346,20 +342,20 @@
                                 <div class="row row-sm mg-t-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">Adhaar Card No <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Adhaar Card No" type="text"
+                                        <input class="form-control" placeholder="Adhaar Card No" type="text" value="{{$editData->adhaar_card_number}}"
                                             name="adhaar_card_number" pattern="[0-9]{12}" title="Please enter valid 12 digits" placeholder="12 Digit Adhaar Card Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="12">
                                             <span class="text-danger ERROR__adhaar_card_number"></span>
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">PAN Card No <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Card No" type="text"
-                                            name="pan_card_number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter Valid Pan Card Number ( Example: ABCTY1234D )">
+                                            name="pan_card_number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter Valid Pan Card Number ( Example: ABCTY1234D )" value="{{$editData->pan_card_number}}">
                                             <span class="text-danger ERROR__pan_card_number"></span>
                                     </div>
                                     <div class="col-lg-6 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">GST Certificate</p>
                                         <input type="file" class="" id="field1" data-height="200"
-                                            name="gst_certificate">
+                                            name="gst_certificate" data-default-file="{{asset($editData->gst_certificate)}}">
                                             <span class="text-danger ERROR__gst_certificate"></span>
                                     </div>
                                 </div>
@@ -367,14 +363,14 @@
                                     <div class="col-lg-6 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">Upload PAN Card</p>
                                         <input type="file" class="" id="field2" data-height="200"
-                                            name="upload_pan_card_attachment">
+                                            name="upload_pan_card_attachment" data-default-file="{{asset($editData->upload_pan_card_attachment)}}">
                                             <span class="text-danger ERROR__upload_pan_card_attachment"></span>
                                     </div>
 
                                     <div class="col-lg-6 col-md-4 mt-3">
                                         <p class="mg-b-10 fw-bold"> Registration Certificate</p>
                                         <input type="file" class="" id="field3" data-height="200"
-                                            name="registration_docs">
+                                            name="registration_docs" data-default-file="{{asset($editData->registration_docs)}}">
                                             <span class="text-danger ERROR__registration_docs"></span>
                                     </div>
 
@@ -383,8 +379,8 @@
                                     <div class="col-lg-12 p-0">
                                         <p class="mg-b-10 fw-bold">Upload Other Documents</p>
                                         <input type="file" class="" id="field4" data-height="100"
-                                            name="upload_other_documents">
-                                            <span class="text-danger ERROR__upload_other_documents"></span>
+                                            name="upload_other_documents" data-default-file="{{asset($editData->upload_other_documents)}}">
+                                            <span class="text-danger ERROR__upload_other_documents" ></span>
                                     </div>
                                 </div>
                             </div>
@@ -406,12 +402,12 @@
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank Name <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Bank Name" type="text"
-                                            name="employee_bank_name">
+                                            name="employee_bank_name" value="{{$editData->employee_bank_name}}">
                                             <span class="text-danger ERROR__employee_bank_name"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Account Holder Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="First Name" type="text"
+                                        <input class="form-control" placeholder="First Name" type="text" value="{{$editData->bank_account_holder_name}}"
                                             name="bank_account_holder_name">
                                             <span class="text-danger ERROR__bank_account_holder_name"></span>
                                     </div>
@@ -420,8 +416,8 @@
                                         <p class="mg-b-10">Account Type <b class="text-danger">*</b></p>
                                         <select class="form-control select2" name="bank_account_type" >
                                             <option label="Account Type"></option>
-                                            <option value="saving">Saving</option>
-                                            <option value="current">Current</option>
+                                            <option value="saving" {{$editData->bank_account_type=="saving"?'selected':''}}>Saving</option>
+                                            <option value="current"{{$editData->bank_account_type=="current"?'selected':''}}>Current</option>
                                         </select>
                                         <span class="text-danger ERROR__bank_account_type"></span>
                                     </div>
@@ -430,18 +426,12 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Account Number <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Account Number"
-                                            type="text" name="bank_account_number">
+                                            type="text" value="{{$editData->bank_account_number}}" name="bank_account_number">
                                             <span class="text-danger ERROR__bank_account_number"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
-                                        <p class="mg-b-10">Confirm Account Number <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Confirm Account Number"
-                                            id="confirm_account_number" name="confirm_account_number" type="number">
-                                            <span class="text-danger ERROR__confirm_account_number"></span>
-                                    </div>
-                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">IFSC Code <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="IFSC Code" type="text"
+                                        <input class="form-control" placeholder="IFSC Code" type="text" value="{{$editData->bank_ifsc_code}}"
                                             name="bank_ifsc_code">
                                             <span class="text-danger ERROR__bank_ifsc_code"></span>
                                     </div>
@@ -449,13 +439,13 @@
                                 <div class="row row-sm">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Bank Branch <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank Branch" type="text"
+                                        <input class="form-control" placeholder="Bank Branch" type="text" value="{{$editData->bank_branch}}"
                                             name="bank_branch">
                                             <span class="text-danger ERROR__bank_branch"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank City <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank City" type="text"
+                                        <input class="form-control" placeholder="Bank City" type="text" value="{{$editData->bank_city}}"
                                             name="bank_city">
                                             <span class="text-danger ERROR__bank_city"></span>
                                     </div>
@@ -479,7 +469,7 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Reference</p>
-                                        <input class="form-control" placeholder="Reference (if any)" type="text"
+                                        <input class="form-control" placeholder="Reference (if any)" type="text" value="{{$editData->reference_name}}"
                                             name="reference_name">
                                             <span class="text-danger ERROR__reference_name"></span>
                                     </div>
@@ -510,6 +500,77 @@
             $('#field2').dropify();
             $('#field3').dropify();
             $('#field4').dropify();
+            var country_id = "<?php print_r($editData->country)?>";
+            var state_id = "<?php print_r($editData->state)?>";
+            var city_id = "<?php print_r($editData->city)?>";
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('states.ajax') }}",
+                //dataType:'json',
+                data: {
+                    country_id: country_id
+                },
+                beforeSend: function() {
+
+                    $('#user_state').html('');
+                    $('#user_city').html('');
+
+                },
+                success: function(data) {
+                    if (data.solve == true) {
+                        $('#user_state').html(data.html_data);
+                        $('#user_state').val(state_id).prop('selected',true);
+                    }
+
+                },
+                error: function(err) {
+
+                    var content_data = '<option value=""> Select State</option>';
+                    $('#user_state').html(content_data);
+
+                },
+                complete: function() {
+
+                    $(function() {
+                        $('#user_state').select2();
+                    });
+
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cities.ajax') }}",
+                //dataType:'json',
+                data: {
+                    state_id: state_id
+                },
+                beforeSend: function() {
+
+                    $('#user_city').html('');
+
+                },
+                success: function(data) {
+
+                    if (data.solve == true) {
+                        $('#user_city').html(data.html_data);
+                        $('#user_city').val(city_id).prop('selected',true);
+                    }
+
+                },
+                error: function(err) {
+
+                    var content_data = '<option value=""> Select City</option>';
+                    $('#user_city').html(content_data);
+
+                },
+                complete: function() {
+
+                    $(function() {
+                        $('#user_city').select2();
+                    });
+
+                }
+            });
     });
     $.ajaxSetup({
             headers: {
@@ -518,9 +579,9 @@
     });
     $('#employeeFormData').submit(function(e){
         e.preventDefault();
-        // let url = "{{ route('products.labtests.store') }}";
+        let alldata = "<?php print_r(request()->route()->parameter('id'))?>"
         $.ajax({
-            url:'/vendor-new-radiology-diagnostics',
+            url:`/vendor-update-radiology-diagnostics/${alldata}`,
             type:'POST',
             data:new FormData(document.getElementById('employeeFormData')),
             contentType:false,

@@ -257,7 +257,7 @@
 
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('labs.list') }}">Path Lab</a></li>
                                     {{-- <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.path.lab') }}">Path Lab</a></li> --}}
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.radiology.diagnostics') }}">Radiology Diagnostics</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.list.radiology.diagnostics') }}">Radiology Diagnostics</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.setup') }}">Hospitals & Others</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.doctors.other') }}">Doctors & Other</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.healthcare.professionals') }}">Healthcare Professionals</a></li>

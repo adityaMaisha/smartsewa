@@ -20,6 +20,8 @@ class Banner extends Model
         "created_at",
         "updated_at",
         "trash",
-        "status"
+        "status",
+        "banner_position",
+        "banner_validity"
     ];
 }

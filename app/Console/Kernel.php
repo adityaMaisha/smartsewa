@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\Banner;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +16,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->call(function () {
+            // Get expired banners
+            $expiredBanners = Banner::where('status','1')->where('banner_validity', '<', now()->toDateString())->get();
+
+            // Update banner status
+            foreach ($expiredBanners as $banner) {
+                $banner->update(['status' => '0']);
+            }
+        })->daily();
         // $schedule->command('inspire')->hourly();
     }
 

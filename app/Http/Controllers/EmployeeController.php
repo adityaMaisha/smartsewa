@@ -225,6 +225,7 @@ TABLEHEADER;
                     'employee_status' => $request->input('right_to_access', NULL),
                     'created_at' => date('Y-m-d H:i:s') ?? NULL,
                     'updated_at' => date('Y-m-d H:i:s') ?? NULL,
+                    'trash'=>'0'
                 ]);
 
                 $uploadedFiles = [];

@@ -40,11 +40,15 @@ class AppointmentDoctor extends Controller
         try{
             $this->validate($request,[
                 "dr_name"=>'required',
-                "appointment_date"=>'required',
+                "consultation_fee"=>"required",
+                "discount_fee"=>"required",
+                "availability"=>"required",
                 "appointment_time"=>'required',
             ],[
                 "dr_name.required"=>"Please fill doctor name field",
-                "appointment_date.required"=>"Please select appointment date field",
+                "consultation_fee.required"=>"Please fill consultation fee field",
+                "discount_fee.required"=>"Please fill discount fee field",
+                "availability.required"=>"Please select doctor availability field",
                 "appointment_time.required"=>"Please select appointment time field ",
             ]);
             $input = $request->all();
@@ -102,12 +106,16 @@ class AppointmentDoctor extends Controller
         try{
             $this->validate($request,[
                 "dr_name"=>'required',
-                "appointment_date"=>'required',
                 "appointment_time"=>'required',
+                "consultation_fee"=>"required",
+                "discount_fee"=>"required",
+                "availability"=>"required",
             ],[
                 "dr_name.required"=>"Please fill doctor name field",
-                "appointment_date.required"=>"Please select appointment date field",
                 "appointment_time.required"=>"Please select appointment time field ",
+                "consultation_fee.required"=>"Please fill consultation fee field",
+                "discount_fee.required"=>"Please fill discount fee field",
+                "availability.required"=>"Please select doctor availability field",
             ]);
             $input = $request->all();
             unset($input['token']);
