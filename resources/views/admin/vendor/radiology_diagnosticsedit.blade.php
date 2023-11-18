@@ -75,16 +75,16 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Add New Radiology Diagnostics Vendor</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Edit Radiology Diagnostics Vendor</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Add New Radiology Diagnostics Vendor</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">New Path Lab</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Edit Radiology Diagnostics Vendor</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Path Lab</li>
                     </ol>
                 </div>
                 <div class="d-flex">
                     <div class="justify-content-center">
                         <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                            <a href="{{ route('list.employee') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
+                            <a href="{{ route('vendor.list.radiology.diagnostics') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
                         </button>
                     </div>
                 </div>
@@ -482,7 +482,7 @@
                 <div class="row mt-3 mb-4">
                     <div class="col-12 text-center">
                         <input type="submit" class="btn btn-primary my-2 btn-icon-text" style="color: white;"
-                            value="&nbsp; Create New Lab &nbsp;">
+                            value="&nbsp; Edit Radiology Diagnostics Vendor &nbsp;">
                     </div>
                 </div>
             </form>

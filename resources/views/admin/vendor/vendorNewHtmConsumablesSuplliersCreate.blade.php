@@ -75,23 +75,23 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Add New Path Lab</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Add New HTM Consumables Suplliers</h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0);">Vendor</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">New Path Lab</li>
+                        <li class="breadcrumb-item active" aria-current="page">New HTM Consumables Suplliers</li>
                     </ol>
                 </div>
                 <div class="d-flex">
                     <div class="justify-content-center">
                         <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                            <a href="{{ route('list.employee') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
+                            <a href="{{ route('vendor.list.htm.consumables.suplliers') }}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
                         </button>
                     </div>
                 </div>
             </div>
             <!-- End Page Header -->
 
-            <form action="{{ route('new.employee') }}" method="POST" enctype="multipart/form-data" id="employeeFormData">
+            <form enctype="multipart/form-data" id="employeeFormData">
                 @csrf
 
                 <div class="row row-sm">
@@ -100,6 +100,7 @@
                             <div class="mb-4 hny_tt">
                                 <h6 class="main-content-label mb-1">Vendor Detail</h6>
                             </div>
+                            <div class="alert alert-danger d-none" id="errors"></div>
                             <div class="card-body">
 
                                 <div class="row row-sm mg-b-20">
@@ -119,7 +120,7 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Owner/Business Head Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Owner/Business Head Name" type="text" required
+                                        <input class="form-control" placeholder="Owner/Business Head Name" type="text"
                                             name="head_name">
                                         <span class="text-danger ERROR__head_name"></span>
                                     </div>
@@ -134,7 +135,7 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Services <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Services" type="text" name="services" list="serviceList" required>
+                                        <input class="form-control" placeholder="Services" type="text" name="services" list="serviceList" >
                                         <datalist id="serviceList">
                                             <option value="CEO (Chief Executive Officer)">
                                             <option value="CFO (Chief Financial Officer)">
@@ -189,10 +190,22 @@
                                         </datalist>
                                         <span class="text-danger ERROR__services"></span>
                                     </div>
-
+                                    <div class="col-lg-4">
+                                        <p class="mg-b-10">Care Type <b class="text-danger">*</b></p>
+                                        <div class="form-check">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="home_care" name="care[]">
+                                                <label class="form-check-label" for="inlineCheckbox1">Home Care</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="critical_care" name="care[]">
+                                                <label class="form-check-label" for="inlineCheckbox2">Critical Care</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Address <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Address" type="text" required
+                                        <input class="form-control" placeholder="Address" type="text"
                                             name="address">
                                         <span class="text-danger ERROR__address"></span>
                                     </div>
@@ -220,7 +233,7 @@
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Email <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Enter Email" type="email"
-                                            name="email_id" required>
+                                            name="email_id" >
                                             <span class="text-danger ERROR__email_id"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
@@ -234,12 +247,12 @@
                                     <div class="col-lg">
                                         <p class="mg-b-10">Country <b class="text-danger">*</b></p>
                                         <div class="form-group ">
-                                            <select name="country" class="form-control select2" required
+                                            <select name="country" class="form-control select2"
                                                 id="user_country">
                                                 <option value="">Select Employee Country</option>
-                                                {{-- @foreach ($countries as $country)
+                                                @foreach ($countries as $country)
                                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                             <span class="text-danger ERROR__country"></span>
                                         </div>
@@ -247,7 +260,7 @@
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">State <b class="text-danger">*</b></p>
                                         <div class="form-group">
-                                            <select name="state" class="form-control select2" required
+                                            <select name="state" class="form-control select2"
                                                 id="user_state"></select>
                                                 <span class="text-danger ERROR__state"></span>
                                         </div>
@@ -255,7 +268,7 @@
                                     <div class="col-lg mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">City <b class="text-danger">*</b></p>
                                         <div class="form-group">
-                                            <select name="city" class="form-control select2" required
+                                            <select name="city" class="form-control select2"
                                                 id="user_city"></select>
                                                 <span class="text-danger ERROR__city"></span>
                                         </div>
@@ -279,12 +292,12 @@
                                     <div class="col-lg-6">
                                         <p class="mg-b-10">Office Email <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Office Email" type="Email" readonly onfocus="this.removeAttribute('readonly');"
-                                            name="office_email" required>
+                                            name="office_email" >
                                         <span class="text-danger ERROR__office_email"></span>
                                     </div>
                                     <div class="col-lg-6">
                                         <p class="mg-b-10">Login Password <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Login Password" type="password" name="password" required readonly onfocus="this.removeAttribute('readonly');">
+                                        <input class="form-control" placeholder="Login Password" type="password" name="password"  readonly onfocus="this.removeAttribute('readonly');">
                                         <span class="text-danger ERROR__password"></span>
                                     </div>
                                 </div>
@@ -320,19 +333,19 @@
                                 <div class="row row-sm mg-t-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">Adhaar Card No <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Adhaar Card No" type="text" required
+                                        <input class="form-control" placeholder="Adhaar Card No" type="text"
                                             name="adhaar_card_number" pattern="[0-9]{12}" title="Please enter valid 12 digits" placeholder="12 Digit Adhaar Card Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="12">
                                             <span class="text-danger ERROR__adhaar_card_number"></span>
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">PAN Card No <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Card No" type="text" required
+                                        <input class="form-control" placeholder="Card No" type="text"
                                             name="pan_card_number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter Valid Pan Card Number ( Example: ABCTY1234D )">
                                             <span class="text-danger ERROR__pan_card_number"></span>
                                     </div>
                                     <div class="col-lg-6 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">GST Certificate</p>
-                                        <input type="file" class="dropify" data-height="200"
+                                        <input type="file" class="" id="gst_certificate" data-height="200"
                                             name="gst_certificate">
                                             <span class="text-danger ERROR__gst_certificate"></span>
                                     </div>
@@ -340,14 +353,14 @@
                                 <div class="row mb-4">
                                     <div class="col-lg-6 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">Upload PAN Card</p>
-                                        <input type="file" class="dropify" data-height="200"
+                                        <input type="file" class="" id="upload_pan_card_attachment" data-height="200"
                                             name="upload_pan_card_attachment">
                                             <span class="text-danger ERROR__upload_pan_card_attachment"></span>
                                     </div>
 
                                     <div class="col-lg-6 col-md-4 mt-3">
                                         <p class="mg-b-10 fw-bold"> Registration Certificate</p>
-                                        <input type="file" class="dropify" data-height="200"
+                                        <input type="file" class="" id="registration_docs" data-height="200"
                                             name="registration_docs">
                                             <span class="text-danger ERROR__registration_docs"></span>
                                     </div>
@@ -356,7 +369,7 @@
                                 <div>
                                     <div class="col-lg-12 p-0">
                                         <p class="mg-b-10 fw-bold">Upload Other Documents</p>
-                                        <input type="file" class="dropify" data-height="100"
+                                        <input type="file" class="" id="upload_other_documents" data-height="100"
                                             name="upload_other_documents">
                                             <span class="text-danger ERROR__upload_other_documents"></span>
                                     </div>
@@ -392,7 +405,7 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Account Type <b class="text-danger">*</b></p>
-                                        <select class="form-control select2" name="bank_account_type" required>
+                                        <select class="form-control select2" name="bank_account_type" >
                                             <option label="Account Type"></option>
                                             <option value="saving">Saving</option>
                                             <option value="current">Current</option>
@@ -403,19 +416,19 @@
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Account Number <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Account Number" required
+                                        <input class="form-control" placeholder="Account Number"
                                             type="text" name="bank_account_number">
                                             <span class="text-danger ERROR__bank_account_number"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Confirm Account Number <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Confirm Account Number" required
+                                        <input class="form-control" placeholder="Confirm Account Number"
                                             id="confirm_account_number" name="confirm_account_number" type="number">
                                             <span class="text-danger ERROR__confirm_account_number"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">IFSC Code <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="IFSC Code" type="text" required
+                                        <input class="form-control" placeholder="IFSC Code" type="text"
                                             name="bank_ifsc_code">
                                             <span class="text-danger ERROR__bank_ifsc_code"></span>
                                     </div>
@@ -423,13 +436,13 @@
                                 <div class="row row-sm">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Bank Branch <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank Branch" type="text" required
+                                        <input class="form-control" placeholder="Bank Branch" type="text"
                                             name="bank_branch">
                                             <span class="text-danger ERROR__bank_branch"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank City <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Bank City" type="text" required
+                                        <input class="form-control" placeholder="Bank City" type="text"
                                             name="bank_city">
                                             <span class="text-danger ERROR__bank_city"></span>
                                     </div>
@@ -466,7 +479,7 @@
                 <div class="row mt-3 mb-4">
                     <div class="col-12 text-center">
                         <input type="submit" class="btn btn-primary my-2 btn-icon-text" style="color: white;"
-                            value="&nbsp; Create New Lab &nbsp;">
+                            value="&nbsp; Create New HTM Consumables Suplliers &nbsp;">
                     </div>
                 </div>
             </form>
@@ -477,48 +490,65 @@
 </div>
 @endsection @section('script')
 <script>
-    $(document).on("submit", "#htmlForm", function (ev) {
-        ev.preventDefault();
-        var frm = $("#htmlForm");
-        var form = $("#htmlForm")[0];
-        var data = new FormData(form);
-
+    $('#user_country').change(function(){
+        let elem = this;
         $.ajax({
-            type: frm.attr("method"),
-            url: frm.attr("action"),
-            enctype: "multipart/form-data",
-            processData: false,
-            contentType: false,
-            async: false,
-            cache: false,
-            data: data,
-            beforeSend: function () {
-                $('span[class*="ERROR__"]').html("");
-                $("body").css("pointer-events", "none");
+            url:'/states',
+            type:'post',
+            data:{country_id:$(elem).val()},
+            datatype:'json',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            success:function(res){
+                $('#user_state').html(res.html_data);
             },
-            success: function (data) {
-                if (data.success == true) {
-                    python(data.message, "Great");
-                    setTimeout(function() {
-                        location.href = "{{ route('list.customers') }}";
-                    }, 1000);
-                } else {
-                    python(data.message, "Whoops!", "red");
-                    $.each(data.errors, function (field, message) {
-                        $(".ERROR__" + field).html('<div class="text-danger">' + message + "</div>");
-                    });
-                }
-            },
-            error: function (err) {
-                //
-            },
-            complete: function (data) {
-                $(function () {
-                    htmlError();
-                    $("body").css("pointer-events", "auto");
-                });
-            },
+            error:function(res){
+            }
         });
     });
+    $('#user_state').change(function(){
+        let elem = this;
+        $.ajax({
+            url:'/cities',
+            type:'post',
+            data:{state_id:$(elem).val()},
+            datatype:'json',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            success:function(res){
+                $('#user_city').html(res.html_data);
+            },
+            error:function(res){
+            }
+        });
+    });
+    $('#employeeFormData').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url:'/vendor-save-htm-consumables-suplliers',
+            type:'post',
+            data:new FormData(document.getElementById('employeeFormData')),
+            datatype:'json',
+            processData:false,
+            contentType:false,
+            success:function(res){
+                window.location.href="/vendor-list-htm-consumables-suplliers";
+            },
+            error:function(res){
+                if(res.status==422){
+                    const error = Object.entries(res.responseJSON.errors)[0][1];
+                    $('#errors').text(error);
+                    $('#errors').removeClass('d-none');
+                    $('html,body').animate({scrollTop:0},'slow');
+                    setTimeout(() => {
+                        $('#errors').addClass('d-none');
+                        $('#errors').text('');
+                    }, 4000);
+                }
+            }
+        })
+    })
+    $('#gst_certificate').dropify();
+    $('#upload_pan_card_attachment').dropify();
+    $('#registration_docs').dropify();
+    $('#upload_other_documents').dropify();
 </script>
 @endsection

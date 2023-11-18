@@ -15,7 +15,6 @@ class Admin extends Model
         'email',
         'password',
         'roleType',
-        'trash',
-        'admin_id'
+        'trash'
     ];
 }

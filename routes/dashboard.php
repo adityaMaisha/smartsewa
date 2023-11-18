@@ -78,7 +78,11 @@ Route::middleware(['loginAuth'])->group(function () {
     /* =====[ Hospital Management ]===== */
     Route::match(['get', 'post'], 'vendor-new-setup', [HospitalController::class, 'vendorNewSetup'])->name('vendor.new.setup');
     Route::match(['get', 'post'], 'vendor-new-step-01/{token}', [HospitalController::class, 'vendorNewToken01'])->name('vendor.new.step.01');
-
+    Route::delete('hospitalDelete/{id}',[HospitalController::class,'hospitalDelete'])->name('vendor.hospital.delete');
+    Route::get('hospitalEdit/{id}',[HospitalController::class,'hospitalEdit'])->name('vendor.hospital.edit');
+    Route::post('hospitalUpdate',[HospitalController::class,'hospitalUpdate'])->name('vendor.hospital.update');
+    Route::get('hospitalList',[HospitalController::class,'hospitalList'])->name('vendor.hospital.list');
+    Route::post('hospitalFormSave',[HospitalController::class,'hospitalFormSave']);
 
     /* =====[ Vendor Management ]===== */
     Route::get('labs-list', [ClientsController::class, 'labsList'])->name('labs.list');
@@ -96,10 +100,30 @@ Route::middleware(['loginAuth'])->group(function () {
     Route::get('vendor-list-radiology-diagnostics', [VendorController::class, 'vendorListRadiologyDiagnostics'])->name('vendor.list.radiology.diagnostics');
     Route::get('vendor-edit-radiology-diagnostics/{id}', [VendorController::class, 'vendorEditRadiologyDiagnostics'])->name('vendor.edit.radiology.diagnostics');
     Route::post('vendor-update-radiology-diagnostics/{id}', [VendorController::class, 'vendorUpdateRadiologyDiagnostics'])->name('vendor.update.radiology.diagnostics');
+    Route::delete('vendor-delete-radiology-diagnostics/{id}', [VendorController::class, 'vendorDeleteRadiologyDiagnostics'])->name('vendor.delete.radiology.diagnostics');
     Route::match(['get', 'post'], 'vendor-new-hospitals-others', [VendorController::class, 'vendorNewHospitalsOthers'])->name('vendor.new.hospitals.others');
-    Route::match(['get', 'post'], 'vendor-new-doctors-other', [VendorController::class, 'vendorNewDoctorsOther'])->name('vendor.new.doctors.other');
+
+
+    //Doctor And Others
+    Route::get('vendor-list-doctors-other', [VendorController::class, 'vendorListDoctorsOther'])->name('vendor.list.doctors.other');
+    Route::get('vendor-new-doctors-other', [VendorController::class, 'vendorNewDoctorsOther'])->name('vendor.new.doctors.other');
+    Route::get('vendor-edit-doctors-other/{id}', [VendorController::class, 'vendorEditDoctorsOther'])->name('vendor.edit.doctors.other');
+    Route::post('vendor-update-doctors-other/{id}', [VendorController::class, 'vendorUpdateDoctorsOther'])->name('vendor.update.doctors.other');
+    Route::post('vendor-save-doctors-other', [VendorController::class, 'vendorSaveDoctorsOther'])->name('vendor.save.doctors.other');
+    Route::delete('vendor-delete-doctors-other/{id}', [VendorController::class, 'vendorDeleteDoctorsOther'])->name('vendor.delete.doctors.other');
+
     Route::match(['get', 'post'], 'vendor-new-healthcare-professionals', [VendorController::class, 'vendorNewHealthcareProfessionals'])->name('vendor.new.healthcare.professionals');
+    Route::get('/vendor-list-healthcare-professionals',[VendorController::class,'vendorListHealthcareProfessionals'])->name('vendor.list.healthcare.professionals');
+    Route::post('/vendor-save-healthcare-professionals',[VendorController::class,'vendorSaveHealthcareProfessionals'])->name('vendor.save.healthcare.professionals');
+    Route::delete('/vendor-delete-healthcare-professionals/{id}',[VendorController::class,'vendorDeleteHealthcareProfessionals'])->name('vendor.delete.healthcare.professionals');
+    Route::get('/vendor-edit-healthcare-professionals/{id}',[VendorController::class,'vendorEditHealthcareProfessionals'])->name('vendor.edit.healthcare.professionals');
+    Route::post('/vendor-update-healthcare-professionals/{id}',[VendorController::class,'vendorUpdateHealthcareProfessionals'])->name('vendor.update.healthcare.professionals');
     Route::match(['get', 'post'], 'vendor-new-htm-consumables-suplliers', [VendorController::class, 'vendorNewHtmConsumablesSuplliers'])->name('vendor.new.htm.consumables.suplliers');
+    Route::get('vendor-list-htm-consumables-suplliers', [VendorController::class, 'vendorListHtmConsumablesSuplliers'])->name('vendor.list.htm.consumables.suplliers');
+    Route::post('vendor-save-htm-consumables-suplliers', [VendorController::class, 'vendorSaveHtmConsumablesSuplliers'])->name('vendor.save.htm.consumables.suplliers');
+    Route::delete('vendor-delete-htm-consumables-suplliers/{id}', [VendorController::class, 'vendorDeleteHtmConsumablesSuplliers'])->name('vendor.delete.htm.consumables.suplliers');
+    Route::get('vendor-edit-htm-consumables-suplliers/{id}', [VendorController::class, 'vendorEditHtmConsumablesSuplliers'])->name('vendor.edit.htm.consumables.suplliers');
+    Route::post('vendor-update-htm-consumables-suplliers/{id}', [VendorController::class, 'vendorUpdateHtmConsumablesSuplliers'])->name('vendor.update.htm.consumables.suplliers');
 
 
     /* =====[ Client Management ]===== */

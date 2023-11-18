@@ -17,7 +17,7 @@
                     <div class="d-flex">
                         <div class="justify-content-center">
                             <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                                <a href="#" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
+                                <a href="{{route('vendor.hospital.list')}}" style="color: white;"> <i class="fa fa-backward me-2"></i> Back</a>
                             </button>
                         </div>
                     </div>

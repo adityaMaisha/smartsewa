@@ -191,7 +191,7 @@
         let data_delete = $(this).attr('data-delete-id');
         let elem = this;
         $.ajax({
-            url:`/products/criticalcare/${data_delete}`,
+            url:`/vendor-delete-radiology-diagnostics/${data_delete}`,
             type:'delete',
             headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
             datatype:'json',

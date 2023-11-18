@@ -86,7 +86,7 @@
 
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Appointment With Doctor</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">HTM Consumables Suplliers Vendor</h2>
 
                 </div>
                 <div class="d-flex">
@@ -95,11 +95,9 @@
                         {{-- <button type="button" class="btn btn-white btn-icon-text my-2 me-2">
                             <i class="fa fa-filter me-2"></i> Filter
                         </button> --}}
-
                         <button type="button" class="btn btn-primary my-2 btn-icon-text">
-                          <a href="{{ route('products.appointmentdoctor.create') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add Appointment With Doctor</a>
+                          <a href="{{ route('vendor.new.htm.consumables.suplliers') }}" style="color: white;">  <i class="fa fa-add me-2"></i> Add HTM Consumables Suplliers Vendor</a>
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -111,32 +109,34 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="tableizer-table w-100" id="dataTable">
+                                <table class="tableizer-table w-100" id="laravelTable">
                                     <thead>
                                         <tr class="tableizer-firstrow">
-                                            <th>Doctor Name</th>
-                                            <th>Consultation Fee</th>
-                                            <th>Discount Fee</th>
-                                            <th>Appointment Time</th>
-                                            <th>Availability</th>
+                                            <th>Name</th>
+                                            <th>Email Id</th>
+                                            <th>Mobile</th>
+                                            <th>Care Type</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            @foreach ($appointment as $appoint)
+                                        @foreach ($getData as $data)
                                             <tr>
-                                                    <td>{{$appoint->dr_name}}</td>
-                                                    <td>{{$appoint->consultation_fee}}</td>
-                                                    <td>{{$appoint->discount_fee}}</td>
-                                                    <td>{{\Carbon\Carbon::parse($appoint->appointment_time)->format('g:i A') }}</td>
-                                                    <td>{{ucwords(str_replace(',',', ',str_replace('_',' ',implode(',',$appoint->availability))))}}</td>
-                                                    <td>
-                                                        <a href="{{route('products.appointmentdoctor.edit',encrypt($appoint->_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
-                                                        {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
-                                                        <a data-delete-id="{{encrypt($appoint->_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                                <td>{{$data->vendor_name}}</td>
+                                                <td>{{$data->email_id}}</td>
+                                                <td>
+                                                    {{$data->mobile_number}}
+                                                </td>
+                                                <td>
+                                                    {{ucwords(str_replace('_',' ',implode(', ',$data->care)))}}
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('vendor.edit.htm.consumables.suplliers',encrypt($data->admin_id))}}" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> &nbsp; Edit &nbsp;</a>
+                                                    {{-- href={{route('products.labtests.destroy',encrypt($labtest->_id))}} --}}
+                                                    <a data-delete-id="{{encrypt($data->admin_id)}}" class="btn btn-sm btn-remove removeItem" ><i class="fas fa-trash"></i> &nbsp; Delete</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -186,23 +186,20 @@
 @endsection @section('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 <script>
+
     $('.removeItem').click(function(){
         // console.log();
         let data_delete = $(this).attr('data-delete-id');
         let elem = this;
         $.ajax({
-            url:`/products/appointmentdoctor/${data_delete}`,
+            url:`/vendor-delete-htm-consumables-suplliers/${data_delete}`,
             type:'delete',
             headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
             datatype:'json',
             success:function(res){
-                // console.log('success');
-                // console.log(res);
                 $(elem).closest('tr').remove();
             },
             error:function(res){
-                // console.log('error');
-                // console.log(res);
             }
         });
     });

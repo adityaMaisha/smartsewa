@@ -78,10 +78,10 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Add New Doctors And Other Vendor</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Edit Doctors And Other Vendor</h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Add New Doctors Other Vendor</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">New Doctors And Other Vendor</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Edit Doctors Other Vendor</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Doctors And Other Vendor</li>
                     </ol>
                 </div>
                 <div class="d-flex">
@@ -111,8 +111,8 @@
                                         <p class="mg-b-10">Vendor Type <b class="text-danger">*</b></p>
                                         <select class="form-control select2" name="vendor_type" onchange="get_vendor(this.value)" >
                                             <option label="Select Vendor Type"></option>
-                                            <option value="Doctor">Doctor</option>
-                                            <option value="Other">Other</option>
+                                            <option value="Doctor"{{$editData->vendor_type=="Doctor"?'selected':''}}>Doctor</option>
+                                            <option value="Other" {{$editData->vendor_type=="Other"?'selected':''}}>Other</option>
                                         </select>
                                         <span class="text-danger ERROR__vendor_type"></span>
                                     </div>
@@ -120,7 +120,7 @@
                                     <div class="col-lg-4 other">
                                         <p class="mg-b-10">Other <b class="text-danger">*</b></p>
                                         <input class="form-control" type="text"
-                                            name="other_vendor_doctor" placeholder="Enter Other Vendor">
+                                            name="other_vendor_doctor" placeholder="Enter Other Vendor" value="{{$editData->other_vendor_doctor?$editData->other_vendor_doctor:''}}">
                                         <span class="text-danger ERROR__other_vendor_doctor"></span>
                                     </div>
 
@@ -128,8 +128,8 @@
                                         <p class="mg-b-10">Salutation <b class="text-danger">*</b></p>
                                         <select class="form-control select2" name="salutation" >
                                             <option label="Select Vendor Type"></option>
-                                            <option value="Dr">Dr</option>
-                                            <option value="MD">MD</option>
+                                            <option value="Dr" {{$editData->salutation=="Dr"?'selected':''}}>Dr</option>
+                                            <option value="MD"{{$editData->salutation=="MD"?'selected':''}}>MD</option>
                                         </select>
                                         <span class="text-danger ERROR__salutation"></span>
                                     </div>
@@ -137,7 +137,7 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Name <b class="text-danger">*</b></p>
                                         <input class="form-control" type="text"
-                                            name="vendor_name" placeholder="Enter Name">
+                                            name="vendor_name" placeholder="Enter Name" value="{{$editData->vendor_name}}">
                                         <span class="text-danger ERROR__vendor_name"></span>
                                     </div>
 
@@ -149,7 +149,7 @@
                                                     <i class="fe fe-calendar lh--9 op-6"></i>
                                                 </div>
                                                 <input class="form-control fc-datepicker"
-                                                    placeholder="MM/DD/YYYY" type="text" name="date_of_birth">
+                                                    placeholder="MM/DD/YYYY" type="text" name="date_of_birth" value="{{$editData->date_of_birth}}">
                                             </div>
                                             <span class="text-danger ERROR__date_of_birth"></span>
                                         </div>
@@ -158,18 +158,18 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Address <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Address" type="text"
-                                            name="address">
+                                            name="address" value="{{$editData->address}}">
                                         <span class="text-danger ERROR__address"></span>
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Care Type <b class="text-danger">*</b></p>
                                         <div class="form-check">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="home_care" name="care[]">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="home_care" name="care[]" {{in_array('home_care',$editData->care)?'checked':''}}>
                                                 <label class="form-check-label" for="inlineCheckbox1">Home Care</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="critical_care" name="care[]">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="critical_care" name="care[]" {{in_array('critical_care',$editData->care)?'checked':''}}>
                                                 <label class="form-check-label" for="inlineCheckbox2">Critical Care</label>
                                             </div>
                                         </div>
@@ -186,6 +186,7 @@
                                                 </span>
                                             </label>
                                         </div>
+                                        <a href="{{asset($editData->employee_profile)}}" target="_blank" rel="noopener noreferrer">Click to Preview</a>
                                         <span class="text-danger ERROR__employee_profile"></span>
                                     </div>
 
@@ -199,12 +200,12 @@
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Email <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Enter Email" type="email"
-                                            name="email_id" >
+                                            name="email_id" value="{{$editData->email_id}}">
                                             <span class="text-danger ERROR__email_id"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Mobile <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text" name="mobile_number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
+                                        <input class="form-control" type="text" name="mobile_number" value="{{$editData->mobile_number}}" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
                                             <span class="text-danger ERROR__mobile_number"></span>
                                     </div>
                                 </div>
@@ -217,7 +218,7 @@
                                                 id="user_country">
                                                 <option value="">Select Employee Country</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}" {{$editData->country==$country->id?'selected':''}}>{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="text-danger ERROR__country"></span>
@@ -246,7 +247,7 @@
                                     <div class="col-lg-12 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Short Brief <b class="text-danger">*</b></p>
                                         <textarea class="form-control" placeholder="Enter Short Brief" type="text"
-                                            name="short_brief" ></textarea>
+                                            name="short_brief" >{{$editData->short_brief}}</textarea>
                                             <span class="text-danger ERROR__short_brief"></span>
                                     </div>
 
@@ -269,24 +270,19 @@
                                     <div class="col-lg-6">
                                         <p class="mg-b-10">Office Email <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Office Email" type="Email" readonly onfocus="this.removeAttribute('readonly');"
-                                            name="office_email" >
+                                            name="office_email" value="{{$editData->office_email}}">
                                         <span class="text-danger ERROR__office_email"></span>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p class="mg-b-10">Login Password <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Login Password" type="password" name="password"  readonly onfocus="this.removeAttribute('readonly');">
-                                        <span class="text-danger ERROR__password"></span>
                                     </div>
                                 </div>
                                 <div class="row row-sm">
                                     <div class="col-lg-6 mt-3 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Contact Person Name <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text" name="contact_person_name" placeholder="Enter Contact Person Name">
+                                        <input class="form-control" type="text" name="contact_person_name" placeholder="Enter Contact Person Name" value="{{$editData->contact_person_name}}">
                                             <span class="text-danger ERROR__contact_person_name"></span>
                                     </div>
                                     <div class="col-lg-6 mt-3 mg-t-10 mg-lg-t-0">
                                         <p class="mg-b-10">Contact Person Mobile <b class="text-danger">*</b></p>
-                                        <input class="form-control" type="text" name="contact_per_mobile" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
+                                        <input class="form-control" type="text" name="contact_per_mobile" value="{{$editData->contact_per_mobile}}" pattern="[0-9]{10}" title="Please enter exactly 10 digits" placeholder="10 Digit Mobile Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="10">
                                             <span class="text-danger ERROR__contact_per_mobile"></span>
                                     </div>
 
@@ -310,20 +306,20 @@
                                 <div class="row row-sm mg-t-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">Adhaar Card No <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Adhaar Card No" type="text"
+                                        <input class="form-control" placeholder="Adhaar Card No" type="text" value="{{$editData->adhaar_card_number}}"
                                             name="adhaar_card_number" pattern="[0-9]{12}" title="Please enter valid 12 digits" placeholder="12 Digit Adhaar Card Number" onkeydown="return ( event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" maxlength="12">
                                             <span class="text-danger ERROR__adhaar_card_number"></span>
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="mg-b-10 fw-bold">PAN Card No <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Card No" type="text"
-                                            name="pan_card_number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter Valid Pan Card Number ( Example: ABCTY1234D )">
+                                            name="pan_card_number" value="{{$editData->pan_card_number}}" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter Valid Pan Card Number ( Example: ABCTY1234D )">
                                             <span class="text-danger ERROR__pan_card_number"></span>
                                     </div>
                                     <div class="col-lg-6 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">GST Certificate <b class="text-danger">*</b></p>
                                         <input type="file" class="" accept="image/*" id="gst_certificate" data-height="200"
-                                            name="gst_certificate">
+                                            name="gst_certificate" data-default-file="{{asset($editData->gst_certificate)}}">
                                             <span class="text-danger ERROR__gst_certificate"></span>
                                     </div>
                                 </div>
@@ -331,14 +327,14 @@
                                     <div class="col-lg-6 col-md-4  mt-3">
                                         <p class="mg-b-10 fw-bold">Upload PAN Card <b class="text-danger">*</b></p>
                                         <input type="file" class="" accept="image/*" id="pan_card_attachment" data-height="200"
-                                            name="upload_pan_card_attachment">
+                                            name="upload_pan_card_attachment" data-default-file="{{asset($editData->upload_pan_card_attachment)}}">
                                             <span class="text-danger ERROR__upload_pan_card_attachment"></span>
                                     </div>
 
                                     <div class="col-lg-6 col-md-4 mt-3">
                                         <p class="mg-b-10 fw-bold"> Registration Certificate <b class="text-danger">*</b></p>
                                         <input type="file" class="" accept="image/*" id="registration_docs" data-height="200"
-                                            name="registration_docs">
+                                            name="registration_docs" data-default-file="{{asset($editData->registration_docs)}}">
                                             <span class="text-danger ERROR__registration_docs"></span>
                                     </div>
 
@@ -347,7 +343,7 @@
                                     <div class="col-lg-12 p-0">
                                         <p class="mg-b-10 fw-bold">Upload Other Documents <b class="text-danger">*</b></p>
                                         <input type="file" class="" accept="image/*" id="upload_other_documents" data-height="100"
-                                            name="upload_other_documents">
+                                            name="upload_other_documents" data-default-file="{{asset($editData->upload_other_documents)}}">
                                             <span class="text-danger ERROR__upload_other_documents"></span>
                                     </div>
                                 </div>
@@ -370,7 +366,7 @@
 
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Practice Category <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Practice Category" type="text" name="practice_category" list="practice_category_list" >
+                                        <input class="form-control" placeholder="Practice Category" type="text" name="practice_category" list="practice_category_list" value="{{$editData->practice_category}}">
                                         <datalist id="practice_category_list">
                                             <option value="Allopathy">
                                             <option value="Homeopathy">
@@ -381,29 +377,29 @@
 
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Licence Number <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Licence Number" type="text" name="licence_number">
+                                        <input class="form-control" placeholder="Licence Number" type="text" name="licence_number" value="{{$editData->licence_number}}">
                                         <span class="text-danger ERROR__licence_number"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Registration State <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Registration State" type="text" name="registration_state">
+                                        <input class="form-control" placeholder="Registration State" type="text" name="registration_state" value="{{$editData->registration_state}}">
                                             <span class="text-danger ERROR__registration_state"></span>
                                     </div>
                                 </div>
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Qualification <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Qualification"  type="text" name="qualification">
+                                        <input class="form-control" placeholder="Qualification"  type="text" name="qualification"  value="{{$editData->qualification}}">
                                             <span class="text-danger ERROR__qualification"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Specialization <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Specialization"  name="specialization" type="text">
+                                        <input class="form-control" placeholder="Specialization"  name="specialization" type="text" value="{{$editData->specialization}}">
                                             <span class="text-danger ERROR__specialization"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Department <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Department" type="text"  name="department">
+                                        <input class="form-control" placeholder="Department" type="text"  name="department" value="{{$editData->department}}">
                                             <span class="text-danger ERROR__department"></span>
                                     </div>
                                 </div>
@@ -428,20 +424,20 @@
                                         <p class="mg-b-10">Available for home Visit <b class="text-danger">*</b></p>
                                         <select class="form-control select2" name="available_for_home_visit" >
                                             <option label="Available for home Visit"></option>
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
+                                            <option value="yes"{{$editData->available_for_home_visit=="yes"?'selected':''}}>Yes</option>
+                                            <option value="no"{{$editData->available_for_home_visit=="no"?'selected':''}}>No</option>
                                         </select>
                                         <span class="text-danger ERROR__available_for_home_visit"></span>
                                     </div>
 
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">If yes time slots</p>
-                                        <input class="form-control" placeholder="If yes time slots" type="text" name="if_yes_time_slots">
+                                        <input class="form-control" placeholder="If yes time slots" type="text" name="if_yes_time_slots" value="{{$editData->if_yes_time_slots?$editData->if_yes_time_slots:''}}">
                                     </div>
 
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Video Call time slot</p>
-                                        <input class="form-control" placeholder="Video Call time slot" type="text" name="video_call_time_slot">
+                                        <input class="form-control" placeholder="Video Call time slot" type="text" name="video_call_time_slot" value="{{$editData->video_call_time_slot?$editData->video_call_time_slot:''}}">
                                     </div>
 
                                     {{-- <div class="col-lg-4 mg-t-20 mg-lg-t-0">
@@ -451,23 +447,29 @@
 
 
                                 <span id="practiceDetailsSection">
+                                    @foreach ($editData->location as $key=>$loca)
+                                        <div class="row row-sm mg-b-20">
+                                            <div class="col-lg-5 mg-t-20 mg-lg-t-0">
+                                                <p class="mg-b-10">Location <b class="text-danger">*</b></p>
+                                                <input class="form-control" placeholder="Location" type="text" name="location[]" value="{{$loca}}">
+                                            </div>
 
-                                    <div class="row row-sm mg-b-20">
-                                        <div class="col-lg-5 mg-t-20 mg-lg-t-0">
-                                            <p class="mg-b-10">Location <b class="text-danger">*</b></p>
-                                            <input class="form-control" placeholder="Location" type="text" name="location[]">
+                                            <div class="col-lg-5 mg-t-20 mg-lg-t-0">
+                                                <p class="mg-b-10">Visiting Hours <b class="text-danger">*</b></p>
+                                                <input class="form-control" placeholder="Visiting Hours" type="text" name="visiting_hours[]" value="{{$editData->visiting_hours[$key]}}">
+                                            </div>
+                                            @if ($key>0)
+                                                {{-- <div class="col-lg-2 mg-t-20 mg-lg-t-0">
+                                                    <button class="remove" type="button">Remove</button>
+                                                </div> --}}
+                                                <div class="col-2 mg-t-20 mg-lg-t-0">
+                                                    <p class="mg-b-10">&nbsp;</p>
+                                                    <button class="remove btn btn-danger" type="button">Remove</button>
+                                                </div>
+                                            @endif
+
                                         </div>
-
-                                        <div class="col-lg-5 mg-t-20 mg-lg-t-0">
-                                            <p class="mg-b-10">Visiting Hours <b class="text-danger">*</b></p>
-                                            <input class="form-control" placeholder="Visiting Hours" type="text" name="visiting_hours[]">
-                                        </div>
-
-                                        {{-- <div class="col-lg-2 mg-t-20 mg-lg-t-0">
-                                            <button class="remove" type="button">Remove</button>
-                                        </div> --}}
-                                    </div>
-
+                                    @endforeach
                                 </span>
                                 <div class="row row-sm mg-b-20">
                                     <div class="col-12">
@@ -495,13 +497,13 @@
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank Name <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Bank Name" type="text"
-                                            name="employee_bank_name">
+                                            name="employee_bank_name" value="{{$editData->employee_bank_name}}">
                                             <span class="text-danger ERROR__employee_bank_name"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Account Holder Name <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="First Name" type="text"
-                                            name="bank_account_holder_name">
+                                            name="bank_account_holder_name" value="{{$editData->bank_account_holder_name}}">
                                             <span class="text-danger ERROR__bank_account_holder_name"></span>
                                     </div>
 
@@ -509,8 +511,8 @@
                                         <p class="mg-b-10">Account Type <b class="text-danger">*</b></p>
                                         <select class="form-control select2" name="bank_account_type" >
                                             <option label="Account Type"></option>
-                                            <option value="saving">Saving</option>
-                                            <option value="current">Current</option>
+                                            <option value="saving" {{$editData->bank_account_type="saving"?'selected':''}}>Saving</option>
+                                            <option value="current"{{$editData->bank_account_type="current"?'selected':''}}>Current</option>
                                         </select>
                                         <span class="text-danger ERROR__bank_account_type"></span>
                                     </div>
@@ -519,19 +521,13 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Account Number <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Account Number"
-                                            type="text" name="bank_account_number">
+                                            type="text" name="bank_account_number" value="{{$editData->bank_account_number}}">
                                             <span class="text-danger ERROR__bank_account_number"></span>
-                                    </div>
-                                    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
-                                        <p class="mg-b-10">Confirm Account Number <b class="text-danger">*</b></p>
-                                        <input class="form-control" placeholder="Confirm Account Number"
-                                            id="confirm_account_number" name="account_number_confirmation" type="text">
-                                            <span class="text-danger ERROR__confirm_account_number"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">IFSC Code <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="IFSC Code" type="text"
-                                            name="bank_ifsc_code">
+                                            name="bank_ifsc_code" value="{{$editData->bank_ifsc_code}}">
                                             <span class="text-danger ERROR__bank_ifsc_code"></span>
                                     </div>
                                 </div>
@@ -539,13 +535,13 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Bank Branch <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Bank Branch" type="text"
-                                            name="bank_branch">
+                                            name="bank_branch" value="{{$editData->bank_branch}}">
                                             <span class="text-danger ERROR__bank_branch"></span>
                                     </div>
                                     <div class="col-lg-4 mg-t-20 mg-lg-t-0">
                                         <p class="mg-b-10">Bank City <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Bank City" type="text"
-                                            name="bank_city">
+                                            name="bank_city" value="{{$editData->bank_city}}">
                                             <span class="text-danger ERROR__bank_city"></span>
                                     </div>
 
@@ -569,7 +565,7 @@
                                     <div class="col-lg-4">
                                         <p class="mg-b-10">Reference <b class="text-danger">*</b></p>
                                         <input class="form-control" placeholder="Reference (if any)" type="text"
-                                            name="reference_name">
+                                            name="reference_name" value="{{$editData->reference_name}}">
                                             <span class="text-danger ERROR__reference_name"></span>
                                     </div>
                                 </div>
@@ -581,7 +577,7 @@
                 <div class="row mt-3 mb-4">
                     <div class="col-12 text-center">
                         <input type="submit" class="btn btn-primary my-2 btn-icon-text" style="color: white;"
-                            value="&nbsp; Create New Doctor &nbsp;">
+                            value="&nbsp; Edit Doctor &nbsp;">
                     </div>
                 </div>
             </form>
@@ -624,8 +620,9 @@
     });
     $('#employeeFormData').submit(function(e){
         e.preventDefault();
+        let setIds = "<?php print_r(request()->route()->parameter('id'))?>";
         $.ajax({
-            url:'/vendor-save-doctors-other',
+            url:`/vendor-update-doctors-other/${setIds}`,
             type:'post',
             data:new FormData(document.getElementById('employeeFormData')),
             datatype:'json',
@@ -648,51 +645,6 @@
             }
         })
     })
-    // ''
-    // $(document).on("submit", "#employeeFormData", function (ev) {
-    //     ev.preventDefault();
-    //     var frm = $("#htmlForm");
-    //     var form = $("#htmlForm")[0];
-    //     var data = new FormData(form);
-
-    //     $.ajax({
-    //         url: ,
-    //         type: 'post',
-    //         enctype: "multipart/form-data",
-    //         headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
-    //         processData: false,
-    //         contentType: false,
-    //         async: false,
-    //         cache: false,
-    //         data: data,
-    //         beforeSend: function () {
-    //             $('span[class*="ERROR__"]').html("");
-    //             $("body").css("pointer-events", "none");
-    //         },
-    //         success: function (data) {
-    //             if (data.success == true) {
-    //                 python(data.message, "Great");
-    //                 setTimeout(function() {
-    //                     location.href = "{{ route('list.customers') }}";
-    //                 }, 1000);
-    //             } else {
-    //                 python(data.message, "Whoops!", "red");
-    //                 $.each(data.errors, function (field, message) {
-    //                     $(".ERROR__" + field).html('<div class="text-danger">' + message + "</div>");
-    //                 });
-    //             }
-    //         },
-    //         error: function (err) {
-    //             //
-    //         },
-    //         complete: function (data) {
-    //             $(function () {
-    //                 htmlError();
-    //                 $("body").css("pointer-events", "auto");
-    //             });
-    //         },
-    //     });
-    // });
 </script>
 <script>
 
@@ -728,6 +680,36 @@
         $('#pan_card_attachment').dropify();
         $('#registration_docs').dropify();
         $('#upload_other_documents').dropify();
+
+        let country_id = "<?php print_r($editData->country)?>";
+        let state_id = "<?php print_r($editData->state)?>";
+        let city_id = "<?php print_r($editData->city)?>";
+        $.ajax({
+            url:'/states',
+            type:'post',
+            data:{country_id:country_id},
+            datatype:'json',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            success:function(res){
+                $('#user_state').html(res.html_data);
+                $('#user_state').find(`option[value=${state_id}]`).prop('selected',true);
+            },
+            error:function(res){
+            }
+        });
+        $.ajax({
+            url:'/cities',
+            type:'post',
+            data:{state_id:state_id},
+            datatype:'json',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            success:function(res){
+                $('#user_city').html(res.html_data);
+                $('#user_city').find(`option[value=${city_id}]`).prop('selected',true);
+            },
+            error:function(res){
+            }
+        });
     });
 
     function get_vendor(val)

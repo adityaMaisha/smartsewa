@@ -258,10 +258,10 @@
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('labs.list') }}">Path Lab</a></li>
                                     {{-- <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.path.lab') }}">Path Lab</a></li> --}}
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.list.radiology.diagnostics') }}">Radiology Diagnostics</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.setup') }}">Hospitals & Others</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.doctors.other') }}">Doctors & Other</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.healthcare.professionals') }}">Healthcare Professionals</a></li>
-                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.new.htm.consumables.suplliers') }}">HTM Consumables Suplliers</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.hospital.list') }}">Hospitals & Others</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.list.doctors.other') }}">Doctors & Other</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.list.healthcare.professionals') }}">Healthcare Professionals</a></li>
+                                    <li class="nav-sub-item"><a class="nav-sub-link" href="{{ route('vendor.list.htm.consumables.suplliers') }}">HTM Consumables Suplliers</a></li>
                                     {{-- <li class="nav-sub-item"><a class="nav-sub-link" href="#">Products</a></li>
                                     <li class="nav-sub-item"><a class="nav-sub-link" href="javascript:void(0)">Medicine</a></li> --}}
                                 </ul>
