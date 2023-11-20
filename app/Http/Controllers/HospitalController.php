@@ -410,7 +410,9 @@ class HospitalController extends Controller
     public function hospitalEdit($id){
         $editData = HospitalOther::where('admin_id',decrypt($id))->first();
         $nextToken = $editData->roleType;
-        return view('admin.hospital.hospital-step-1edit',compact('editData','nextToken'));
+        return view('admin.hospital.hospital-step-1edit',[
+            'countries'=>countries::get()
+        ],compact('editData','nextToken'));
     }
 
     public function hospitalUpdate(Request $request){

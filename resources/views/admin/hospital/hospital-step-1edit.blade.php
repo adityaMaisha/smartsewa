@@ -1,5 +1,6 @@
 @extends('admin.layout.master')
 @section('style')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css" integrity="sha512-YdYyWQf8AS4WSB0WWdc3FbQ3Ypdm0QCWD2k4hgfqbQbRCJBEgX0iAegkl2S1Evma5ImaVXLBeUkIlP6hQ1eYKQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 .remove-address-row {
@@ -288,31 +289,27 @@
                                                                                 <div class="form-group">
                                                                                     <select name="AddressCountry[]" class="countrychange form-control select2">
                                                                                         <option value="">Default Select</option>
-                                                                                        <option value="cz"{{$addressData=="cz"?'selected':''}}>Czech Republic</option>
-                                                                                        <option value="de"{{$addressData=="de"?'selected':''}}>Germany</option>
-                                                                                        <option value="pl"{{$addressData=="pl"?'selected':''}}>Poland</option>
+                                                                                        @foreach ($countries as $country)
+                                                                                            <option value="{{$country->id}}"{{$addressData==$country->id?'selected':''}}>{{$country->name}}</option>
+                                                                                        @endforeach
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-lg mg-t-10 mg-lg-t-0">
                                                                                 <p class="mg-b-10">State <b class="text-danger">*</b></p>
+
                                                                                 <div class="form-group">
-                                                                                    <select name="AddressState[]" class="form-control select2">
+                                                                                    <select name="AddressState[]" class="statechange state{{$addressKey}} form-control select2">
                                                                                         <option value="">Default Select</option>
-                                                                                        <option value="cz"{{isset($editData->AddressState)&&$editData->AddressState[$addressKey]=="cz"?'selected':''}}>Czech Republic</option>
-                                                                                        <option value="de"{{isset($editData->AddressState)&&$editData->AddressState[$addressKey]=="de"?'selected':''}}>Germany</option>
-                                                                                        <option value="pl"{{isset($editData->AddressState)&&$editData->AddressState[$addressKey]=="pl"?'selected':''}}>Poland</option>
+
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-lg mg-t-10 mg-lg-t-0">
                                                                                 <p class="mg-b-10">City <b class="text-danger">*</b></p>
                                                                                 <div class="form-group">
-                                                                                    <select name="AddressCity[]" class="form-control select2">
+                                                                                    <select name="AddressCity[]" class="citychange city{{$addressKey}} form-control select2">
                                                                                         <option value="">Default Select</option>
-                                                                                        <option value="cz"{{isset($editData->AddressCity)&&$editData->AddressCity[$addressKey]=="cz"?'selected':''}}>Czech Republic</option>
-                                                                                        <option value="de"{{isset($editData->AddressCity)&&$editData->AddressCity[$addressKey]=="de"?'selected':''}}>Germany</option>
-                                                                                        <option value="pl"{{isset($editData->AddressCity)&&$editData->AddressCity[$addressKey]=="pl"?'selected':''}}>Poland</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -347,6 +344,43 @@
                                                                             </div>
 
                                                                         </div>
+                                                                        <script>
+                                                                            function handleAddressCounter(counter) {
+                                                                                var country_id1 = "<?php print_r($addressData) ?>";
+                                                                                var state_id1 = "<?php print_r($editData->AddressState[$addressKey]) ?>";
+                                                                                var city_id1 = "<?php print_r($editData->AddressCity[$addressKey]) ?>";
+
+                                                                                $.ajax({
+                                                                                    url: '/states',
+                                                                                    type: 'post',
+                                                                                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                                                                                    dataType: 'json',
+                                                                                    data: { country_id: country_id1 },
+                                                                                    success: function (res) {
+                                                                                        $(`.state${counter}`).html(res.html_data);
+                                                                                        $(`.state${counter}`).find(`option[value=${state_id1}]`).prop('selected', true);
+                                                                                    },
+                                                                                    error: function (res) {
+                                                                                        console.error(res);
+                                                                                    }
+                                                                                });
+                                                                                $.ajax({
+                                                                                    url:'/cities',
+                                                                                    type:'post',
+                                                                                    headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+                                                                                    datatype:'json',
+                                                                                    data:{state_id:state_id1},
+                                                                                    success:function(res){
+                                                                                        $(`.city${counter}`).html(res.html_data);
+                                                                                        $(`.city${counter}`).find(`option[value=${city_id1}]`).prop('selected', true);
+                                                                                    },
+                                                                                    error:function(res){
+                                                                                    }
+                                                                                });
+                                                                            }
+
+                                                                            handleAddressCounter("<?php print_r($addressKey) ?>");
+                                                                        </script>
                                                                         @if($addressKey>0)
                                                                             <div style="text-align: right;">
                                                                                 <button class="btn btn-danger addRemoveAddressButton" type="button"><i class="fa fa-trash"></i> Remove </button>
@@ -360,33 +394,24 @@
                                                                         <div class="col-lg">
                                                                             <p class="mg-b-10">Select Country <b class="text-danger">*</b></p>
                                                                             <div class="form-group">
-                                                                                <select name="AddressCountry[]" class="form-control select2">
+                                                                                <select name="AddressCountry[]" class="countrychange form-control select2">
                                                                                     <option value="">Default Select</option>
-                                                                                    <option value="cz">Czech Republic</option>
-                                                                                    <option value="de">Germany</option>
-                                                                                    <option value="pl">Poland</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                                                             <p class="mg-b-10">State <b class="text-danger">*</b></p>
                                                                             <div class="form-group">
-                                                                                <select name="AddressState[]" class="form-control select2">
+                                                                                <select name="AddressState[]" class="statechange form-control select2">
                                                                                     <option value="">Default Select</option>
-                                                                                    <option value="cz">Czech Republic</option>
-                                                                                    <option value="de">Germany</option>
-                                                                                    <option value="pl">Poland</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg mg-t-10 mg-lg-t-0">
                                                                             <p class="mg-b-10">City <b class="text-danger">*</b></p>
                                                                             <div class="form-group">
-                                                                                <select name="AddressCity[]" class="form-control select2">
+                                                                                <select name="AddressCity[]" class="citychange form-control select2">
                                                                                     <option value="">Default Select</option>
-                                                                                    <option value="cz">Czech Republic</option>
-                                                                                    <option value="de">Germany</option>
-                                                                                    <option value="pl">Poland</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -951,7 +976,7 @@
 
 @endsection
 @section('script')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
@@ -1070,33 +1095,27 @@
                             <div class="col-lg">
                                 <p class="mg-b-10">Select Country</p>
                                 <div class="form-group">
-                                    <select name="AddressCountry[]" class="form-control select2">
+                                    <select name="AddressCountry[]" class="countrychange form-control select2">
                                         <option value="">Default Select</option>
-                                        <option value="cz">Czech Republic</option>
-                                        <option value="de">Germany</option>
-                                        <option value="pl">Poland</option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg mg-t-10 mg-lg-t-0">
                                 <p class="mg-b-10">State</p>
                                 <div class="form-group">
-                                    <select name="AddressState[]" class="form-control select2">
+                                    <select name="AddressState[]" class="statechange form-control select2">
                                         <option value="">Default Select</option>
-                                        <option value="cz">Czech Republic</option>
-                                        <option value="de">Germany</option>
-                                        <option value="pl">Poland</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg mg-t-10 mg-lg-t-0">
                                 <p class="mg-b-10">City</p>
                                 <div class="form-group">
-                                    <select name="AddressCity[]" class="form-control select2">
+                                    <select name="AddressCity[]" class="citychange form-control select2">
                                         <option value="">Default Select</option>
-                                        <option value="cz">Czech Republic</option>
-                                        <option value="de">Germany</option>
-                                        <option value="pl">Poland</option>
                                     </select>
                                 </div>
                             </div>
@@ -1326,6 +1345,38 @@
     $('input[name="upload_pan"]').dropify();
     $('input[name="upload_id"]').dropify();
     $('input[name="upload_other"]').dropify();
+    $(document).on('change','.countrychange',function(){
+        let element = $(this);
+        // element.closest('.col-lg').next().find('.statechange')
+        $.ajax({
+            url:'/states',
+            type:'post',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            datatype:'json',
+            data:{country_id:element.val()},
+            success:function(res){
+                element.closest('.col-lg').next().find('.statechange').html(res.html_data);
+            },
+            error:function(res){
+            }
+        });
+    });
+    $(document).on('change','.statechange',function(){
+        let element = $(this);
+        // element.closest('.col-lg').next().find('.statechange')
+        $.ajax({
+            url:'/cities',
+            type:'post',
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+            datatype:'json',
+            data:{state_id:element.val()},
+            success:function(res){
+                element.closest('.col-lg').next().find('.citychange').html(res.html_data);
+            },
+            error:function(res){
+            }
+        });
+    });
 </script>
 @if($nextToken != 'hospitals')
     <script>
